@@ -44,7 +44,7 @@ public class CelulaColider : MonoBehaviour {
         if (Input.GetMouseButton(0))
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //ray.origin = new Vector3(ray.origin.x,ray.origin.y,0);
+            //ray.origin = new Vector3(ray.origin.x,ray.origin.y,95.67f);
            
             //Physics.Raycast(ray, out hit, 10)
             RaycastHit hit = new RaycastHit();
@@ -57,7 +57,7 @@ public class CelulaColider : MonoBehaviour {
 
     public void ChamarBotao()
     {
-        Debug.Log("Botao na posicao:" + this.transform.position);
+        GameObject.FindObjectOfType<MenuControler>().AcinonarMenuOpcoesRecurso(this.gameObject);
     }
 
     void OnCollisionEnter(Collision collision)
