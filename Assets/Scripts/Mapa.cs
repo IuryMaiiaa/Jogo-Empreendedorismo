@@ -30,25 +30,26 @@ public class Mapa : MonoBehaviour {
         losango.transform.position = new Vector3(this.transform.position.x, this.transform.position.y,
                                                 this.transform.position.z);
         losangoCelulaBase = losango.GetComponent<Celula>();
-        float disposicaoCelularVertical = (2 * largura.position.x) / (2 * losangoCelulaBase.largura.transform.position.x);
-        float disposicaoCelularHorizontal = (2 * altura.position.y) / (2 * losangoCelulaBase.altura.transform.position.y);
+        float disposicaoCelularVertical = (mapLargura()/ losangoCelulaBase.GetLargura());
+        float disposicaoCelularHorizontal =  (mapAltura() /  losangoCelulaBase.GetAltura());
         Destroy(losango.gameObject);
             
         for (cont2 = 2; cont2 <= 2 * disposicaoCelularHorizontal; cont2 = cont2 + 2)
         {
 
-            for (cont = 2; cont <= 2 * disposicaoCelularVertical; cont = cont + 2)
+            for (cont = 2; cont <= 2*disposicaoCelularVertical; cont = cont + 2)
             {
+                
                 losango = GameObject.Instantiate(LosangoBase) as GameObject;
-                losango.transform.position = new Vector3(-largura.position.x + (cont * losango.GetComponent<Celula>().GetLargura()) + losango.GetComponent<Celula>().GetLargura(),
-                                                        (altura.position.y - cont2 * losango.GetComponent<Celula>().GetAltura()) + losango.GetComponent<Celula>().GetAltura(),
+                losango.transform.position = new Vector3(-mapLargura() + (cont * losango.GetComponent<Celula>().GetLargura()),
+                                                        (mapAltura() - (cont2 * losango.GetComponent<Celula>().GetAltura())) + losango.GetComponent<Celula>().GetAltura(),
                                                         this.transform.position.z);
                 celulasLosango.Add(losango);
             }
             losango = GameObject.Instantiate(LosangoBase) as GameObject;
-            losango.transform.position = new Vector3(-largura.position.x + losango.GetComponent<Celula>().GetLargura(),
-                                                        (altura.position.y - (cont2 * losango.GetComponent<Celula>().GetAltura()) + losango.GetComponent<Celula>().GetAltura()),
-                                                        this.transform.position.z);
+            losango.transform.position = new Vector3(-mapLargura(),
+                                                    (mapAltura() - (cont2 * losango.GetComponent<Celula>().GetAltura()) + losango.GetComponent<Celula>().GetAltura()),
+                                                    this.transform.position.z);
             celulasLosango.Add(losango);
         }
     }
@@ -61,8 +62,8 @@ public class Mapa : MonoBehaviour {
         losango.transform.position = new Vector3(this.transform.position.x, this.transform.position.y,
                                                 this.transform.position.z);
         losangoCelulaBase = losango.GetComponent<Celula>();
-        float disposicaoCelularVertical = ((2 * largura.position.x)- losangoCelulaBase.largura.transform.position.x) / (2 * losangoCelulaBase.largura.transform.position.x);
-        float disposicaoCelularHorizontal = ((2 * altura.position.y)- losangoCelulaBase.altura.transform.position.y) / (2 * losangoCelulaBase.altura.transform.position.y);
+        float disposicaoCelularVertical = (mapLargura()-losangoCelulaBase.GetLargura()) / losangoCelulaBase.GetLargura();
+        float disposicaoCelularHorizontal = (mapAltura() - losangoCelulaBase.GetAltura()) / losangoCelulaBase.GetAltura();
         Destroy(losango.gameObject);
 
         for (cont2 = 2; cont2 <= 2 * disposicaoCelularHorizontal; cont2 = cont2 + 2)
@@ -71,16 +72,26 @@ public class Mapa : MonoBehaviour {
             for (cont = 2; cont <= 2 * disposicaoCelularVertical; cont = cont + 2)
             {
                 losango = GameObject.Instantiate(LosangoBase) as GameObject;
-                losango.transform.position = new Vector3((-largura.position.x+ losango.GetComponent<Celula>().GetLargura()) + (cont * losango.GetComponent<Celula>().GetLargura()) + losango.GetComponent<Celula>().GetLargura(),
-                                                        ((altura.position.y- losango.GetComponent<Celula>().GetAltura()) - cont2 * losango.GetComponent<Celula>().GetAltura()) + losango.GetComponent<Celula>().GetAltura(),
+                losango.transform.position = new Vector3((-mapLargura() + losangoCelulaBase.GetLargura()) + (cont * losangoCelulaBase.GetLargura()),
+                                                        (mapAltura() - cont2 * losangoCelulaBase.GetAltura()),
                                                         this.transform.position.z);
                 celulasLosango.Add(losango);
             }
             losango = GameObject.Instantiate(LosangoBase) as GameObject;
-            losango.transform.position = new Vector3((-largura.position.x + losango.GetComponent<Celula>().GetLargura()) + losango.GetComponent<Celula>().GetLargura(),
-                                                    ((altura.position.y - losango.GetComponent<Celula>().GetAltura()) - (cont2 * losango.GetComponent<Celula>().GetAltura()) + losango.GetComponent<Celula>().GetAltura()),
+            losango.transform.position = new Vector3((-mapLargura() + losangoCelulaBase.GetLargura()),
+                                                    (mapAltura() - (cont2 * losangoCelulaBase.GetAltura())),
                                                       this.transform.position.z);
             celulasLosango.Add(losango);
         }
+    }
+
+    public float mapLargura()
+    {
+        return largura.transform.position.x - this.transform.position.x;
+    }
+
+    public float mapAltura()
+    {
+        return altura.transform.position.y - this.transform.position.y;
     }
 }

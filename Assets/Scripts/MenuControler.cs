@@ -6,33 +6,58 @@ public class MenuControler : MonoBehaviour {
     public GameObject MenuJogo;
     public bool menuAberto;
     public float tempoMenuAberto;
+    public AnimationOpenPanel animationPanel;
+    
 
     // Use this for initialization
     void Start () {
-        menuAberto = false;
-        MenuJogo.SetActive(false);
+        this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x,
+                                                         this.gameObject.transform.position.y,
+                                                         this.gameObject.transform.position.z-90);
+        animationPanel = this.gameObject.GetComponent<AnimationOpenPanel>();
+        menuAberto = true;
         MenuOpcoesRecurso.SetActive(false);
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (menuAberto==true)
+        if (!menuAberto)
         {
             tempoMenuAberto = Time.time; 
-            menuAberto = false;
-        } else if (!menuAberto && tempoMenuAberto>Time.time+1f)
+            menuAberto = true;
+        } else if (menuAberto && tempoMenuAberto + 6f < Time.time )
         {
+            
             MenuOpcoesRecurso.SetActive(false);
+            menuAberto = true;
         }
-	
-	}
+
+    }
 
     public void AcinonarMenuOpcoesRecurso(GameObject botaoChamado)
     {
-        menuAberto = true;
-        MenuOpcoesRecurso.SetActive(true);
+        menuAberto = false;
         MenuJogo.SetActive(true);
-        MenuJogo.transform.position = new Vector3(MenuJogo.transform.position.x,MenuJogo.transform.position.y,botaoChamado.gameObject.transform.position.z);
-        MenuOpcoesRecurso.transform.position = botaoChamado.gameObject.transform.position;
+        MenuOpcoesRecurso.SetActive(true);
+        MenuOpcoesRecurso.transform.position = new Vector3(botaoChamado.gameObject.transform.position.x, botaoChamado.gameObject.transform.position.y, botaoChamado.gameObject.transform.position.z - 1);
+        MenuJogo.transform.position = new Vector3(MenuJogo.transform.position.x,MenuJogo.transform.position.y,botaoChamado.gameObject.transform.position.z-5);
     }
+
+    public void TextBotao()
+    {
+        Debug.Log("apertado");
+    }
+
+    public void menuOpcoesAbertura(GameObject panel)
+    {
+        animationPanel.menuOpcoesAbertura(panel);
+    }
+
+    public void menuOpcoesFechamento(GameObject panel)
+    {
+        animationPanel.menuOpcoesFechamento(panel);
+    }
+
+
+
 }

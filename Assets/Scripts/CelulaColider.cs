@@ -4,11 +4,12 @@ using System.Collections;
 public class CelulaColider : MonoBehaviour {
     public Touch touch;
     public Ray ray;
-    public UnityEngine.UI.Button Botao;
+    public bool apertarBotao;
+    public int cont;
 
     // Use this for initialization
     void Start () {
-	
+        cont = 300;
 	}
 	
 	// Update is called once per frame
@@ -48,21 +49,27 @@ public class CelulaColider : MonoBehaviour {
            
             //Physics.Raycast(ray, out hit, 10)
             RaycastHit hit = new RaycastHit();
-            if (Physics.Raycast(ray, out hit, 100))
+            if (Physics.Raycast(ray, out hit, 1000))
             {
-                hit.collider.gameObject.GetComponent<CelulaColider>().ChamarBotao();
+                if(hit.collider.gameObject.GetComponent<CelulaColider>()!=null)
+                {
+                    hit.collider.gameObject.GetComponent<CelulaColider>().ChamarBotao();
+                }
+                
             }
         }
     }
 
     public void ChamarBotao()
     {
-        GameObject.FindObjectOfType<MenuControler>().AcinonarMenuOpcoesRecurso(this.gameObject);
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("AlguemMeAcertou");
-
+        if (cont>900)
+        {
+            cont = 0;
+            GameObject.FindObjectOfType<MenuControler>().AcinonarMenuOpcoesRecurso(this.gameObject);
+        } else
+        {
+            cont++;
+        }
+        
     }
 }
