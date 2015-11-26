@@ -2,9 +2,13 @@
 using System.Collections;
 
 public class GerenciadorRecursos : MonoBehaviour {
+    //plantas
     public Sprite plantalv1;
     public Sprite plantalv2;
     public Sprite plantalv3;
+
+    //Sparkunglax ciberiano
+    public Sprite Sparkunglaxlv1;
 
     // Use this for initialization
     void Start () {
@@ -18,12 +22,32 @@ public class GerenciadorRecursos : MonoBehaviour {
 
     public Sprite GetRecursoSprite(string recursoNome,int lv)
     {
-        if(recursoNome == "PLANTA")
+        if (recursoNome == "PLANTA")
         {
             return GetPlantaSprite(lv);
+        }
+        else if (recursoNome == "MELECA")
+        {
+            return GetMelecaSprite(lv);
         } else
         {
-            return GetPlantaSprite(lv);
+            return null;
+        }
+    }
+
+    public Sprite GetMelecaSprite(int lv)
+    {
+        if (lv == 3)
+        {
+            return Sparkunglaxlv1;
+        }
+        else if (lv == 2)
+        {
+            return Sparkunglaxlv1;
+        }
+        else
+        {
+            return Sparkunglaxlv1;
         }
     }
 
