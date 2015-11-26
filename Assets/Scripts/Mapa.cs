@@ -26,6 +26,7 @@ public class Mapa : MonoBehaviour {
     private void GerarGradienteLosango() {
         int cont = 0;
         int cont2 = 0;
+        float cont3 = -0.1f;
         GameObject losango = GameObject.Instantiate(LosangoBase) as GameObject;
         losango.transform.position = new Vector3(this.transform.position.x, this.transform.position.y,
                                                 this.transform.position.z);
@@ -43,14 +44,15 @@ public class Mapa : MonoBehaviour {
                 losango = GameObject.Instantiate(LosangoBase) as GameObject;
                 losango.transform.position = new Vector3(-mapLargura() + (cont * losango.GetComponent<Celula>().GetLargura()),
                                                         (mapAltura() - (cont2 * losango.GetComponent<Celula>().GetAltura())) + losango.GetComponent<Celula>().GetAltura(),
-                                                        this.transform.position.z);
+                                                        this.transform.position.z+cont3);
                 celulasLosango.Add(losango);
             }
             losango = GameObject.Instantiate(LosangoBase) as GameObject;
             losango.transform.position = new Vector3(-mapLargura(),
                                                     (mapAltura() - (cont2 * losango.GetComponent<Celula>().GetAltura()) + losango.GetComponent<Celula>().GetAltura()),
-                                                    this.transform.position.z);
+                                                    this.transform.position.z+cont3);
             celulasLosango.Add(losango);
+            cont3 = cont3 - 0.2f;
         }
     }
 
@@ -58,6 +60,7 @@ public class Mapa : MonoBehaviour {
     {
         int cont = 0;
         int cont2 = 0;
+        float cont3 = -0.2f;
         GameObject losango = GameObject.Instantiate(LosangoBase) as GameObject;
         losango.transform.position = new Vector3(this.transform.position.x, this.transform.position.y,
                                                 this.transform.position.z);
@@ -74,14 +77,15 @@ public class Mapa : MonoBehaviour {
                 losango = GameObject.Instantiate(LosangoBase) as GameObject;
                 losango.transform.position = new Vector3((-mapLargura() + losangoCelulaBase.GetLargura()) + (cont * losangoCelulaBase.GetLargura()),
                                                         (mapAltura() - cont2 * losangoCelulaBase.GetAltura()),
-                                                        this.transform.position.z);
+                                                        this.transform.position.z+cont3);
                 celulasLosango.Add(losango);
             }
             losango = GameObject.Instantiate(LosangoBase) as GameObject;
             losango.transform.position = new Vector3((-mapLargura() + losangoCelulaBase.GetLargura()),
                                                     (mapAltura() - (cont2 * losangoCelulaBase.GetAltura())),
-                                                      this.transform.position.z);
+                                                      this.transform.position.z+cont3);
             celulasLosango.Add(losango);
+            cont3 = cont3 - 0.2f;
         }
     }
 
