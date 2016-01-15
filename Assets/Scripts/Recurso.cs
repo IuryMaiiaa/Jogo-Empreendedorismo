@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Recurso : MonoBehaviour {
     private GerenciadorRecursos gerenciadorRecurso;
@@ -40,5 +41,13 @@ public class Recurso : MonoBehaviour {
 
     }
 
+
+}
+
+[Serializable]
+public class RecursoSeri
+{
+    public int lv;
+    public String Recurso;
 
 }
