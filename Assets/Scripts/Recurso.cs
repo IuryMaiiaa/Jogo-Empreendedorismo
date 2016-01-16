@@ -43,11 +43,3 @@ public class Recurso : MonoBehaviour {
 
 
 }
-
-[Serializable]
-public class RecursoSeri
-{
-    public int lv;
-    public String Recurso;
-
-}

@@ -4,6 +4,7 @@ using System.Collections;
 public class Celula : MonoBehaviour {
     public Transform largura;
     public Transform altura;
+    public Recurso recurso;
 
 
     public float GetLargura() {

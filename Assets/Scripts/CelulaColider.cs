@@ -35,7 +35,7 @@ public class CelulaColider : MonoBehaviour {
             }
             else if (gameManager.acaoAtual == "REMOVER")
             {
-
+                hit.collider.gameObject.GetComponent<Recurso>().remover();
             }
         }
         else

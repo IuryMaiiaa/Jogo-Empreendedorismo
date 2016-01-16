@@ -101,8 +101,6 @@ public class Mapa : MonoBehaviour {
 
             this.largura.position = mapaData.largura.V3;
             this.altura.position = mapaData.altura.V3;
-            this.losangoCelulaBase = (Celula)mapaData.ByteArrayToObject(mapaData.losangoCelulaBase);
-            this.celulasLosango = (ArrayList)mapaData.ByteArrayToObject(mapaData.celulasLosango);
 
             Debug.Log("log");
 
@@ -119,13 +117,21 @@ public class Mapa : MonoBehaviour {
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/" + codigo1 + "" + codigo2 + "MapaData.dat");
-        
         MapaData data = new MapaData();
-
+        
         data.altura = new Vector3Seri(this.altura.position);
         data.largura = new Vector3Seri(this.largura.position);
-        data.celulasLosango = data.ObjectToByteArray(this.celulasLosango);
-        data.losangoCelulaBase = data.ObjectToByteArray(this.losangoCelulaBase);
+        CelulaData[] celulas = new CelulaData[this.celulasLosango.Count];
+        Debug.Log(this.celulasLosango.Count);
+        foreach(GameObject objeto in this.celulasLosango)
+        {
+            CelulaData celuladata = new CelulaData();
+            celuladata.posicaoCelula.x = objeto.transform.position.x;
+            celuladata.posicaoCelula.y = objeto.transform.position.y;
+            celuladata.posicaoCelula.z = objeto.transform.position.z;
+            celuladata.Recurso = objeto.GetComponent<Celula>().recurso.recurso;
+            celuladata.recursoLv = objeto.GetComponent<Celula>().recurso.lv;
+        }
 
         bf.Serialize(file,data);
         file.Close();
@@ -148,35 +154,20 @@ public class Mapa : MonoBehaviour {
     }
 }
 
-[Serializable]
+[System.Serializable]
 class MapaData
 {
     public Vector3Seri largura;
     public Vector3Seri altura;
-    public byte[] celulasLosango;
+    public CelulaData[] celulasLosango;
     public byte[] losangoCelulaBase;
 
-    public byte[] ObjectToByteArray(System.Object obj)
-    {
-        if (obj == null)
-            return null;
+}
 
-        BinaryFormatter bf = new BinaryFormatter();
-        using (MemoryStream ms = new MemoryStream())
-        {
-            bf.Serialize(ms, obj);
-            return ms.ToArray();
-        }
-    }
-
-    public System.Object ByteArrayToObject(byte[] arrBytes)
-    {
-        MemoryStream memStream = new MemoryStream();
-        BinaryFormatter binForm = new BinaryFormatter();
-        memStream.Write(arrBytes, 0, arrBytes.Length);
-        memStream.Seek(0, SeekOrigin.Begin);
-        System.Object obj = (System.Object)binForm.Deserialize(memStream);
-        return obj;
-    }
-
+[System.Serializable]
+class CelulaData
+{
+    public String Recurso;
+    public int recursoLv;
+    public Vector3Seri posicaoCelula;
 }
