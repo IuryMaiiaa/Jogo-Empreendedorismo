@@ -11,7 +11,7 @@ public class Recurso : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         lv = 1;
-        recurso = null;
+        recurso = "NENHUM";
         gerenciadorRecurso = GameObject.FindObjectOfType<GerenciadorRecursos>();
 	}
 	
@@ -19,6 +19,13 @@ public class Recurso : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public void setRecurso(string recurso,int lv)
+    {
+        this.lv = lv;
+        this.recurso = recurso;
+        recursoSprite.sprite = GameObject.FindObjectOfType<GerenciadorRecursos>().GetRecursoSprite(this.recurso, lv);
+    }
 
     public void colocar(string recurso)
     {

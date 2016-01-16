@@ -4,6 +4,8 @@ using System.Collections;
 public class GerenciadorDeMapas : MonoBehaviour {
     public GameObject[,] Mapas;
     public GameObject MapaPadrao;
+    public int posX;
+    public int posY;
     public float tempo;
 
 	// Use this for initialization
@@ -18,20 +20,15 @@ public class GerenciadorDeMapas : MonoBehaviour {
                 Mapas[cont , cont2] = mapa;
             }
         }
-        tempo = Time.time;
+        saveMapas();
+        destroiMapas();
+        load(1, 1);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
-
-    public void botaoIniciar()
-    {
-        saveMapas();
-        destroiMapas();
-        load(1, 1);
-    }
 
     public void saveMapas()
     {
@@ -50,15 +47,37 @@ public class GerenciadorDeMapas : MonoBehaviour {
         {
             for (int cont2 = 0; cont2 < 3; cont2++)
             {
+                Mapas[cont, cont2].GetComponent<Mapa>().destroiCelulas();
                 Destroy(Mapas[cont,cont2]);
             }
         }
     }
 
+    public void destroiMapaAtual()
+    {
+        Mapas[posX, posY].GetComponent<Mapa>().destroiCelulas();
+        Destroy(Mapas[posX, posY]);
+    }
+
+    public void loadmapa()
+    {
+        if (Mapas[1,1]==null) {
+            load(1, 1);
+        }
+    }
+
     public void load(int posX,int posY)
     {
-        GameObject mapa = Instantiate(Mapas[posX,posY]) as GameObject;
-        mapa.GetComponent<Mapa>().Load(posX,posY);
+        this.posX = posX;
+        this.posY = posY;
+        GameObject mapa = Instantiate(MapaPadrao) as GameObject;
+        Debug.Log("aqui");
+        Mapas[posX,posY] = mapa.GetComponent<Mapa>().Load(posX, posY);
+    }
+
+    public void salvarMapaAtual()
+    {
+        Mapas[posX, posY].GetComponent<Mapa>().Save(posX,posY);
     }
     
 

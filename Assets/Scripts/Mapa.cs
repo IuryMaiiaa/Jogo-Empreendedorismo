@@ -7,7 +7,7 @@ using System.IO;
 public class Mapa : MonoBehaviour {
     public Transform largura;
     public Transform altura;
-    public ArrayList celulasLosango;
+    public ArrayList celulasLosango = new ArrayList();
     public GameObject LosangoBase;
     public Celula losangoCelulaBase;
 
@@ -15,6 +15,7 @@ public class Mapa : MonoBehaviour {
 	void Start () {
         celulasLosango = new ArrayList();
         CriarMapa();
+        
     }
 	
 	// Update is called once per frame
@@ -89,7 +90,7 @@ public class Mapa : MonoBehaviour {
         }
     }
 
-    public void Load(int codigo1, int codigo2)
+    public GameObject Load(int codigo1, int codigo2)
     {
         if(File.Exists(Application.persistentDataPath+"/" +codigo1 +"" +codigo2+ "MapaData.dat"))
         {
@@ -98,41 +99,59 @@ public class Mapa : MonoBehaviour {
 
             MapaData mapaData = (MapaData)bf.Deserialize(file);
             file.Close();
-
             this.largura.position = mapaData.largura.V3;
             this.altura.position = mapaData.altura.V3;
-
-            Debug.Log("log");
-
-            foreach (GameObject losango in celulasLosango)
+            destroiCelulas();
+            GameObject celula;
+            celulasLosango = new ArrayList();
+            Debug.Log(mapaData.celulasLosango.Length);
+            foreach (CelulaData celulas in mapaData.celulasLosango)
             {
-                GameObject celula = Instantiate(losango) as GameObject;
-                Debug.Log("printLosango");
+               celula  = GameObject.Instantiate(LosangoBase) as GameObject;
+               celula.transform.position = celulas.posicaoCelula.V3;
+               celula.GetComponent<Celula>().recurso.setRecurso(celulas.Recurso, celulas.recursoLv);
+               celulasLosango.Add(celula);
             }
+            return this.gameObject;
         }
+        return null;
         
+    }
+
+    public void destroiCelulas()
+    {
+        foreach(GameObject obj in celulasLosango)
+        {
+            Destroy(obj);
+        }
+        celulasLosango.Clear();
     }
 
     public void Save(int codigo1, int codigo2)
     {
+       
         BinaryFormatter bf = new BinaryFormatter();
+        if (File.Exists(Application.persistentDataPath + "/" + codigo1 + "" + codigo2 + "MapaData.dat"))
+        {
+            File.Delete(Application.persistentDataPath + "/" + codigo1 + "" + codigo2 + "MapaData.dat");
+        }
         FileStream file = File.Create(Application.persistentDataPath + "/" + codigo1 + "" + codigo2 + "MapaData.dat");
         MapaData data = new MapaData();
         
         data.altura = new Vector3Seri(this.altura.position);
         data.largura = new Vector3Seri(this.largura.position);
         CelulaData[] celulas = new CelulaData[this.celulasLosango.Count];
-        Debug.Log(this.celulasLosango.Count);
-        foreach(GameObject objeto in this.celulasLosango)
+        int cont = 0;
+        foreach (GameObject obj in celulasLosango)
         {
             CelulaData celuladata = new CelulaData();
-            celuladata.posicaoCelula.x = objeto.transform.position.x;
-            celuladata.posicaoCelula.y = objeto.transform.position.y;
-            celuladata.posicaoCelula.z = objeto.transform.position.z;
-            celuladata.Recurso = objeto.GetComponent<Celula>().recurso.recurso;
-            celuladata.recursoLv = objeto.GetComponent<Celula>().recurso.lv;
+            celuladata.posicaoCelula = new Vector3Seri(obj.transform.position);
+            celuladata.Recurso = obj.GetComponent<Celula>().recurso.recurso;
+            celuladata.recursoLv = obj.GetComponent<Celula>().recurso.lv;
+            celulas[cont] = celuladata;
+            cont++;
         }
-
+        data.celulasLosango = celulas;
         bf.Serialize(file,data);
         file.Close();
     }
@@ -160,7 +179,6 @@ class MapaData
     public Vector3Seri largura;
     public Vector3Seri altura;
     public CelulaData[] celulasLosango;
-    public byte[] losangoCelulaBase;
 
 }
 
@@ -170,4 +188,5 @@ class CelulaData
     public String Recurso;
     public int recursoLv;
     public Vector3Seri posicaoCelula;
+
 }
