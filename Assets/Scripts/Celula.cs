@@ -6,6 +6,11 @@ public class Celula : MonoBehaviour {
     public Transform altura;
     public Recurso recurso;
 
+    void Start()
+    {
+        recurso = new Recurso();
+    }
+
 
     public float GetLargura() {
         return largura.position.x - this.transform.position.x;

@@ -45,7 +45,9 @@ public class Recurso : MonoBehaviour {
 
     public void remover()
     {
-
+        recurso = "NENHUM";
+        lv = 1;
+        recursoSprite.sprite = null;
     }
 
 

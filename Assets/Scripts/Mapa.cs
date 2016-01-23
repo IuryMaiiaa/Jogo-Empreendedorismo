@@ -14,7 +14,6 @@ public class Mapa : MonoBehaviour {
 	// Use this for initialization  
 	void Start () {
         celulasLosango = new ArrayList();
-        CriarMapa();
         
     }
 	
@@ -101,16 +100,14 @@ public class Mapa : MonoBehaviour {
             file.Close();
             this.largura.position = mapaData.largura.V3;
             this.altura.position = mapaData.altura.V3;
-            destroiCelulas();
-            GameObject celula;
             celulasLosango = new ArrayList();
-            Debug.Log(mapaData.celulasLosango.Length);
             foreach (CelulaData celulas in mapaData.celulasLosango)
             {
-               celula  = GameObject.Instantiate(LosangoBase) as GameObject;
-               celula.transform.position = celulas.posicaoCelula.V3;
-               celula.GetComponent<Celula>().recurso.setRecurso(celulas.Recurso, celulas.recursoLv);
-               celulasLosango.Add(celula);
+                GameObject celula  = GameObject.Instantiate(LosangoBase) as GameObject;
+                celula.transform.position = celulas.posicaoCelula.V3;
+                celula.GetComponent<Celula>().recurso.setRecurso(celulas.Recurso, celulas.recursoLv);
+                Debug.Log(celula.GetComponent<Celula>().recurso.recurso);
+                celulasLosango.Add(celula);
             }
             return this.gameObject;
         }
@@ -120,21 +117,30 @@ public class Mapa : MonoBehaviour {
 
     public void destroiCelulas()
     {
-        foreach(GameObject obj in celulasLosango)
-        {
-            Destroy(obj);
-        }
         celulasLosango.Clear();
+        Celula[] celulas = (Celula[])GameObject.FindObjectsOfType<Celula>();
+        foreach (Celula c in celulas)
+        {
+            
+            Destroy(c.gameObject);
+        }
+    }
+
+    public ArrayList findArray()
+    {
+        ArrayList list = new ArrayList();
+        Celula[] celulas = (Celula[])GameObject.FindObjectsOfType<Celula>();
+        foreach (Celula c in celulas)
+        {
+            list.Add(c.gameObject);
+        }
+
+        return list;
     }
 
     public void Save(int codigo1, int codigo2)
     {
-       
         BinaryFormatter bf = new BinaryFormatter();
-        if (File.Exists(Application.persistentDataPath + "/" + codigo1 + "" + codigo2 + "MapaData.dat"))
-        {
-            File.Delete(Application.persistentDataPath + "/" + codigo1 + "" + codigo2 + "MapaData.dat");
-        }
         FileStream file = File.Create(Application.persistentDataPath + "/" + codigo1 + "" + codigo2 + "MapaData.dat");
         MapaData data = new MapaData();
         
@@ -144,6 +150,7 @@ public class Mapa : MonoBehaviour {
         int cont = 0;
         foreach (GameObject obj in celulasLosango)
         {
+
             CelulaData celuladata = new CelulaData();
             celuladata.posicaoCelula = new Vector3Seri(obj.transform.position);
             celuladata.Recurso = obj.GetComponent<Celula>().recurso.recurso;
