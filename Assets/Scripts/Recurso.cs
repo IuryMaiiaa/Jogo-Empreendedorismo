@@ -10,20 +10,18 @@ public class Recurso : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        lv = 1;
-        recurso = "NENHUM";
         gerenciadorRecurso = GameObject.FindObjectOfType<GerenciadorRecursos>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
 
-    public void setRecurso(string recurso,int lv)
+    public void setRecurso(string recursoNovo,int lvNovo)
     {
-        this.lv = lv;
-        this.recurso = recurso;
+        lv = lvNovo;
+        recurso = recursoNovo;
         recursoSprite.sprite = GameObject.FindObjectOfType<GerenciadorRecursos>().GetRecursoSprite(this.recurso, lv);
     }
 

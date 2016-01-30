@@ -13,6 +13,7 @@ public class Mapa : MonoBehaviour {
 
 	// Use this for initialization  
 	void Start () {
+        Debug.LogError("Aqui");
         celulasLosango = new ArrayList();
         
     }
@@ -46,12 +47,14 @@ public class Mapa : MonoBehaviour {
                                                         (mapAltura() - (cont2 * losango.GetComponent<Celula>().GetAltura())) + losango.GetComponent<Celula>().GetAltura(),
                                                         this.transform.position.z+cont3);
                 celulasLosango.Add(losango);
+                losango.transform.parent = this.gameObject.transform;
             }
             losango = GameObject.Instantiate(LosangoBase) as GameObject;
             losango.transform.position = new Vector3(-mapLargura(),
                                                     (mapAltura() - (cont2 * losango.GetComponent<Celula>().GetAltura()) + losango.GetComponent<Celula>().GetAltura()),
                                                     this.transform.position.z+cont3);
             celulasLosango.Add(losango);
+            losango.transform.parent = this.gameObject.transform;
             cont3 = cont3 - 0.2f;
         }
     }
@@ -79,13 +82,36 @@ public class Mapa : MonoBehaviour {
                                                         (mapAltura() - cont2 * losangoCelulaBase.GetAltura()),
                                                         this.transform.position.z+cont3);
                 celulasLosango.Add(losango);
+                losango.transform.parent = this.gameObject.transform;
             }
             losango = GameObject.Instantiate(LosangoBase) as GameObject;
             losango.transform.position = new Vector3((-mapLargura() + losangoCelulaBase.GetLargura()),
                                                     (mapAltura() - (cont2 * losangoCelulaBase.GetAltura())),
                                                       this.transform.position.z+cont3);
             celulasLosango.Add(losango);
+            losango.transform.parent = this.gameObject.transform;
             cont3 = cont3 - 0.2f;
+        }
+    }
+
+    public void LoadLista(int codigo1, int codigo2, ArrayList list)
+    {
+        if (File.Exists(Application.persistentDataPath + "/" + codigo1 + "" + codigo2 + "MapaData.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/" + codigo1 + "" + codigo2 + "MapaData.dat", FileMode.Open);
+
+            MapaData mapaData = (MapaData)bf.Deserialize(file);
+            file.Close();
+            foreach (CelulaData celulas in mapaData.celulasLosango)
+            {
+                GameObject celula = GameObject.Instantiate(LosangoBase) as GameObject;
+                celula.transform.position = celulas.posicaoCelula.V3;
+                celula.GetComponent<Celula>().recurso.setRecurso(celulas.Recurso, celulas.recursoLv);
+                list.Add(celula);
+                celula.transform.parent = this.gameObject.transform;
+
+            }
         }
     }
 
@@ -106,8 +132,8 @@ public class Mapa : MonoBehaviour {
                 GameObject celula  = GameObject.Instantiate(LosangoBase) as GameObject;
                 celula.transform.position = celulas.posicaoCelula.V3;
                 celula.GetComponent<Celula>().recurso.setRecurso(celulas.Recurso, celulas.recursoLv);
-                Debug.Log(celula.GetComponent<Celula>().recurso.recurso);
                 celulasLosango.Add(celula);
+                celula.transform.parent = this.gameObject.transform;
             }
             return this.gameObject;
         }
@@ -117,13 +143,23 @@ public class Mapa : MonoBehaviour {
 
     public void destroiCelulas()
     {
-        celulasLosango.Clear();
-        Celula[] celulas = (Celula[])GameObject.FindObjectsOfType<Celula>();
-        foreach (Celula c in celulas)
+        
+        foreach (GameObject obj in celulasLosango)
         {
-            
-            Destroy(c.gameObject);
+            Destroy(obj);
         }
+        celulasLosango.Clear();
+    }
+
+    public void destroiTODASCelulasJOGO()
+    {
+        Celula[] celulas = GameObject.FindObjectsOfType<Celula>();
+        foreach (Celula obj in celulasLosango) {
+            Debug.Log("aqui");
+            Destroy(obj.gameObject);
+        }
+        celulasLosango.Clear();
+
     }
 
     public ArrayList findArray()
@@ -146,15 +182,15 @@ public class Mapa : MonoBehaviour {
         
         data.altura = new Vector3Seri(this.altura.position);
         data.largura = new Vector3Seri(this.largura.position);
-        CelulaData[] celulas = new CelulaData[this.celulasLosango.Count];
+        Celula[] celulasLosangoFilhas = this.gameObject.GetComponentsInChildren<Celula>();
+        CelulaData[] celulas = new CelulaData[celulasLosangoFilhas.Length];
         int cont = 0;
-        foreach (GameObject obj in celulasLosango)
+        foreach (Celula obj in celulasLosangoFilhas)
         {
-
             CelulaData celuladata = new CelulaData();
             celuladata.posicaoCelula = new Vector3Seri(obj.transform.position);
-            celuladata.Recurso = obj.GetComponent<Celula>().recurso.recurso;
-            celuladata.recursoLv = obj.GetComponent<Celula>().recurso.lv;
+            celuladata.Recurso = obj.recurso.recurso;
+            celuladata.recursoLv = obj.recurso.lv;
             celulas[cont] = celuladata;
             cont++;
         }

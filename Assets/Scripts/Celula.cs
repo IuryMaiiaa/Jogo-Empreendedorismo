@@ -8,7 +8,6 @@ public class Celula : MonoBehaviour {
 
     void Start()
     {
-        recurso = new Recurso();
     }
 
 

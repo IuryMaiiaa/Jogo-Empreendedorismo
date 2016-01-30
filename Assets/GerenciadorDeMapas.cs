@@ -15,12 +15,14 @@ public class GerenciadorDeMapas : MonoBehaviour {
         {
             for (int cont2=0;cont2<3;cont2++)
             {
+                Debug.Log("Aqui");
                 GameObject mapa = GameObject.Instantiate(MapaPadrao) as GameObject;
                 mapa.GetComponent<Mapa>().CriarMapa();
                 //mapa.GetComponent<Mapa>().Save(cont,cont2);
                 Mapas[cont , cont2] = mapa;
             }
         }
+
         saveMapas();
         destroiMapas();
         load(1, 1);
@@ -28,10 +30,6 @@ public class GerenciadorDeMapas : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    //if(Mapas[posX,posY] != null)
-        //{
-        //    Debug.Log(Mapas[posX,posY].GetComponent<Mapa>().celulasLosango.Count);
-        //}
 	}
 
     public void saveMapas()
@@ -72,21 +70,18 @@ public class GerenciadorDeMapas : MonoBehaviour {
 
     public void load(int posX,int posY)
     {
+        Debug.Log("aqui");
         this.posX = posX;
         this.posY = posY;
         GameObject mapa = Instantiate(MapaPadrao) as GameObject;
-        Mapas[posX,posY] = mapa.GetComponent<Mapa>().Load(posX, posY);
+        mapa.GetComponent<Mapa>().destroiTODASCelulasJOGO();
+        Mapas[posX, posY] = mapa.GetComponent<Mapa>().Load(posX,posY);
 
     }
 
     public void salvarMapaAtual()
     {
         Mapa mapa = Mapas[posX, posY].GetComponent<Mapa>();
-        mapa.celulasLosango = mapa.findArray();
-        foreach(GameObject game in mapa.celulasLosango)
-        {
-            Debug.Log(game.GetComponent<Celula>().recurso.recurso);
-        }
         mapa.Save(posX, posY);
     }
     
