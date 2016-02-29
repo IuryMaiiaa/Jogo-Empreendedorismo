@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class SaveAtual : MonoBehaviour {
-    private string saveAtual;
+    public string saveAtual;
 
 	// Use this for initialization
 	void Start () {
@@ -27,5 +27,10 @@ public class SaveAtual : MonoBehaviour {
     public void dontDestroy()
     {
         Object.DontDestroyOnLoad(this);
+    }
+
+    public void iniciarCriacaoMapas()
+    {
+        GameObject.FindObjectOfType<GerenciadorDeMapas>().criarMapas();
     }
 }

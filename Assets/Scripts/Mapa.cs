@@ -14,7 +14,6 @@ public class Mapa : MonoBehaviour {
 
 	// Use this for initialization  
 	void Start () {
-        Debug.LogError("Aqui");
         celulasLosango = new ArrayList();
         saveAtual = GameObject.FindObjectOfType<SaveAtual>();
     }
@@ -156,7 +155,6 @@ public class Mapa : MonoBehaviour {
     {
         Celula[] celulas = GameObject.FindObjectsOfType<Celula>();
         foreach (Celula obj in celulasLosango) {
-            Debug.Log("aqui");
             Destroy(obj.gameObject);
         }
         celulasLosango.Clear();

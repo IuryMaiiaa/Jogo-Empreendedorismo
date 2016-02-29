@@ -18,8 +18,14 @@ public class GameManager : MonoBehaviour {
     public Vector2 hotSpot = Vector2.zero;
     private int id_butao;
 
+    public SaveAtual save;
+    public bool possuiSave;
+    public float time;
+
     // Use this for initialization
     void Start () {
+        time = Time.time;
+        possuiSave = false;
         recursoAtual = NENHUM;
         id_butao = 4;
         //Cursor.SetCursor(cursorTexture[0], hotSpot, cursorMode);
@@ -27,6 +33,17 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if(Time.time > time+0.5f)
+        {
+            if (possuiSave == false && (GameObject.FindObjectOfType<SaveAtual>() != null))
+            {
+                save = GameObject.FindObjectOfType<SaveAtual>();
+                save.iniciarCriacaoMapas();
+                possuiSave = true;
+            }
+            time = Time.time;
+        }
+        
         /*
         if (id_butao == 4) {
 
