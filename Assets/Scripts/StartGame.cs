@@ -10,10 +10,12 @@ public class StartGame : MonoBehaviour {
     public String gameSaveSlot2;
     public String gameSaveSlot3;
     public String AtualSave;
+    private SaveAtual saveAtual;
 
 
     // Use this for initialization
     void Start () {
+        saveAtual = (SaveAtual)GameObject.FindObjectOfType<SaveAtual>();
         Load();
 	}
 	
@@ -22,9 +24,28 @@ public class StartGame : MonoBehaviour {
 	
 	}
 
-    public void NewGame()
+    public void NewGame(int slotInt)
     {
-        Application.LoadLevel(1);
+        if(slotInt==1)
+        {
+            Save();
+            saveAtual.setSave(gameSaveSlot1);
+            saveAtual.dontDestroy();
+            Application.LoadLevel(1);
+        } else if(slotInt == 2)
+        {
+            Save();
+            saveAtual.setSave(gameSaveSlot2);
+            saveAtual.dontDestroy();
+            Application.LoadLevel(1);
+        } else if (slotInt == 3)
+        {
+            Save();
+            saveAtual.setSave(gameSaveSlot3);
+            saveAtual.dontDestroy();
+            Application.LoadLevel(1);
+        }
+
     }
 
     public void Load()
@@ -62,6 +83,21 @@ public class StartGame : MonoBehaviour {
 
         bf.Serialize(file, data);
         file.Close();
+    }
+
+    public void setSlot1(String saveName)
+    {
+        gameSaveSlot1 = saveName;
+    }
+
+    public void setSlot2(String saveName)
+    {
+        gameSaveSlot2 = saveName;
+    }
+
+    public void setSlot3(String saveName)
+    {
+        gameSaveSlot3 = saveName;
     }
 }
 

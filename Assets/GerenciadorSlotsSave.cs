@@ -2,12 +2,20 @@
 using System.Collections;
 
 public class GerenciadorSlotsSave : MonoBehaviour {
+    //slot 1
     public UnityEngine.UI.Text SlotTextUm;
-    public UnityEngine.UI.Text SlotTextDois;
-    public UnityEngine.UI.Text SlotTextTres;
     public UnityEngine.UI.Text loadSlotTextUm;
+
+    //slot2
+    public UnityEngine.UI.Text SlotTextDois;
     public UnityEngine.UI.Text loadSlotTextDois;
+
+    //slot3
+    public UnityEngine.UI.Text SlotTextTres;
     public UnityEngine.UI.Text loadSlotTextTres;
+
+
+
     public StartGame start;
 
     // Use this for initialization

@@ -10,12 +10,13 @@ public class Mapa : MonoBehaviour {
     public ArrayList celulasLosango = new ArrayList();
     public GameObject LosangoBase;
     public Celula losangoCelulaBase;
+    private SaveAtual saveAtual;
 
 	// Use this for initialization  
 	void Start () {
         Debug.LogError("Aqui");
         celulasLosango = new ArrayList();
-        
+        saveAtual = GameObject.FindObjectOfType<SaveAtual>();
     }
 	
 	// Update is called once per frame
@@ -96,10 +97,10 @@ public class Mapa : MonoBehaviour {
 
     public void LoadLista(int codigo1, int codigo2, ArrayList list)
     {
-        if (File.Exists(Application.persistentDataPath + "/" + codigo1 + "" + codigo2 + "MapaData.dat"))
+        if (File.Exists(Application.persistentDataPath + "/"+ saveAtual.getSave() + codigo1 + "" + codigo2 + "MapaData.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/" + codigo1 + "" + codigo2 + "MapaData.dat", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/" + saveAtual.getSave() + codigo1 + "" + codigo2 + "MapaData.dat", FileMode.Open);
 
             MapaData mapaData = (MapaData)bf.Deserialize(file);
             file.Close();
@@ -117,10 +118,10 @@ public class Mapa : MonoBehaviour {
 
     public GameObject Load(int codigo1, int codigo2)
     {
-        if(File.Exists(Application.persistentDataPath+"/" +codigo1 +"" +codigo2+ "MapaData.dat"))
+        if(File.Exists(Application.persistentDataPath+"/" + saveAtual.getSave() + codigo1 +"" +codigo2+ "MapaData.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/" + codigo1 + "" + codigo2 + "MapaData.dat",FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/" + saveAtual.getSave() + codigo1 + "" + codigo2 + "MapaData.dat",FileMode.Open);
 
             MapaData mapaData = (MapaData)bf.Deserialize(file);
             file.Close();
@@ -177,7 +178,7 @@ public class Mapa : MonoBehaviour {
     public void Save(int codigo1, int codigo2)
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/" + codigo1 + "" + codigo2 + "MapaData.dat");
+        FileStream file = File.Create(Application.persistentDataPath + "/" + saveAtual.getSave() + codigo1 + "" + codigo2 + "MapaData.dat");
         MapaData data = new MapaData();
         
         data.altura = new Vector3Seri(this.altura.position);
