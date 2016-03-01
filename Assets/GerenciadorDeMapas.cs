@@ -33,6 +33,63 @@ public class GerenciadorDeMapas : MonoBehaviour {
         load(1, 1);
     }
 
+    public void loadNewMap(string posicao)
+    {
+        if(posicao == "00")
+        {
+            salvarMapaAtual();
+            destroiMapaAtual();
+            load(0, 0);
+        } else if(posicao == "01")
+        {
+            salvarMapaAtual();
+            destroiMapaAtual();
+            load(0, 1);
+        }
+        else if (posicao == "02")
+        {
+            salvarMapaAtual();
+            destroiMapaAtual();
+            load(0, 2);
+        }
+        else if (posicao == "10")
+        {
+            salvarMapaAtual();
+            destroiMapaAtual();
+            load(1, 0);
+        }
+        else if (posicao == "11")
+        {
+            salvarMapaAtual();
+            destroiMapaAtual();
+            load(1, 1);
+        }
+        else if (posicao == "12")
+        {
+            salvarMapaAtual();
+            destroiMapaAtual();
+            load(1, 2);
+        }
+        else if (posicao == "20")
+        {
+            salvarMapaAtual();
+            destroiMapaAtual();
+            load(2, 0);
+        }
+        else if (posicao == "21")
+        {
+            salvarMapaAtual();
+            destroiMapaAtual();
+            load(2, 1);
+        }
+        else if (posicao == "22")
+        {
+            salvarMapaAtual();
+            destroiMapaAtual();
+            load(2, 2);
+        }
+        
+    }
     public void criarMapasLoad()
     {
         Mapas = new GameObject[3, 3];
