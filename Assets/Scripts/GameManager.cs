@@ -33,14 +33,18 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(Time.time > time+0.5f)
+        if(Time.time > time+1f)
         {
-            if (possuiSave == false && (GameObject.FindObjectOfType<SaveAtual>() != null))
+            if(possuiSave == false)
             {
-                save = GameObject.FindObjectOfType<SaveAtual>();
-                save.iniciarCriacaoMapas();
-                possuiSave = true;
+                if (GameObject.FindObjectOfType<SaveAtual>() != null)
+                {
+                    save = GameObject.FindObjectOfType<SaveAtual>();
+                    save.iniciarCriacaoMapas();
+                    possuiSave = true;
+                }
             }
+            
             time = Time.time;
         }
         

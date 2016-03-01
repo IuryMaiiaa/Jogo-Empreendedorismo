@@ -96,10 +96,11 @@ public class Mapa : MonoBehaviour {
 
     public void LoadLista(int codigo1, int codigo2, ArrayList list)
     {
-        if (File.Exists(Application.persistentDataPath + "/"+ saveAtual.getSave() + codigo1 + "" + codigo2 + "MapaData.dat"))
+        saveAtual = GameObject.FindObjectOfType<SaveAtual>();
+        if (File.Exists(Application.persistentDataPath + "/"+ saveAtual.getSaveAtualId() + "" + codigo1 + "" + codigo2 + "MapaData.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/" + saveAtual.getSave() + codigo1 + "" + codigo2 + "MapaData.dat", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + "" + codigo1 + "" + codigo2 + "MapaData.dat", FileMode.Open);
 
             MapaData mapaData = (MapaData)bf.Deserialize(file);
             file.Close();
@@ -117,10 +118,11 @@ public class Mapa : MonoBehaviour {
 
     public GameObject Load(int codigo1, int codigo2)
     {
-        if(File.Exists(Application.persistentDataPath+"/" + saveAtual.getSave() + codigo1 +"" +codigo2+ "MapaData.dat"))
+        saveAtual = GameObject.FindObjectOfType<SaveAtual>();
+        if (File.Exists(Application.persistentDataPath+"/" + saveAtual.getSaveAtualId() + "" + codigo1 + "" +codigo2+ "MapaData.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/" + saveAtual.getSave() + codigo1 + "" + codigo2 + "MapaData.dat",FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + "" + codigo1 + "" + codigo2 + "MapaData.dat",FileMode.Open);
 
             MapaData mapaData = (MapaData)bf.Deserialize(file);
             file.Close();
@@ -153,7 +155,6 @@ public class Mapa : MonoBehaviour {
 
     public void destroiTODASCelulasJOGO()
     {
-        Celula[] celulas = GameObject.FindObjectsOfType<Celula>();
         foreach (Celula obj in celulasLosango) {
             Destroy(obj.gameObject);
         }
@@ -175,8 +176,9 @@ public class Mapa : MonoBehaviour {
 
     public void Save(int codigo1, int codigo2)
     {
+        saveAtual = GameObject.FindObjectOfType<SaveAtual>();
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/" + saveAtual.getSave() + codigo1 + "" + codigo2 + "MapaData.dat");
+        FileStream file = File.Create(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + "" + codigo1 + "" + codigo2 + "MapaData.dat");
         MapaData data = new MapaData();
         
         data.altura = new Vector3Seri(this.altura.position);

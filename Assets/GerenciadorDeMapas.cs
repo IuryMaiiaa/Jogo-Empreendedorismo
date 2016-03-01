@@ -15,26 +15,32 @@ public class GerenciadorDeMapas : MonoBehaviour {
 
     public void criarMapas()
     {
+        Debug.Log("chegou");
+        
         Mapas = new GameObject[3, 3];
         for (int cont = 0; cont < 3; cont++)
         {
             for (int cont2 = 0; cont2 < 3; cont2++)
             {
-                Debug.Log("Aqui");
                 GameObject mapa = GameObject.Instantiate(MapaPadrao) as GameObject;
                 mapa.GetComponent<Mapa>().CriarMapa();
                 //mapa.GetComponent<Mapa>().Save(cont,cont2);
                 Mapas[cont, cont2] = mapa;
             }
         }
-
         saveMapas();
         destroiMapas();
         load(1, 1);
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    public void criarMapasLoad()
+    {
+        Mapas = new GameObject[3, 3];
+        load(1, 1);
+    }
+
+    // Update is called once per frame
+    void Update () {
 	}
 
     public void saveMapas()
@@ -44,6 +50,7 @@ public class GerenciadorDeMapas : MonoBehaviour {
             for (int cont2 = 0; cont2 < 3; cont2++)
             {
                 Mapas[cont, cont2].GetComponent<Mapa>().Save(cont, cont2);
+                Debug.Log("saveMapa");
             }
         }
     }

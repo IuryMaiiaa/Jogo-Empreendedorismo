@@ -3,6 +3,9 @@ using System.Collections;
 
 public class SaveAtual : MonoBehaviour {
     public string saveAtual;
+    public string saveAtualId;
+
+    public string gameStartType;
 
 	// Use this for initialization
 	void Start () {
@@ -13,6 +16,26 @@ public class SaveAtual : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public string getGameStartType()
+    {
+        return gameStartType;
+    }
+
+    public void setGameStartType(string gameStartType)
+    {
+        this.gameStartType = gameStartType;
+    }
+
+    public void setSaveAtualId(string saveId)
+    {
+        saveAtualId = saveId;
+    }
+
+    public string getSaveAtualId()
+    {
+        return saveAtualId;
+    }
 
     public void setSave(string newSave)
     {
@@ -31,6 +54,14 @@ public class SaveAtual : MonoBehaviour {
 
     public void iniciarCriacaoMapas()
     {
-        GameObject.FindObjectOfType<GerenciadorDeMapas>().criarMapas();
+        if(gameStartType == "new")
+        {
+            GameObject.FindObjectOfType<GerenciadorDeMapas>().criarMapas();
+        } else if(gameStartType == "load")
+        {
+            Debug.Log("load");
+            GameObject.FindObjectOfType<GerenciadorDeMapas>().criarMapasLoad();
+        }
+        
     }
 }
