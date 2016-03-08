@@ -10,6 +10,9 @@ public class GerenciadorRecursos : MonoBehaviour {
     //Sparkunglax ciberiano
     public Sprite Sparkunglaxlv1;
 
+    //Cebolinha de couro.
+    public Sprite cebolinhalv1;
+    
     // Use this for initialization
     void Start () {
 	
@@ -29,9 +32,28 @@ public class GerenciadorRecursos : MonoBehaviour {
         else if (recursoNome == "MELECA")
         {
             return GetMelecaSprite(lv);
+        } else if(recursoNome == "COURO")
+        {
+            return GetCouroSprite(lv);
         } else
         {
             return null;
+        }
+    }
+
+    public Sprite GetCouroSprite(int lv)
+    {
+        if (lv == 3)
+        {
+            return cebolinhalv1;
+        }
+        else if (lv == 2)
+        {
+            return cebolinhalv1;
+        }
+        else
+        {
+            return cebolinhalv1;
         }
     }
 

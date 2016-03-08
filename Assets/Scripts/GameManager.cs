@@ -4,6 +4,7 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
     public static string PLANTA = "PLANTA";
     public static string MELECA = "MELECA";
+    public static string COURO = "COURO";
     public static string NENHUM = "NENHUM";
     public string recursoAtual;
 
@@ -67,6 +68,9 @@ public class GameManager : MonoBehaviour {
         } else if(id == 2)
         {
             recursoAtual = PLANTA;
+        } else if (id == 3)
+        {
+            recursoAtual = COURO;
         }
     }
 
