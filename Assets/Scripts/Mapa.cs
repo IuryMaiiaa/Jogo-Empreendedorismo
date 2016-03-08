@@ -109,6 +109,7 @@ public class Mapa : MonoBehaviour {
                 GameObject celula = GameObject.Instantiate(LosangoBase) as GameObject;
                 celula.transform.position = celulas.posicaoCelula.V3;
                 celula.GetComponent<Celula>().recurso.setRecurso(celulas.Recurso, celulas.recursoLv);
+                celula.GetComponent<Celula>().recurso.setTempoDecorrido(celulas.tempoDecorrido);
                 list.Add(celula);
                 celula.transform.parent = this.gameObject.transform;
 
@@ -134,6 +135,7 @@ public class Mapa : MonoBehaviour {
                 GameObject celula  = GameObject.Instantiate(LosangoBase) as GameObject;
                 celula.transform.position = celulas.posicaoCelula.V3;
                 celula.GetComponent<Celula>().recurso.setRecurso(celulas.Recurso, celulas.recursoLv);
+                celula.GetComponent<Celula>().recurso.setTempoDecorrido(celulas.tempoDecorrido);
                 celulasLosango.Add(celula);
                 celula.transform.parent = this.gameObject.transform;
             }
@@ -192,6 +194,7 @@ public class Mapa : MonoBehaviour {
             celuladata.posicaoCelula = new Vector3Seri(obj.transform.position);
             celuladata.Recurso = obj.recurso.recurso;
             celuladata.recursoLv = obj.recurso.lv;
+            celuladata.tempoDecorrido = obj.recurso.tempoDecorrido;
             celulas[cont] = celuladata;
             cont++;
         }
@@ -229,6 +232,7 @@ class MapaData
 [System.Serializable]
 class CelulaData
 {
+    public int tempoDecorrido;
     public String Recurso;
     public int recursoLv;
     public Vector3Seri posicaoCelula;
