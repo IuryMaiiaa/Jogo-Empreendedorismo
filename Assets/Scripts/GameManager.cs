@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour {
         possuiSave = false;
         recursoAtual = NENHUM;
         id_butao = 4;
-        //Cursor.SetCursor(cursorTexture[0], hotSpot, cursorMode);
+        Cursor.SetCursor(cursorTexture[0], hotSpot, cursorMode);
     }
 	
 	// Update is called once per frame
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour {
             time = Time.time;
         }
         
-        /*
+        
         if (id_butao == 4) {
 
             if (Input.GetMouseButtonDown(0))
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour {
 
             if (Input.GetMouseButtonUp(0))
                 Cursor.SetCursor(cursorTexture[0], hotSpot, cursorMode);
-        }*/
+        }
     }
 
     public void mudarRecurso(int id)
@@ -82,25 +82,25 @@ public class GameManager : MonoBehaviour {
         {
             acaoAtual = COLOCAR;
             
-            //Cursor.SetCursor(cursorTexture[2], hotSpot, cursorMode);
+            Cursor.SetCursor(cursorTexture[2], hotSpot, cursorMode);
         }
         else if (id == 2)
         {
             acaoAtual = UPGRADE;
 
-            //Cursor.SetCursor(cursorTexture[2], hotSpot, cursorMode);
+            Cursor.SetCursor(cursorTexture[2], hotSpot, cursorMode);
         }
         else if (id == 3)
         {
             acaoAtual = REMOVER;
 
-            //Cursor.SetCursor(cursorTexture[2], hotSpot, cursorMode);
+            Cursor.SetCursor(cursorTexture[2], hotSpot, cursorMode);
         }
         else if (id == 4) {
 
             acaoAtual = CANCELAR;
 
-            //Cursor.SetCursor(cursorTexture[0], hotSpot, cursorMode);
+            Cursor.SetCursor(cursorTexture[0], hotSpot, cursorMode);
         }
 
     }
