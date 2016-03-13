@@ -52,6 +52,19 @@ public class SaveAtual : MonoBehaviour {
         Object.DontDestroyOnLoad(this);
     }
 
+    public void iniciarEstoque()
+    {
+        if (gameStartType == "new")
+        {
+            GameObject.FindObjectOfType<ArmazemGerenciamento>().criarEstoque();
+        }
+        else if (gameStartType == "load")
+        {
+            Debug.Log("load");
+            GameObject.FindObjectOfType<ArmazemGerenciamento>().loadEstoque();
+        }
+    }
+
     public void iniciarCriacaoMapas()
     {
         if(gameStartType == "new")

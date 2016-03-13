@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GerenciadorDeMapas : MonoBehaviour {
+public class GerenciadorDeMapas : MonoBehaviour,saveInterface {
     public GameObject[,] Mapas;
     public GameObject MapaPadrao;
     public int posX;
@@ -145,7 +145,12 @@ public class GerenciadorDeMapas : MonoBehaviour {
         GameObject mapa = Instantiate(MapaPadrao) as GameObject;
         mapa.GetComponent<Mapa>().destroiTODASCelulasJOGO();
         Mapas[posX, posY] = mapa.GetComponent<Mapa>().Load(posX,posY);
+    }
 
+    public void save()
+    {
+        Mapa mapa = Mapas[posX, posY].GetComponent<Mapa>();
+        mapa.Save(posX, posY);
     }
 
     public void salvarMapaAtual()

@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour {
                 {
                     save = GameObject.FindObjectOfType<SaveAtual>();
                     save.iniciarCriacaoMapas();
+                    save.iniciarEstoque();
                     possuiSave = true;
                 }
             }
@@ -59,6 +60,12 @@ public class GameManager : MonoBehaviour {
                 Cursor.SetCursor(cursorTexture[0], hotSpot, cursorMode);
         }
     }
+
+    public void saveGame()
+    {
+        SendMessage("save");
+    }
+
 
     public void mudarRecurso(int id)
     {
