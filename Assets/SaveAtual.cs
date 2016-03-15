@@ -60,7 +60,6 @@ public class SaveAtual : MonoBehaviour {
         }
         else if (gameStartType == "load")
         {
-            Debug.Log("load");
             GameObject.FindObjectOfType<ArmazemGerenciamento>().loadEstoque();
         }
     }
@@ -72,7 +71,6 @@ public class SaveAtual : MonoBehaviour {
             GameObject.FindObjectOfType<GerenciadorDeMapas>().criarMapas();
         } else if(gameStartType == "load")
         {
-            Debug.Log("load");
             GameObject.FindObjectOfType<GerenciadorDeMapas>().criarMapasLoad();
         }
         

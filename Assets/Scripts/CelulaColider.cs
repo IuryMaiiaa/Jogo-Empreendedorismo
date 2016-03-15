@@ -36,6 +36,9 @@ public class CelulaColider : MonoBehaviour {
             else if (gameManager.acaoAtual == "REMOVER")
             {
                 hit.collider.gameObject.GetComponent<Recurso>().remover();
+            } else
+            {
+                ChamarBotao(hit);
             }
         }
         else
@@ -47,16 +50,9 @@ public class CelulaColider : MonoBehaviour {
 
 
 
-    public void ChamarBotao()
+    public void ChamarBotao(RaycastHit hit)
     {
-        if (cont>900)
-        {
-            cont = 0;
-            GameObject.FindObjectOfType<MenuControler>().AcinonarMenuOpcoesRecurso(this.gameObject);
-        } else
-        {
-            cont++;
-        }
+        GameObject.FindObjectOfType<MenuControler>().AcinonarMenuOpcoesRecurso(this.gameObject);
         
     }
 }
