@@ -36,20 +36,68 @@ public class Recurso : MonoBehaviour {
 
     public void colherRecurso()
     {
-        //adicionar valor do recurso ao armazem;
-        if (lv == 1)
+        if(recurso == "PLANTA")
         {
-
-        } else if (lv == 2)
+            colherPlanta();
+        } else if(recurso == "MELECA")
         {
-
-        } else if (lv == 3)
+            colherSparkunglax();
+        } else if(recurso == "COURO")
         {
-
+            colherCebolinha();
         }
+        
         tempoDecorrido = 0;
         recurso = "NENHUM";
     }
+
+    private void colherSparkunglax()
+    {
+        if(lv==1)
+        {
+            GameObject.FindObjectOfType<ArmazemGerenciamento>().melecaAdicionar(5);
+        } else if(lv==2)
+        {
+            GameObject.FindObjectOfType<ArmazemGerenciamento>().melecaAdicionar(10);
+        } else  if (lv==3)
+        { 
+            GameObject.FindObjectOfType<ArmazemGerenciamento>().melecaAdicionar(15);
+
+        } 
+    }
+
+    private void colherCebolinha()
+    {
+        if (lv == 1)
+        {
+            GameObject.FindObjectOfType<ArmazemGerenciamento>().couroAdicionar(5);
+        }
+        else if (lv == 2)
+        {
+            GameObject.FindObjectOfType<ArmazemGerenciamento>().couroAdicionar(10);
+        }
+        else if (lv == 3)
+        {
+            GameObject.FindObjectOfType<ArmazemGerenciamento>().couroAdicionar(15);
+        }
+    }
+
+    private void colherPlanta()
+    {
+        if (lv == 1)
+        {
+            GameObject.FindObjectOfType<ArmazemGerenciamento>().plantAdicionar(5);
+        }
+        else if (lv == 2)
+        {
+            GameObject.FindObjectOfType<ArmazemGerenciamento>().plantAdicionar(10);
+        }
+        else if (lv == 3)
+        {
+            GameObject.FindObjectOfType<ArmazemGerenciamento>().plantAdicionar(15);
+        }
+    }
+
 
     public void setTempoDecorrido(int tempo)
     {

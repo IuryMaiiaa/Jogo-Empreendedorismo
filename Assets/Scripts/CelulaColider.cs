@@ -51,8 +51,8 @@ public class CelulaColider : MonoBehaviour {
 
 
     public void ChamarBotao(RaycastHit hit)
-    {
+    {        
         GameObject.FindObjectOfType<MenuControler>().AcinonarMenuOpcoesRecurso(this.gameObject);
-        
+        GameObject.FindObjectOfType<ScriptColetaRecurso>().adicionarRecurso(this.gameObject.GetComponent<Recurso>());
     }
 }
