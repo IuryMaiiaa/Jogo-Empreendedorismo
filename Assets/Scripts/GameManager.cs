@@ -63,14 +63,8 @@ public class GameManager : MonoBehaviour {
 
     public void saveGame()
     {
-        SaveInterface[] saves = (SaveInterface[])GameObject.FindObjectsOfType(typeof(SaveInterface));
-        Debug.Log("chego aqui");
-        foreach (SaveInterface save in saves)
-        {
-            save.save();
-        }
-
-
+        GameObject.FindObjectOfType<ArmazemGerenciamento>().save();
+        GameObject.FindObjectOfType<GerenciadorDeMapas>().save();
     }
 
 

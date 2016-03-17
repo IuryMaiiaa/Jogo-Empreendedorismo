@@ -138,7 +138,6 @@ public class GerenciadorDeMapas : MonoBehaviour,SaveInterface {
 
     public void load(int posX,int posY)
     {
-        Debug.Log("aqui");
         this.posX = posX;
         this.posY = posY;
         GameObject mapa = Instantiate(MapaPadrao) as GameObject;
