@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GerenciadorDeMapas : MonoBehaviour,saveInterface {
+public class GerenciadorDeMapas : MonoBehaviour,SaveInterface {
     public GameObject[,] Mapas;
     public GameObject MapaPadrao;
     public int posX;
@@ -15,7 +15,6 @@ public class GerenciadorDeMapas : MonoBehaviour,saveInterface {
 
     public void criarMapas()
     {
-        Debug.Log("chegou");
         
         Mapas = new GameObject[3, 3];
         for (int cont = 0; cont < 3; cont++)
@@ -149,6 +148,7 @@ public class GerenciadorDeMapas : MonoBehaviour,saveInterface {
 
     public void save()
     {
+        Debug.Log("aqui");
         Mapa mapa = Mapas[posX, posY].GetComponent<Mapa>();
         mapa.Save(posX, posY);
     }

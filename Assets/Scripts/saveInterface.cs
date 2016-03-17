@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface saveInterface {
+public interface SaveInterface {
 
     void save();
 }

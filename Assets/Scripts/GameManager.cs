@@ -63,7 +63,14 @@ public class GameManager : MonoBehaviour {
 
     public void saveGame()
     {
-        SendMessage("save");
+        SaveInterface[] saves = (SaveInterface[])GameObject.FindObjectsOfType(typeof(SaveInterface));
+        Debug.Log("chego aqui");
+        foreach (SaveInterface save in saves)
+        {
+            save.save();
+        }
+
+
     }
 
 

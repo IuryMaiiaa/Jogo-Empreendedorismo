@@ -4,7 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System;
 using System.IO;
 
-public class ArmazemGerenciamento : MonoBehaviour,saveInterface {
+public class ArmazemGerenciamento : MonoBehaviour,SaveInterface {
     public int recursoPlantaArmazenado;
     public int recursoMelecaArmazenado;
     public int recursoCouroArmazenado;
@@ -53,6 +53,7 @@ public class ArmazemGerenciamento : MonoBehaviour,saveInterface {
 
     public void save()
     {
+        Debug.Log("aqui");
         saveAtual = GameObject.FindObjectOfType<SaveAtual>();
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + "ArmazenamentoData.dat");

@@ -46,9 +46,8 @@ public class Recurso : MonoBehaviour {
         {
             colherCebolinha();
         }
+        remover();
         
-        tempoDecorrido = 0;
-        recurso = "NENHUM";
     }
 
     private void colherSparkunglax()
@@ -139,6 +138,7 @@ public class Recurso : MonoBehaviour {
 
     public void remover()
     {
+        tempoDecorrido = 0;
         recurso = "NENHUM";
         lv = 1;
         recursoSprite.sprite = null;
