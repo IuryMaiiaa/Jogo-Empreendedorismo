@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
-
-    private Nacao[] nacoes;
+public class NacaoFactory : MonoBehaviour,SaveInterface {
 
 	// Use this for initialization
 	void Start () {
@@ -15,12 +13,18 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
 	
 	}
 
-    public void setNacoes(Nacao[] nacoes)
+    public Nacao[] criarNacoes()
     {
-        this.nacoes = nacoes;
+        Nacao[] nacoes = new Nacao[5];
+        return nacoes;
     }
 
     public void save()
+    {
+        
+    }
+
+    public void load()
     {
 
     }
