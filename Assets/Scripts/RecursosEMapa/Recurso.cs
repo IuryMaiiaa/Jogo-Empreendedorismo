@@ -3,6 +3,7 @@
 public class Recurso : MonoBehaviour {
     private GerenciadorRecursos gerenciadorRecurso;
     public SpriteRenderer recursoSprite;
+    private RecursoEnum recursoEnum;
     public int tempoDecorrido;
     public double tempoAtual;
     public int lv;
@@ -10,6 +11,7 @@ public class Recurso : MonoBehaviour {
  
 	// Use this for initialization
 	void Start () {
+        recursoEnum = new RecursoEnum();
         tempoAtual = Time.time;
         tempoDecorrido = 0;
         gerenciadorRecurso = GameObject.FindObjectOfType<GerenciadorRecursos>();
@@ -17,7 +19,7 @@ public class Recurso : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if( recurso != "NENHUM")
+        if (recurso != recursoEnum.getNenhumRecursoString() )
         {
             if(Time.time > tempoAtual+1f)
             {
@@ -36,13 +38,13 @@ public class Recurso : MonoBehaviour {
 
     public void colherRecurso()
     {
-        if(recurso == "PLANTA")
+        if(recurso == recursoEnum.getPlantaRecursoString())
         {
             colherPlanta();
-        } else if(recurso == "MELECA")
+        } else if(recurso == recursoEnum.getMelecarRecursoString() )
         {
             colherSparkunglax();
-        } else if(recurso == "COURO")
+        } else if(recurso == recursoEnum.getCouroRecursoString() )
         {
             colherCebolinha();
         }
@@ -139,7 +141,7 @@ public class Recurso : MonoBehaviour {
     public void remover()
     {
         tempoDecorrido = 0;
-        recurso = "NENHUM";
+        recurso = recursoEnum.getNenhumRecursoString();
         lv = 1;
         recursoSprite.sprite = null;
     }

@@ -12,9 +12,12 @@ public class GerenciadorRecursos : MonoBehaviour {
 
     //Cebolinha de couro.
     public Sprite cebolinhalv1;
+
+    private RecursoEnum recursoEnum;
     
     // Use this for initialization
     void Start () {
+        recursoEnum = new RecursoEnum();
 	
 	}
 	
@@ -25,14 +28,14 @@ public class GerenciadorRecursos : MonoBehaviour {
 
     public Sprite GetRecursoSprite(string recursoNome,int lv)
     {
-        if (recursoNome == "PLANTA")
+        if (recursoNome == recursoEnum.getPlantaRecursoString())
         {
             return GetPlantaSprite(lv);
         }
-        else if (recursoNome == "MELECA")
+        else if (recursoNome == recursoEnum.getMelecarRecursoString())
         {
             return GetMelecaSprite(lv);
-        } else if(recursoNome == "COURO")
+        } else if(recursoNome == recursoEnum.getCouroRecursoString())
         {
             return GetCouroSprite(lv);
         } else
