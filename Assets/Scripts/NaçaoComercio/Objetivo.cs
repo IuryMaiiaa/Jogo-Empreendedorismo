@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class Objetivo : MonoBehaviour {
+    public string recurso;
+    public int meta;
 
 	// Use this for initialization
 	void Start () {
@@ -12,4 +14,26 @@ public class Objetivo : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public void setMeta(int meta)
+    {
+        this.meta = meta;
+    }
+
+    public void setRecurso(string recurso)
+    {
+        this.recurso = recurso;
+    }
+
+    public string getRecurso()
+    {
+        return recurso;
+    }
+
+    public string getMeta()
+    {
+        return meta;
+    }
+
+
 }
