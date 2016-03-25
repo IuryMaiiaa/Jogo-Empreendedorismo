@@ -1,4 +1,4 @@
-﻿d   using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class Nacao : MonoBehaviour {
@@ -16,4 +16,44 @@ public class Nacao : MonoBehaviour {
 	void Update () {
 	    
 	}
+
+    public Objetivo getObjetivo()
+    {
+        return objetivo;
+    }
+
+    public Consumo getConsumo()
+    {
+        return consumo;
+    }
+
+    public Producao getProducao()
+    {
+        return producao;
+    }
+
+    public NacaoArmazem getArmazem()
+    {
+        return armazem;
+    }
+
+    public void setObjetivo(Objetivo objetivo)
+    {
+        this.objetivo = objetivo;
+    }
+
+    public void setConsumo(Consumo consumo)
+    {
+        this.consumo = consumo;
+    }
+
+    public void setProducao(Producao producao)
+    {
+        this.producao = producao;
+    }
+
+    public void setArmazem(NacaoArmazem armazem)
+    {
+        this.armazem = armazem;
+    }
 }

@@ -30,7 +30,7 @@ public class Objetivo : MonoBehaviour {
         return recurso;
     }
 
-    public string getMeta()
+    public int getMeta()
     {
         return meta;
     }
