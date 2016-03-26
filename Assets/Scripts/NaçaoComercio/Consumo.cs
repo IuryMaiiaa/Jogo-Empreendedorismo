@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Consumo : MonoBehaviour {
+public class Consumo : MonoBehaviour, SaveInterface {
     public string recurso;
     public int consumoPeriodico;
 
@@ -14,6 +14,11 @@ public class Consumo : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public void save()
+    {
+
+    }
 
     public void setRecurso(string recursoNome)
     {

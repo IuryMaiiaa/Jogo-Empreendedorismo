@@ -3,11 +3,12 @@ using System.Collections;
 
 public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
 
-    private Nacao[] nacoes;
+    private ArrayList nacoes;
+    private NacaoFactory nacaoFactory;
 
 	// Use this for initialization
 	void Start () {
-	
+        nacaoFactory = new NacaoFactory();
 	}
 	
 	// Update is called once per frame
@@ -15,9 +16,9 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
 	
 	}
 
-    public void setNacoes(Nacao[] nacoes)
+    public void setNacoes(ArrayList nacoes)
     {
-        this.nacoes = nacoes;
+        this.nacoes = nacaoFactory.criarNacoes();
     }
 
     public void save()

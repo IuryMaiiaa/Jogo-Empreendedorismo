@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Producao : MonoBehaviour {
+public class Producao : MonoBehaviour, SaveInterface
+{
     public string recurso;
     public int producao;
 
@@ -14,6 +15,11 @@ public class Producao : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public void save()
+    {
+
+    }
 
 
     public void setRecurso(string recursoNome)

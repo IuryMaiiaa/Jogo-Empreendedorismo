@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Objetivo : MonoBehaviour {
+public class Objetivo : MonoBehaviour, SaveInterface {
     public string recurso;
     public int meta;
 
@@ -14,6 +14,11 @@ public class Objetivo : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public void save()
+    {
+
+    }
 
     public void setMeta(int meta)
     {
