@@ -6,6 +6,7 @@ public class Nacao : MonoBehaviour {
     public Consumo consumo;
     public Producao producao;
     public NacaoArmazem armazem;
+    public string name;
 
 	// Use this for initialization
 	void Start () {
@@ -16,6 +17,11 @@ public class Nacao : MonoBehaviour {
 	void Update () {
 	    
 	}
+
+    public string getNascaoName()
+    {
+        return name;
+    }
 
     public Objetivo getObjetivo()
     {
@@ -40,6 +46,11 @@ public class Nacao : MonoBehaviour {
     public void setObjetivo(Objetivo objetivo)
     {
         this.objetivo = objetivo;
+    }
+
+    public void setNascaoName(string name)
+    {
+        this.name = name;
     }
 
     public void setConsumo(Consumo consumo)

@@ -1,13 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Runtime.Serialization.Formatters.Binary;
+using System;
+using System.IO;
 
 public class Producao : MonoBehaviour, SaveInterface
 {
+    public string nascaoNome;
     public string recurso;
     public int producao;
+    public SaveAtual saveAtual;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 	
 	}
 	
@@ -18,7 +23,27 @@ public class Producao : MonoBehaviour, SaveInterface
 
     public void save()
     {
+        saveAtual = GameObject.FindObjectOfType<SaveAtual>();
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + nascaoNome + "ProducaoNascaoData.dat");
+        ProducaoNascaoData data = new ProducaoNascaoData();
 
+        data.nascaoNome = this.nascaoNome;
+        data.producao = this.producao;
+        data.recurso = this.recurso;
+        
+        bf.Serialize(file, data);
+        file.Close();
+    }
+
+    public void setNascaoNome(string nome)
+    {
+        nascaoNome = nome;
+    }
+
+    public string getNascaoNome()
+    {
+        return nascaoNome;
     }
 
 
@@ -41,4 +66,13 @@ public class Producao : MonoBehaviour, SaveInterface
     {
         return producao;
     }
+}
+
+[System.Serializable]
+class ProducaoNascaoData
+{
+    public string nascaoNome;
+    public string recurso;
+    public int producao;
+
 }

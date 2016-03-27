@@ -1,12 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Runtime.Serialization.Formatters.Binary;
+using System;
+using System.IO;
 
 public class Objetivo : MonoBehaviour, SaveInterface {
+    public string nascaoNome;
     public string recurso;
     public int meta;
+    public SaveAtual saveAtual;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 	
 	}
 	
@@ -17,7 +22,27 @@ public class Objetivo : MonoBehaviour, SaveInterface {
 
     public void save()
     {
+        saveAtual = GameObject.FindObjectOfType<SaveAtual>();
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + nascaoNome + "ObjetivoNascaoData.dat");
+        ObjetivoNascaoData data = new ObjetivoNascaoData();
 
+        data.nascaoNome = this.nascaoNome;
+        data.meta = this.meta;
+        data.recurso = this.recurso;
+
+        bf.Serialize(file, data);
+        file.Close();
+    }
+
+    public void setNascaoNome(string nome)
+    {
+        nascaoNome = nome;
+    }
+
+    public string getNascaoNome()
+    {
+        return nascaoNome;
     }
 
     public void setMeta(int meta)
@@ -42,3 +67,14 @@ public class Objetivo : MonoBehaviour, SaveInterface {
 
 
 }
+
+
+[System.Serializable]
+class ObjetivoNascaoData
+{
+    public string nascaoNome;
+    public string recurso;
+    public int meta;
+
+}
+

@@ -23,6 +23,7 @@ public class NacaoFactory : MonoBehaviour,SaveInterface {
             nacao = adicionarConsumo(nacao);
             nacao = adicionarObjetivo(nacao);
             nacao = adicionarProducao(nacao);
+            nacao.setNascaoName("nascao"+cont);
             nacoes.Add(nacao);
         }
         return nacoes;
