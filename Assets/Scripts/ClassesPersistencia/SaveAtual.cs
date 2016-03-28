@@ -75,4 +75,16 @@ public class SaveAtual : MonoBehaviour {
         }
         
     }
+
+    public void iniciarCriacaoNacoes()
+    {
+        if (gameStartType == "new")
+        {
+            GameObject.FindObjectOfType<GerenciadoDeNacoes>().criarNascoes();
+        }
+        else if (gameStartType == "load")
+        {
+            GameObject.FindObjectOfType<GerenciadoDeNacoes>().criarNascoesLoad();
+        }
+    }
 }

@@ -1,14 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Runtime.Serialization.Formatters.Binary;
+using System;
+using System.IO;
 
 public class NacaoArmazem : MonoBehaviour,SaveInterface {
     private int recursoPlanta;
     private int recursoMeleca;
     private int recursoCouro;
+    private string nascaoNome;
     private int dinheiro;
+    private SaveAtual saveAtual;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 	
 	}
 	
@@ -16,6 +21,16 @@ public class NacaoArmazem : MonoBehaviour,SaveInterface {
 	void Update () {
 	
 	}
+
+    public string getNascaoNome()
+    {
+        return nascaoNome;
+    }
+
+    public void setNascaoNome(string nascaoNome)
+    {
+        this.nascaoNome = nascaoNome;
+    }
 
     public void setRecursoPlanta(int quanidade)
     {
@@ -59,11 +74,34 @@ public class NacaoArmazem : MonoBehaviour,SaveInterface {
 
     public void save()
     {
+        saveAtual = GameObject.FindObjectOfType<SaveAtual>();
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + nascaoNome + "ArmazemNascaoData.dat");
+        ArmazemNascaoData data = new ArmazemNascaoData();
 
+        data.nascaoNome = this.getNascaoNome();
+        data.dinheiro = this.getDinheiro();
+        data.recursoCouro = this.getCouro();
+        data.recursoMeleca = this.getMeleca();
+        data.recursoPlanta = this.getPlantas();
+
+        bf.Serialize(file, data);
+        file.Close();
     }
 
     public void load()
     {
 
     }
+}
+
+[System.Serializable]
+class ArmazemNascaoData
+{
+    public int recursoPlanta;
+    public int recursoMeleca;
+    public int recursoCouro;
+    public string nascaoNome;
+    public int dinheiro;
+
 }

@@ -1,16 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Runtime.Serialization.Formatters.Binary;
+using System;
+using System.IO;
 
-public class Nacao : MonoBehaviour {
+public class Nacao : MonoBehaviour,SaveInterface {
     public Objetivo objetivo;
     public Consumo consumo;
     public Producao producao;
     public NacaoArmazem armazem;
-    public string name;
+    public SaveAtual saveAtual;
+    public string nascaoNome;
 
 	// Use this for initialization
 	void Start () {
-	
+        objetivo = new Objetivo();
+        consumo = new Consumo();
+        producao = new Producao();
+        armazem = new NacaoArmazem();
 	}
 	
 	// Update is called once per frame
@@ -18,9 +25,39 @@ public class Nacao : MonoBehaviour {
 	    
 	}
 
+    public void save()
+    {
+        saveAtual = GameObject.FindObjectOfType<SaveAtual>();
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + nascaoNome + "NascaoData.dat");
+        NascaoData data = new NascaoData();
+
+        data.nascaoNome = this.nascaoNome;
+
+        bf.Serialize(file, data);
+        file.Close();
+        producao.save();
+        consumo.save();
+        objetivo.save();
+        armazem.save();
+    }
+
+    public void load()
+    {
+        producao.load();
+    }
+
+    private void setNacaoNoObjetivos()
+    {
+        producao.setNascaoNome(nascaoNome);
+        consumo.setNascaoNome(nascaoNome);
+        objetivo.setNascaoNome(nascaoNome);
+        armazem.setNascaoNome(nascaoNome);
+    }
+
     public string getNascaoName()
     {
-        return name;
+        return nascaoNome;
     }
 
     public Objetivo getObjetivo()
@@ -48,9 +85,9 @@ public class Nacao : MonoBehaviour {
         this.objetivo = objetivo;
     }
 
-    public void setNascaoName(string name)
+    public void setNascaoName(string nascaoNome)
     {
-        this.name = name;
+        this.nascaoNome = nascaoNome;
     }
 
     public void setConsumo(Consumo consumo)
@@ -67,4 +104,10 @@ public class Nacao : MonoBehaviour {
     {
         this.armazem = armazem;
     }
+}
+
+[System.Serializable]
+class NascaoData
+{
+    public string nascaoNome;
 }

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class NacaoFactory : MonoBehaviour,SaveInterface {
     public RecursoEnum recursoEnum;
+    public static string nascaoPadraoNome = "nascao";
 
 	// Use this for initialization
 	void Start () {
@@ -23,10 +24,21 @@ public class NacaoFactory : MonoBehaviour,SaveInterface {
             nacao = adicionarConsumo(nacao);
             nacao = adicionarObjetivo(nacao);
             nacao = adicionarProducao(nacao);
-            nacao.setNascaoName("nascao"+cont);
+            nacao.setNascaoName(nascaoPadraoNome + cont);
             nacoes.Add(nacao);
         }
         return nacoes;
+    }
+
+    public ArrayList loadNacoes()
+    {
+        ArrayList nacoes = new ArrayList();
+        for(int cont = 0; cont < 5; cont++)
+        {
+            Nacao nacao = new Nacao();
+            nacao.setNascaoName(nascaoPadraoNome + cont);
+            nacao.load();
+        }
     }
 
     public void save()

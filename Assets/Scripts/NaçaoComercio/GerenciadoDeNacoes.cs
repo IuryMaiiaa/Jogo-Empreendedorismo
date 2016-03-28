@@ -18,12 +18,25 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
 
     public void setNacoes(ArrayList nacoes)
     {
+        this.nacoes = nacoes;
+    }
+
+    public void criarNascoes()
+    {
         this.nacoes = nacaoFactory.criarNacoes();
+    }
+
+    public void criarNascoesLoad()
+    {
+        this.nacoes = nacaoFactory.loadNacoes();
     }
 
     public void save()
     {
-
+        foreach(Nacao nacao in nacoes)
+        {
+            nacao.save();
+        }
     }
 
     public void turnoCormercioNacoes()
