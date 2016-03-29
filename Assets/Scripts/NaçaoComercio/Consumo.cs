@@ -36,6 +36,11 @@ public class Consumo : MonoBehaviour, SaveInterface {
         file.Close();
     }
 
+    public void load()
+    {
+
+    }
+
     public void setNascaoNome(string nome)
     {
         nascaoNome = nome;

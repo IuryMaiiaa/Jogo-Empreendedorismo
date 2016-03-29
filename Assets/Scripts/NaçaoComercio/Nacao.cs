@@ -44,7 +44,9 @@ public class Nacao : MonoBehaviour,SaveInterface {
 
     public void load()
     {
+        setNacaoNoObjetivos();
         producao.load();
+        consumo.load();
     }
 
     private void setNacaoNoObjetivos()

@@ -36,6 +36,11 @@ public class Producao : MonoBehaviour, SaveInterface
         file.Close();
     }
 
+    public void load()
+    {
+
+    }
+
     public void setNascaoNome(string nome)
     {
         nascaoNome = nome;

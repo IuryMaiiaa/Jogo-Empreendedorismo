@@ -39,6 +39,7 @@ public class NacaoFactory : MonoBehaviour,SaveInterface {
             nacao.setNascaoName(nascaoPadraoNome + cont);
             nacao.load();
         }
+        return nacoes;
     }
 
     public void save()
