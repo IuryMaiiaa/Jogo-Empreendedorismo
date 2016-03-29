@@ -91,7 +91,19 @@ public class NacaoArmazem : MonoBehaviour,SaveInterface {
 
     public void load()
     {
+        saveAtual = GameObject.FindObjectOfType<SaveAtual>();
+        if (File.Exists(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + nascaoNome + "ArmazemNascaoData.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + nascaoNome + "ArmazemNascaoData.dat", FileMode.Open);
+            ArmazemNascaoData armazemNascaoData = (ArmazemNascaoData)bf.Deserialize(file);
 
+            this.setDinheiro(armazemNascaoData.dinheiro);
+            this.setNascaoNome(armazemNascaoData.nascaoNome);
+            this.setRecursoCouro(armazemNascaoData.recursoCouro);
+            this.setRecursoMeleca(armazemNascaoData.recursoMeleca);
+            this.setRecursoPlanta(armazemNascaoData.recursoPlanta);
+        }
     }
 }
 

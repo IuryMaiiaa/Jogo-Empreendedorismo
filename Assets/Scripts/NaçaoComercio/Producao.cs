@@ -38,7 +38,18 @@ public class Producao : MonoBehaviour, SaveInterface
 
     public void load()
     {
+        saveAtual = GameObject.FindObjectOfType<SaveAtual>();
+        if (File.Exists(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + nascaoNome + "ProducaoNascaoData.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + nascaoNome + "ProducaoNascaoData.dat", FileMode.Open);
 
+            ProducaoNascaoData producaoNascaoData = (ProducaoNascaoData)bf.Deserialize(file);
+            file.Close();
+            this.setNascaoNome(producaoNascaoData.nascaoNome);
+            this.setProducao(producaoNascaoData.producao);
+            this.setRecurso(producaoNascaoData.recurso);
+        }
     }
 
     public void setNascaoNome(string nome)

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NacaoFactory : MonoBehaviour,SaveInterface {
+public class NacaoFactory : MonoBehaviour {
     public RecursoEnum recursoEnum;
     public static string nascaoPadraoNome = "nascao";
 
@@ -41,17 +41,6 @@ public class NacaoFactory : MonoBehaviour,SaveInterface {
         }
         return nacoes;
     }
-
-    public void save()
-    {
-        
-    }
-
-    public void load()
-    {
-
-    }
-
 
     public Nacao adicionarObjetivo(Nacao nascao)
     {

@@ -38,7 +38,19 @@ public class Consumo : MonoBehaviour, SaveInterface {
 
     public void load()
     {
+        saveAtual = GameObject.FindObjectOfType<SaveAtual>();
+        if (File.Exists(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + nascaoNome + "ConsumoNascaoData.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + nascaoNome + "ConsumoNascaoData.dat", FileMode.Open);
 
+            ConsumoNascaoData consumoNascaoData = (ConsumoNascaoData)bf.Deserialize(file);
+            file.Close();
+            this.setConsumoPeriodico(consumoNascaoData.consumoPeriodico);
+            this.setNascaoNome(consumoNascaoData.nascaoNome);
+            this.setRecurso(consumoNascaoData.recurso);
+            
+        }
     }
 
     public void setNascaoNome(string nome)

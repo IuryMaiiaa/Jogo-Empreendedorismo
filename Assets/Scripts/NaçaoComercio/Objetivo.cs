@@ -35,6 +35,22 @@ public class Objetivo : MonoBehaviour, SaveInterface {
         file.Close();
     }
 
+    public void load()
+    {
+        saveAtual = GameObject.FindObjectOfType<SaveAtual>();
+        if (File.Exists(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + nascaoNome + "ObjetivoNascaoData.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + nascaoNome + "ObjetivoNascaoData.dat", FileMode.Open);
+
+            ObjetivoNascaoData objetivoNascaoData = (ObjetivoNascaoData)bf.Deserialize(file);
+            file.Close();
+            this.setNascaoNome(objetivoNascaoData.nascaoNome);
+            this.setMeta(objetivoNascaoData.meta);
+            this.setRecurso(objetivoNascaoData.recurso);
+        }
+    }
+
     public void setNascaoNome(string nome)
     {
         nascaoNome = nome;

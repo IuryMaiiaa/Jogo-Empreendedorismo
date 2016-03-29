@@ -44,9 +44,21 @@ public class Nacao : MonoBehaviour,SaveInterface {
 
     public void load()
     {
-        setNacaoNoObjetivos();
-        producao.load();
-        consumo.load();
+        saveAtual = GameObject.FindObjectOfType<SaveAtual>();
+        if (File.Exists(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + nascaoNome + "NascaoData.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + nascaoNome + "NascaoData.dat", FileMode.Open);
+
+            NascaoData nascaoData = (NascaoData)bf.Deserialize(file);
+            file.Close();
+            this.setNascaoName(nascaoData.nascaoNome);
+            setNacaoNoObjetivos();
+            producao.load();
+            consumo.load();
+            objetivo.load();
+            armazem.load();
+        }        
     }
 
     private void setNacaoNoObjetivos()
