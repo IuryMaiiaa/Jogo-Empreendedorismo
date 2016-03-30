@@ -36,7 +36,9 @@ public class Nacao : MonoBehaviour,SaveInterface {
         NascaoData data = new NascaoData();
 
         data.nascaoNome = this.nascaoNome;
-
+        data.plantaPreco = this.plantaPreco;
+        data.couroPreco = this.couroPreco;
+        data.melecaPreco = this.melecaPreco;
         bf.Serialize(file, data);
         file.Close();
         producao.save();
@@ -56,6 +58,9 @@ public class Nacao : MonoBehaviour,SaveInterface {
             NascaoData nascaoData = (NascaoData)bf.Deserialize(file);
             file.Close();
             this.setNascaoName(nascaoData.nascaoNome);
+            this.setCouroPreco(nascaoData.couroPreco);
+            this.setPlantaPreco(nascaoData.plantaPreco);
+            this.setMelecaPreco(nascaoData.melecaPreco);
             setNacaoNoObjetivos();
             producao.load();
             consumo.load();
