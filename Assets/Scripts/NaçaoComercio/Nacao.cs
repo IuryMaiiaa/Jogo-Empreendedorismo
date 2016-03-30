@@ -10,6 +10,7 @@ public class Nacao : MonoBehaviour,SaveInterface {
     public Producao producao;
     public NacaoArmazem armazem;
     public SaveAtual saveAtual;
+    public RecursoEnum recursoEnum;
     public string nascaoNome;
     public int melecaPreco;
     public int couroPreco;
@@ -17,6 +18,7 @@ public class Nacao : MonoBehaviour,SaveInterface {
 
 	// Use this for initialization
 	void Start () {
+        recursoEnum = new RecursoEnum();
         objetivo = new Objetivo();
         consumo = new Consumo();
         producao = new Producao();
@@ -129,17 +131,17 @@ public class Nacao : MonoBehaviour,SaveInterface {
 
     public void setCouroPreco(int valorPadrao)
     {
-        this.couroPreco = valorPadrao;
+        this.couroPreco = alterarPrecoRecurso(recursoEnum.getCouroRecursoString(), valorPadrao); ;
     }
 
     public void setPlantaPreco(int valorPadrao)
     {
-        this.plantaPreco = valorPadrao;
+        this.plantaPreco = alterarPrecoRecurso(recursoEnum.getPlantaRecursoString(),valorPadrao);
     }
 
     public void setMelecaPreco(int valorPadrao)
     {
-        this.melecaPreco = valorPadrao;
+        this.melecaPreco = alterarPrecoRecurso(recursoEnum.getMelecarRecursoString(), valorPadrao); ;
     }
 
     public void setConsumo(Consumo consumo)
@@ -155,6 +157,23 @@ public class Nacao : MonoBehaviour,SaveInterface {
     public void setArmazem(NacaoArmazem armazem)
     {
         this.armazem = armazem;
+    }
+
+    public int alterarPrecoRecurso(string recurso,int valor)
+    {
+        if(recurso.Equals(objetivo.getRecurso()))
+        {
+            valor += 100;
+        }
+        if (recurso.Equals(consumo.getRecurso()))
+        {
+            valor += 50;
+        }
+        if(recurso.Equals(producao.getRecurso()))
+        {
+            valor -= 100;
+        }
+        return valor;
     }
 }
 
