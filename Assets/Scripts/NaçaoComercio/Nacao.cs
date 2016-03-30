@@ -11,6 +11,9 @@ public class Nacao : MonoBehaviour,SaveInterface {
     public NacaoArmazem armazem;
     public SaveAtual saveAtual;
     public string nascaoNome;
+    public int melecaPreco;
+    public int couroPreco;
+    public int plantaPreco;
 
 	// Use this for initialization
 	void Start () {
@@ -69,6 +72,21 @@ public class Nacao : MonoBehaviour,SaveInterface {
         armazem.setNascaoNome(nascaoNome);
     }
 
+    public int getPlantaPreco()
+    {
+        return this.plantaPreco;
+    }
+
+    public int getCouroPreco()
+    {
+        return this.couroPreco;
+    }
+
+    public int getMelecaPreco()
+    {
+        return this.melecaPreco;
+    }
+
     public string getNascaoName()
     {
         return nascaoNome;
@@ -104,6 +122,21 @@ public class Nacao : MonoBehaviour,SaveInterface {
         this.nascaoNome = nascaoNome;
     }
 
+    public void setCouroPreco(int valorPadrao)
+    {
+        this.couroPreco = valorPadrao;
+    }
+
+    public void setPlantaPreco(int valorPadrao)
+    {
+        this.plantaPreco = valorPadrao;
+    }
+
+    public void setMelecaPreco(int valorPadrao)
+    {
+        this.melecaPreco = valorPadrao;
+    }
+
     public void setConsumo(Consumo consumo)
     {
         this.consumo = consumo;
@@ -124,4 +157,7 @@ public class Nacao : MonoBehaviour,SaveInterface {
 class NascaoData
 {
     public string nascaoNome;
+    public int melecaPreco;
+    public int couroPreco;
+    public int plantaPreco;
 }

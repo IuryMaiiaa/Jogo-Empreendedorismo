@@ -49,4 +49,19 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
 
     }
 
+    public void definirPrecoPlanta()
+    {
+
+    }
+
+    public void definirPrecoCouro()
+    {
+
+    }
+
+    public void definirPrecoMeleca()
+    {
+
+    }
+
 }
