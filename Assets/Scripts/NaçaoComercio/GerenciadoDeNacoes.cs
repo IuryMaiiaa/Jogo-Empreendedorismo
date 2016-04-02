@@ -42,12 +42,14 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
 
     public void turnoCormercioNacoes()
     {
-
+        definirPrecoPadraoRecurso();
     }
 
     public void definirPrecoPadraoRecurso()
     {
-
+        definirPrecoCouro();
+        definirPrecoMeleca();
+        definirPrecoPlanta();
     }
 
     public void definirPrecoPlanta()
