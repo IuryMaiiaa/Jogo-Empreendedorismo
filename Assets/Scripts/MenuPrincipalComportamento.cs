@@ -22,6 +22,11 @@ public class MenuPrincipalComportamento : MonoBehaviour {
         {
             indexValueUp();
         }
+
+        if(Input.GetAxis("Submit")>0)
+        {
+            BotoesReferencia[curentIndex].GetComponent<InterfaceBotao>().botaoAcao();
+        }
         
 	
 	}
@@ -31,7 +36,8 @@ public class MenuPrincipalComportamento : MonoBehaviour {
         if((curentIndex+1) < BotoesReferencia.Length)
         {
             curentIndex++;
-            naveSprite.transform.position = BotoesReferencia[curentIndex].transform.position;
+            naveSprite.transform.position = BotoesReferencia[curentIndex].GetComponent<InterfaceBotao>()
+                                                .getPosicaoNave().transform.position;
         }
     }
 
@@ -40,7 +46,8 @@ public class MenuPrincipalComportamento : MonoBehaviour {
         if ((curentIndex - 1) >= 0)
         {
             curentIndex--;
-            naveSprite.transform.position = BotoesReferencia[curentIndex].transform.position;
+            naveSprite.transform.position = BotoesReferencia[curentIndex].GetComponent<InterfaceBotao>()
+                                                .getPosicaoNave().transform.position;
         }
     }
 }
