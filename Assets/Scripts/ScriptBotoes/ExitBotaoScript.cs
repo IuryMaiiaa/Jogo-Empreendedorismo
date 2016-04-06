@@ -8,7 +8,7 @@ public class ExitBotaoScript : MonoBehaviour, InterfaceBotao {
 
     public void botaoAcao()
     {
-
+        Application.Quit();
     }
 
     public Transform getPosicaoNave()

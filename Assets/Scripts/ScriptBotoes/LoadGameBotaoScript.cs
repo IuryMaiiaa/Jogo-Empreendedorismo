@@ -5,10 +5,11 @@ using System;
 public class LoadGameBotaoScript : MonoBehaviour, InterfaceBotao {
 
     public Transform NavePosicao;
+    public GameObject loadPanelSlots;
 
     public void botaoAcao()
     {
-        
+        GameObject.FindObjectOfType<MenuGerenciamento>().ativarPanel(loadPanelSlots);
     }
 
     public Transform getPosicaoNave()

@@ -4,6 +4,7 @@ using System.Collections;
 public class panelInputNewGame : MonoBehaviour {
     private int slotInt;
     public UnityEngine.UI.InputField inputSlot;
+    public GameObject panelAnterior;
 
 	// Use this for initialization
 	void Start () {
@@ -12,7 +13,10 @@ public class panelInputNewGame : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            GameObject.FindObjectOfType<MenuGerenciamento>().ativarPanel(panelAnterior);
+        }
     }
 
     public void setSaveAndNewGame()

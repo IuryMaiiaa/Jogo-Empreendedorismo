@@ -5,6 +5,7 @@ public class MenuPrincipalComportamento : MonoBehaviour {
     public GameObject[] BotoesReferencia;
     public int curentIndex;
     public GameObject naveSprite;
+    public GameObject panelAnterior;
 
 	// Use this for initialization
 	void Start () {
@@ -23,9 +24,14 @@ public class MenuPrincipalComportamento : MonoBehaviour {
             indexValueUp();
         }
 
-        if(Input.GetAxis("Submit")>0)
+        if(Input.GetKeyDown("enter") || Input.GetKeyDown("space"))
         {
             BotoesReferencia[curentIndex].GetComponent<InterfaceBotao>().botaoAcao();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            FindObjectOfType<MenuGerenciamento>().ativarPanel(panelAnterior);
         }
         
 	
@@ -49,5 +55,13 @@ public class MenuPrincipalComportamento : MonoBehaviour {
             naveSprite.transform.position = BotoesReferencia[curentIndex].GetComponent<InterfaceBotao>()
                                                 .getPosicaoNave().transform.position;
         }
+    }
+
+    public void setNaveCursor(GameObject naveCursor)
+    {
+        this.naveSprite = naveCursor;
+        curentIndex = 0;
+        naveSprite.transform.position = BotoesReferencia[curentIndex].GetComponent<InterfaceBotao>()
+                                                .getPosicaoNave().transform.position;
     }
 }

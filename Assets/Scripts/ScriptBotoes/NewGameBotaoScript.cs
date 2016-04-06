@@ -4,10 +4,11 @@ using System;
 
 public class NewGameBotaoScript : MonoBehaviour,InterfaceBotao {
     public Transform NavePosicao;
+    public GameObject saveSlotPanel;
 
     public void botaoAcao()
     {
-        Debug.Log("aqui");
+        GameObject.FindObjectOfType<MenuGerenciamento>().ativarPanel(saveSlotPanel);
     }
 
     public Transform getPosicaoNave()
