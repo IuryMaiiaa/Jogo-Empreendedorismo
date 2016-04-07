@@ -17,66 +17,12 @@ Loading C:\Users\Iury\Documents\Jogo Empreendedorismo\Test_Data\Managed\UnityEng
 Platform assembly: C:\Users\Iury\Documents\Jogo Empreendedorismo\Test_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading C:\Users\Iury\Documents\Jogo Empreendedorismo\Test_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\Iury\Documents\Jogo Empreendedorismo\Test_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.441 seconds
+- Completed reload, in  0.054 seconds
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
 Platform assembly: C:\Users\Iury\Documents\Jogo Empreendedorismo\Test_Data\Managed\System.dll (this message is harmless)
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 3a00 -> priority: 1 
-  Thread -> id: 2fc0 -> priority: 1 
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 3.804994 ms
-
-Unloading 32 unused Assets to reduce memory usage. Loaded Objects now: 829.
-Total: 0.997321 ms (FindLiveObjects: 0.045961 ms CreateObjectMapping: 0.026327 ms MarkObjects: 0.721552 ms  DeleteObjects: 0.203034 ms)
-
-saveMapa
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-saveMapa
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-saveMapa
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-saveMapa
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-saveMapa
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-saveMapa
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-saveMapa
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-saveMapa
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-saveMapa
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-aqui
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-aqui
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-aqui
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
+  Thread -> id: 3c3c -> priority: 1 
+  Thread -> id: 25e4 -> priority: 1 
