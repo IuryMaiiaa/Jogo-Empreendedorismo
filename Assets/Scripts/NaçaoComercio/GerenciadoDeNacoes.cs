@@ -43,6 +43,12 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
     public void turnoCormercioNacoes()
     {
         definirPrecoPadraoRecurso();
+        rodadaComercio();
+    }
+
+    public void rodadaComercio()
+    {
+
     }
 
     public void definirPrecoPadraoRecurso()
