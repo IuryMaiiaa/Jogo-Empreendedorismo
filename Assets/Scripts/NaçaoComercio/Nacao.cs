@@ -79,6 +79,20 @@ public class Nacao : MonoBehaviour,SaveInterface {
         armazem.setNascaoNome(nascaoNome);
     }
 
+    public void realizarComercio(ArrayList nacoes)
+    {
+        
+    }
+
+    public void comprarRecursoObjetivo(ArrayList nacoes)
+    {
+        Nacao nascaoMenorPreco;
+        foreach(Nacao nacao in nacoes)
+        {
+
+        }
+    }
+
     public int getPlantaPreco()
     {
         return this.plantaPreco;

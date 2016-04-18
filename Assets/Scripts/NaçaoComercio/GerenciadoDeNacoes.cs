@@ -48,7 +48,26 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
 
     public void rodadaComercio()
     {
+        foreach(Nacao nacao in nacoes)
+        {
+            if(nacao!=null)
+            {
+                nacao.realizarComercio(criarSubArrayNacao(nacoes, nacao));
+            }
+        }
+    }
 
+    public ArrayList criarSubArrayNacao(ArrayList nacoes,Nacao nacao)
+    {
+        ArrayList nascoesSubArray = new ArrayList();
+        foreach(Nacao aux in nacoes)
+        {
+            if(aux!=null && aux!=nacao)
+            {
+                nascoesSubArray.Add(aux);
+            }
+        }
+        return nascoesSubArray;
     }
 
     public void definirPrecoPadraoRecurso()
