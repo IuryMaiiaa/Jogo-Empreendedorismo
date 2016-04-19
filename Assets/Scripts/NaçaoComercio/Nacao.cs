@@ -11,6 +11,7 @@ public class Nacao : MonoBehaviour,SaveInterface {
     public NacaoArmazem armazem;
     public SaveAtual saveAtual;
     public RecursoEnum recursoEnum;
+    public NacaoComercioGerente nacaoComercioGerente;
     public string nascaoNome;
     public int melecaPreco;
     public int couroPreco;
@@ -86,10 +87,10 @@ public class Nacao : MonoBehaviour,SaveInterface {
 
     public void comprarRecursoObjetivo(ArrayList nacoes)
     {
-        Nacao nascaoMenorPreco;
+        Nacao nascaoMenorPreco = new Nacao();
         foreach(Nacao nacao in nacoes)
         {
-
+            
         }
     }
 
@@ -123,6 +124,21 @@ public class Nacao : MonoBehaviour,SaveInterface {
         return consumo;
     }
 
+    public int getPrecoRecurso(String recurso)
+    {
+        if(recurso.Equals(recursoEnum.getPlantaRecursoString()))
+        {
+            return getPlantaPreco();
+        } else if(recurso.Equals(recursoEnum.getMelecarRecursoString()))
+        {
+            return getMelecaPreco();
+        } else if (recurso.Equals(recursoEnum.getCouroRecursoString()))
+        {
+            return getCouroPreco();
+        }
+        return Int32.MaxValue;
+    }
+
     public Producao getProducao()
     {
         return producao;
@@ -145,7 +161,7 @@ public class Nacao : MonoBehaviour,SaveInterface {
 
     public void setCouroPreco(int valorPadrao)
     {
-        this.couroPreco = alterarPrecoRecurso(recursoEnum.getCouroRecursoString(), valorPadrao); ;
+        this.couroPreco = alterarPrecoRecurso(recursoEnum.getCouroRecursoString(), valorPadrao);
     }
 
     public void setPlantaPreco(int valorPadrao)
@@ -155,7 +171,7 @@ public class Nacao : MonoBehaviour,SaveInterface {
 
     public void setMelecaPreco(int valorPadrao)
     {
-        this.melecaPreco = alterarPrecoRecurso(recursoEnum.getMelecarRecursoString(), valorPadrao); ;
+        this.melecaPreco = alterarPrecoRecurso(recursoEnum.getMelecarRecursoString(), valorPadrao);
     }
 
     public void setConsumo(Consumo consumo)

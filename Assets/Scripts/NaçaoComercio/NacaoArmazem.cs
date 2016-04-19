@@ -4,7 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System;
 using System.IO;
 
-public class NacaoArmazem : MonoBehaviour,SaveInterface {
+public class NacaoArmazem : SaveInterface {
     private int recursoPlanta;
     private int recursoMeleca;
     private int recursoCouro;

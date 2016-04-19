@@ -4,21 +4,11 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System;
 using System.IO;
 
-public class Objetivo : MonoBehaviour, SaveInterface {
+public class Objetivo : SaveInterface {
     public string nascaoNome;
     public string recurso;
     public int meta;
     public SaveAtual saveAtual;
-
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
     public void save()
     {
