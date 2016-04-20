@@ -16,6 +16,21 @@ public class NacaoComercioGerente : MonoBehaviour {
 	
 	}
 
+    public void setPlantaPreco(int valor)
+    {
+        plantaPreco = valor;
+    }
+
+    public void setMelecaPreco(int valor)
+    {
+        melecaPreco = valor;
+    }
+
+    public void setCouroPreco(int valor)
+    {
+        couroPreco = valor;
+    }
+
     public int getPlantaPreco()
     {
         return this.plantaPreco;

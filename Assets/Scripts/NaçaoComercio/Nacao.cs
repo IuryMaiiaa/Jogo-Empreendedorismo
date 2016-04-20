@@ -13,10 +13,7 @@ public class Nacao : MonoBehaviour,SaveInterface {
     public RecursoEnum recursoEnum;
     public NacaoComercioGerente nacaoComercioGerente;
     public string nascaoNome;
-    public int melecaPreco;
-    public int couroPreco;
-    public int plantaPreco;
-
+    
 	// Use this for initialization
 	void Start () {
         recursoEnum = new RecursoEnum();
@@ -39,9 +36,9 @@ public class Nacao : MonoBehaviour,SaveInterface {
         NascaoData data = new NascaoData();
 
         data.nascaoNome = this.nascaoNome;
-        data.plantaPreco = this.plantaPreco;
-        data.couroPreco = this.couroPreco;
-        data.melecaPreco = this.melecaPreco;
+        data.plantaPreco = nacaoComercioGerente.getPlantaPreco();
+        data.couroPreco = nacaoComercioGerente.getCouroPreco();
+        data.melecaPreco = nacaoComercioGerente.getMelecaPreco();
         bf.Serialize(file, data);
         file.Close();
         producao.save();
@@ -88,25 +85,80 @@ public class Nacao : MonoBehaviour,SaveInterface {
     public void comprarRecursoObjetivo(ArrayList nacoes)
     {
         Nacao nascaoMenorPreco = new Nacao();
+        nascaoMenorPreco.setPrecoRecurso(objetivo.recurso, Int32.MaxValue);
         foreach(Nacao nacao in nacoes)
         {
-            
+            if(nacao!=null && nacao.getPrecoRecurso(objetivo.recurso)<nascaoMenorPreco.getPrecoRecurso(objetivo.recurso))
+            {
+                nascaoMenorPreco = nacao;
+            }
         }
+        nascaoMenorPreco.compraRecurso(objetivo.recurso,armazem);
+    }
+
+    public void compraRecurso(String recurso,NacaoArmazem armazem)
+    {
+        if (recurso.Equals(recursoEnum.getPlantaRecursoString()))
+        {
+            comprarPlantas(armazem);
+        }
+        else if (recurso.Equals(recursoEnum.getMelecarRecursoString()))
+        {
+            comprarMelecas(armazem);
+        }
+        else if (recurso.Equals(recursoEnum.getCouroRecursoString()))
+        {
+            comprarCouro(armazem);
+        }
+    }
+
+    public void comprarPlantas(NacaoArmazem armazem)
+    {
+        int quantidadeDinheiro = armazem.getDinheiro();
+        int valorProduto = nacaoComercioGerente.getPlantaPreco();
+        int quantidadeProduto = this.getArmazem().getPlantas();
+        int quantidadeComprador = armazem.getPlantas();
+        int quantidadeMaximaComprada = valorProduto / quantidadeDinheiro;
+        int quantidadeComprada;
+        if(quantidadeMaximaComprada >= quantidadeProduto)
+        {
+            quantidadeComprada = quantidadeMaximaComprada;
+        } else
+        {
+            quantidadeComprada = quantidadeProduto - quantidadeMaximaComprada;
+        }
+        quantidadeProduto -= quantidadeComprada;
+        quantidadeComprador += quantidadeComprada;
+        quantidadeDinheiro -= quantidadeComprada * valorProduto;
+        armazem.setDinheiro(quantidadeDinheiro);
+        this.armazem.setDinheiro((quantidadeComprada * valorProduto)+this.getArmazem().getDinheiro());
+        armazem.setRecursoPlanta(armazem.getPlantas() + quantidadeComprada);
+        this.getArmazem().setRecursoPlanta(this.getArmazem().getPlantas() - quantidadeComprada);
+    }
+
+    public void comprarMelecas(NacaoArmazem armazem)
+    {
+
+    }
+
+    public void comprarCouro(NacaoArmazem armazem)
+    {
+
     }
 
     public int getPlantaPreco()
     {
-        return this.plantaPreco;
+        return nacaoComercioGerente.getPlantaPreco();
     }
 
     public int getCouroPreco()
     {
-        return this.couroPreco;
+        return nacaoComercioGerente.getCouroPreco();
     }
 
     public int getMelecaPreco()
     {
-        return this.melecaPreco;
+        return nacaoComercioGerente.getMelecaPreco();
     }
 
     public string getNascaoName()
@@ -139,6 +191,23 @@ public class Nacao : MonoBehaviour,SaveInterface {
         return Int32.MaxValue;
     }
 
+    public void setPrecoRecurso(String recurso,int valor)
+    {
+        if (recurso.Equals(recursoEnum.getPlantaRecursoString()))
+        {
+            nacaoComercioGerente.setPlantaPreco(valor);
+        }
+        else if (recurso.Equals(recursoEnum.getMelecarRecursoString()))
+        {
+            nacaoComercioGerente.setMelecaPreco(valor);
+        }
+        else if (recurso.Equals(recursoEnum.getCouroRecursoString()))
+        {
+            nacaoComercioGerente.setCouroPreco(valor);
+        }
+
+    }
+
     public Producao getProducao()
     {
         return producao;
@@ -161,17 +230,17 @@ public class Nacao : MonoBehaviour,SaveInterface {
 
     public void setCouroPreco(int valorPadrao)
     {
-        this.couroPreco = alterarPrecoRecurso(recursoEnum.getCouroRecursoString(), valorPadrao);
+        nacaoComercioGerente.setCouroPreco(alterarPrecoRecurso(recursoEnum.getCouroRecursoString(), valorPadrao));
     }
 
     public void setPlantaPreco(int valorPadrao)
     {
-        this.plantaPreco = alterarPrecoRecurso(recursoEnum.getPlantaRecursoString(),valorPadrao);
+        nacaoComercioGerente.setPlantaPreco(alterarPrecoRecurso(recursoEnum.getPlantaRecursoString(),valorPadrao));
     }
 
     public void setMelecaPreco(int valorPadrao)
     {
-        this.melecaPreco = alterarPrecoRecurso(recursoEnum.getMelecarRecursoString(), valorPadrao);
+        nacaoComercioGerente.setMelecaPreco(alterarPrecoRecurso(recursoEnum.getMelecarRecursoString(), valorPadrao));
     }
 
     public void setConsumo(Consumo consumo)
