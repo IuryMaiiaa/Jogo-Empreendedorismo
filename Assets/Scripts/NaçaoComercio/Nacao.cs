@@ -79,7 +79,7 @@ public class Nacao : MonoBehaviour,SaveInterface {
 
     public void realizarComercio(ArrayList nacoes)
     {
-        
+        comprarRecursoObjetivo(nacoes);
     }
 
     public void comprarRecursoObjetivo(ArrayList nacoes)
@@ -138,12 +138,52 @@ public class Nacao : MonoBehaviour,SaveInterface {
 
     public void comprarMelecas(NacaoArmazem armazem)
     {
-
+        int quantidadeDinheiro = armazem.getDinheiro();
+        int valorProduto = nacaoComercioGerente.getMelecaPreco();
+        int quantidadeProduto = this.getArmazem().getMeleca();
+        int quantidadeComprador = armazem.getMeleca();
+        int quantidadeMaximaComprada = valorProduto / quantidadeDinheiro;
+        int quantidadeComprada;
+        if (quantidadeMaximaComprada >= quantidadeProduto)
+        {
+            quantidadeComprada = quantidadeMaximaComprada;
+        }
+        else
+        {
+            quantidadeComprada = quantidadeProduto - quantidadeMaximaComprada;
+        }
+        quantidadeProduto -= quantidadeComprada;
+        quantidadeComprador += quantidadeComprada;
+        quantidadeDinheiro -= quantidadeComprada * valorProduto;
+        armazem.setDinheiro(quantidadeDinheiro);
+        this.armazem.setDinheiro((quantidadeComprada * valorProduto) + this.getArmazem().getDinheiro());
+        armazem.setRecursoMeleca(armazem.getMeleca() + quantidadeComprada);
+        this.getArmazem().setRecursoMeleca(this.getArmazem().getMeleca() - quantidadeComprada);
     }
 
     public void comprarCouro(NacaoArmazem armazem)
     {
-
+        int quantidadeDinheiro = armazem.getDinheiro();
+        int valorProduto = nacaoComercioGerente.getCouroPreco();
+        int quantidadeProduto = this.getArmazem().getCouro();
+        int quantidadeComprador = armazem.getCouro();
+        int quantidadeMaximaComprada = valorProduto / quantidadeDinheiro;
+        int quantidadeComprada;
+        if (quantidadeMaximaComprada >= quantidadeProduto)
+        {
+            quantidadeComprada = quantidadeMaximaComprada;
+        }
+        else
+        {
+            quantidadeComprada = quantidadeProduto - quantidadeMaximaComprada;
+        }
+        quantidadeProduto -= quantidadeComprada;
+        quantidadeComprador += quantidadeComprada;
+        quantidadeDinheiro -= quantidadeComprada * valorProduto;
+        armazem.setDinheiro(quantidadeDinheiro);
+        this.armazem.setDinheiro((quantidadeComprada * valorProduto) + this.getArmazem().getDinheiro());
+        armazem.setRecursoCouro(armazem.getCouro() + quantidadeComprada);
+        this.getArmazem().setRecursoCouro(this.getArmazem().getCouro() - quantidadeComprada);
     }
 
     public int getPlantaPreco()
