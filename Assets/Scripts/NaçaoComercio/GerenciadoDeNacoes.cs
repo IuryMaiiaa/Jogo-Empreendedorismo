@@ -6,16 +6,37 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
     private ArrayList nacoes;
     private NacaoFactory nacaoFactory;
     private int quantidadeMaximoRecurso = 2000;
+    public float timerGerarProducao=0;
+    public float timerRealizarComercio=0;
 
 	// Use this for initialization
 	void Start () {
         nacaoFactory = new NacaoFactory();
+        float timerGerarProducao = Time.time;
+        float timerRealizarComercio = Time.time;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
+
+    public void rotacaoTimerIANacao()
+    {
+        if(timerRealizarComercio+30 < Time.time)
+        {
+            turnoCormercioNacoes();
+            timerRealizarComercio = Time.time;
+        }
+    }
+
+    public void rotacaoTimerProducao()
+    {
+        if(timerGerarProducao+15< Time.time)
+        {
+
+        }
+    }
 
     public void setNacoes(ArrayList nacoes)
     {

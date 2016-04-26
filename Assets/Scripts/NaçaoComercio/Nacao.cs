@@ -28,6 +28,11 @@ public class Nacao : MonoBehaviour,SaveInterface {
 	    
 	}
 
+    public void GerarProducaoConsumo()
+    {
+
+    }
+
     public void save()
     {
         saveAtual = GameObject.FindObjectOfType<SaveAtual>();
@@ -85,9 +90,18 @@ public class Nacao : MonoBehaviour,SaveInterface {
 
     public void comprarRecursoConsumo(ArrayList nacoes)
     {
-        if()
+        if(armazem.getQuantidadeRecurso(consumo.recurso) < consumo.getConsumoPeriodico())
         {
-
+            Nacao nascaoMenorPreco = new Nacao();
+            nascaoMenorPreco.setPrecoRecurso(objetivo.recurso, Int32.MaxValue);
+            foreach (Nacao nacao in nacoes)
+            {
+                if (nacao != null && nacao.getPrecoRecurso(consumo.recurso) < nascaoMenorPreco.getPrecoRecurso(consumo.recurso))
+                {
+                    nascaoMenorPreco = nacao;
+                }
+            }
+            nascaoMenorPreco.compraRecurso(consumo.recurso, armazem);
         }
     }
 
