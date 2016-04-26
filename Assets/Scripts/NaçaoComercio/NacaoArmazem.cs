@@ -22,6 +22,12 @@ public class NacaoArmazem : SaveInterface {
 	
 	}
 
+    public int getQuantidadeRecurso(String Recurso)
+    {
+
+        return 0;
+    }
+
     public string getNascaoNome()
     {
         return nascaoNome;

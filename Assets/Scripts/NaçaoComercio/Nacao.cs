@@ -80,6 +80,15 @@ public class Nacao : MonoBehaviour,SaveInterface {
     public void realizarComercio(ArrayList nacoes)
     {
         comprarRecursoObjetivo(nacoes);
+        comprarRecursoConsumo(nacoes);
+    }
+
+    public void comprarRecursoConsumo(ArrayList nacoes)
+    {
+        if()
+        {
+
+        }
     }
 
     public void comprarRecursoObjetivo(ArrayList nacoes)
