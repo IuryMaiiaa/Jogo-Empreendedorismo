@@ -10,21 +10,42 @@ public class NacaoArmazem : SaveInterface {
     private int recursoCouro;
     private string nascaoNome;
     private int dinheiro;
+    private RecursoEnum recursoEnum;
     private SaveAtual saveAtual;
-
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    public int getQuantidadeRecurso(String Recurso)
+    
+    public NacaoArmazem()
     {
+        recursoEnum = new RecursoEnum();
+    }
 
+    public void setQuantidadeRecurso(String recurso, int valor)
+    {
+        if (recurso.Equals(recursoEnum.getPlantaRecursoString()))
+        {
+            recursoPlanta = valor;
+        }
+        else if (recurso.Equals(recursoEnum.getMelecarRecursoString()))
+        {
+            recursoMeleca = valor;
+        }
+        else if (recurso.Equals(recursoEnum.getCouroRecursoString()))
+        {
+            recursoCouro = valor;
+        }
+    }
+
+    public int getQuantidadeRecurso(String recurso)
+    {
+        if (recurso.Equals(recursoEnum.getPlantaRecursoString()))
+        {
+            return recursoPlanta;
+        } else if (recurso.Equals(recursoEnum.getMelecarRecursoString()))
+        {
+            return recursoMeleca;
+        } else if(recurso.Equals(recursoEnum.getCouroRecursoString()))
+        {
+            return recursoCouro;
+        }
         return 0;
     }
 

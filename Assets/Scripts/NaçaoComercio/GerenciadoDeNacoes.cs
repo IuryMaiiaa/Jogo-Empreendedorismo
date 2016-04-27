@@ -14,11 +14,13 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
         nacaoFactory = new NacaoFactory();
         float timerGerarProducao = Time.time;
         float timerRealizarComercio = Time.time;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+        rotacaoTimerProducao();
+        rotacaoTimerIANacao();
 	}
 
     public void rotacaoTimerIANacao()
@@ -34,7 +36,19 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
     {
         if(timerGerarProducao+15< Time.time)
         {
+            turnoGerarProducaoConsumo();
+            timerGerarProducao = Time.time;
+        }
+    }
 
+    public void turnoGerarProducaoConsumo()
+    {
+        foreach(Nacao nacao in nacoes)
+        {
+            if(nacao!=null)
+            {
+                nacao.GerarProducaoConsumo();
+            }
         }
     }
 

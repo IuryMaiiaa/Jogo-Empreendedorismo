@@ -21,6 +21,13 @@ public class Producao : MonoBehaviour, SaveInterface
 	
 	}
 
+    public void produziRecurso(NacaoArmazem armazem)
+    {
+        int quantidadeRecurso = armazem.getQuantidadeRecurso(recurso);
+        quantidadeRecurso += producao;
+        armazem.setQuantidadeRecurso(recurso, quantidadeRecurso);
+    }
+
     public void save()
     {
         saveAtual = GameObject.FindObjectOfType<SaveAtual>();

@@ -21,6 +21,18 @@ public class Consumo : SaveInterface {
 	
 	}
 
+    public void realizarConsumo(NacaoArmazem armazem)
+    {
+        int quantidadeRecurso = armazem.getQuantidadeRecurso(recurso);
+        if(quantidadeRecurso >= consumoPeriodico)
+        {
+            quantidadeRecurso -= consumoPeriodico;
+        } else {
+            quantidadeRecurso = 0;
+        }
+        armazem.setQuantidadeRecurso(recurso, quantidadeRecurso);
+    }
+
     public void save()
     {
         saveAtual = GameObject.FindObjectOfType<SaveAtual>();

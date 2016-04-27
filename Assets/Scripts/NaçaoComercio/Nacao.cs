@@ -30,7 +30,18 @@ public class Nacao : MonoBehaviour,SaveInterface {
 
     public void GerarProducaoConsumo()
     {
+        realizarConsumo();
+        produziRecurso();
+    }
 
+    public void realizarConsumo()
+    {
+        consumo.realizarConsumo(armazem);
+    }
+
+    public void produziRecurso()
+    {
+        producao.produziRecurso(armazem);
     }
 
     public void save()
@@ -93,7 +104,7 @@ public class Nacao : MonoBehaviour,SaveInterface {
         if(armazem.getQuantidadeRecurso(consumo.recurso) < consumo.getConsumoPeriodico())
         {
             Nacao nascaoMenorPreco = new Nacao();
-            nascaoMenorPreco.setPrecoRecurso(objetivo.recurso, Int32.MaxValue);
+            nascaoMenorPreco.setPrecoRecurso(consumo.recurso, Int32.MaxValue);
             foreach (Nacao nacao in nacoes)
             {
                 if (nacao != null && nacao.getPrecoRecurso(consumo.recurso) < nascaoMenorPreco.getPrecoRecurso(consumo.recurso))
