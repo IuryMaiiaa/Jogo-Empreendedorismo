@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NacaoFactory : MonoBehaviour {
+public class NacaoFactory {
     public RecursoEnum recursoEnum;
     public static string nascaoPadraoNome = "nascao";
 
@@ -15,12 +15,19 @@ public class NacaoFactory : MonoBehaviour {
 	
 	}
 
-    public ArrayList criarNacoes()
+    public NacaoFactory()
+    {
+        recursoEnum = new RecursoEnum();
+    }
+
+
+    public ArrayList criarNacoes(GameObject nacaoPrefab)
     {
         ArrayList nacoes = new ArrayList();
         for(int cont=0;cont<5;cont++)
         {
-            Nacao nacao = new Nacao();
+            GameObject nacaoGameObject = GameObject.Instantiate(nacaoPrefab) as GameObject;
+            Nacao nacao = nacaoGameObject.GetComponent<Nacao>().getNacao();
             nacao = adicionarConsumo(nacao);
             nacao = adicionarObjetivo(nacao);
             nacao = adicionarProducao(nacao);
@@ -66,6 +73,20 @@ public class NacaoFactory : MonoBehaviour {
         producao.setRecurso(sortearRecurso());
         producao.setProducao(40);
         nascao.setProducao(producao);
+        return nascao;
+    }
+
+    public Nacao adicionarArmaem(Nacao nascao)
+    {
+        NacaoArmazem armazem = new NacaoArmazem();
+        nascao.setArmazem(armazem);
+        return nascao;
+    }
+
+    public Nacao adicionarNacaoComercioGerente(Nacao nascao)
+    {
+        NacaoComercioGerente comercio = new NacaoComercioGerente();
+        nascao.nacaoComercioGerente = comercio;
         return nascao;
     }
 

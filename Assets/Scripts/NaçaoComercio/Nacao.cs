@@ -28,6 +28,11 @@ public class Nacao : MonoBehaviour,SaveInterface {
 	    
 	}
 
+    public Nacao getNacao()
+    {
+        return this;
+    }
+
     public void GerarProducaoConsumo()
     {
         realizarConsumo();

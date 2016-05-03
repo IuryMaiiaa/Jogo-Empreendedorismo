@@ -4,6 +4,7 @@ using System.Collections;
 public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
 
     private ArrayList nacoes;
+    public GameObject NacaoPrefab;
     private NacaoFactory nacaoFactory;
     private int quantidadeMaximoRecurso = 2000;
     public float timerGerarProducao=0;
@@ -14,6 +15,7 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
         nacaoFactory = new NacaoFactory();
         float timerGerarProducao = Time.time;
         float timerRealizarComercio = Time.time;
+        nacoes = nacaoFactory.criarNacoes(NacaoPrefab);
 
 	}
 	
@@ -59,7 +61,7 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
 
     public void criarNascoes()
     {
-        this.nacoes = nacaoFactory.criarNacoes();
+        this.nacoes = nacaoFactory.criarNacoes(NacaoPrefab);
     }
 
     public void criarNascoesLoad()

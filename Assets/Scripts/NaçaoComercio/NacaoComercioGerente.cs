@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class NacaoComercioGerente : MonoBehaviour {
+public class NacaoComercioGerente : SaveInterface {
     public int melecaPreco;
     public int couroPreco;
     public int plantaPreco;
@@ -44,5 +45,10 @@ public class NacaoComercioGerente : MonoBehaviour {
     public int getMelecaPreco()
     {
         return this.melecaPreco;
+    }
+
+    public void save()
+    {
+        throw new NotImplementedException();
     }
 }
