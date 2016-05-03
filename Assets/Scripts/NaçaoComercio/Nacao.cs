@@ -78,6 +78,12 @@ public class Nacao : MonoBehaviour,SaveInterface {
 
             NascaoData nascaoData = (NascaoData)bf.Deserialize(file);
             file.Close();
+            nacaoComercioGerente = new NacaoComercioGerente();
+            producao = new Producao();
+            consumo = new Consumo();
+            objetivo = new Objetivo();
+            armazem = new NacaoArmazem();
+            recursoEnum = new RecursoEnum();
             this.setNascaoName(nascaoData.nascaoNome);
             this.setCouroPreco(nascaoData.couroPreco);
             this.setPlantaPreco(nascaoData.plantaPreco);
@@ -309,16 +315,19 @@ public class Nacao : MonoBehaviour,SaveInterface {
 
     public void setCouroPreco(int valorPadrao)
     {
+        recursoEnum = new RecursoEnum();
         nacaoComercioGerente.setCouroPreco(alterarPrecoRecurso(recursoEnum.getCouroRecursoString(), valorPadrao));
     }
 
     public void setPlantaPreco(int valorPadrao)
     {
+        recursoEnum = new RecursoEnum();
         nacaoComercioGerente.setPlantaPreco(alterarPrecoRecurso(recursoEnum.getPlantaRecursoString(),valorPadrao));
     }
 
     public void setMelecaPreco(int valorPadrao)
     {
+        recursoEnum = new RecursoEnum();
         nacaoComercioGerente.setMelecaPreco(alterarPrecoRecurso(recursoEnum.getMelecarRecursoString(), valorPadrao));
     }
 

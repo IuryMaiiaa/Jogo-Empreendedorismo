@@ -10,7 +10,7 @@ public class Mapa : MonoBehaviour {
     public ArrayList celulasLosango = new ArrayList();
     public GameObject LosangoBase;
     public Celula losangoCelulaBase;
-    private SaveAtual saveAtual;
+    public SaveAtual saveAtual;
 
 	// Use this for initialization  
 	void Start () {

@@ -49,6 +49,6 @@ public class NacaoComercioGerente : SaveInterface {
 
     public void save()
     {
-        throw new NotImplementedException();
+       
     }
 }

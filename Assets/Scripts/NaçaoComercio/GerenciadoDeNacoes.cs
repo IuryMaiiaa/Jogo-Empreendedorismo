@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
 
-    private ArrayList nacoes;
+    public ArrayList nacoes;
     public GameObject NacaoPrefab;
     private NacaoFactory nacaoFactory;
     private int quantidadeMaximoRecurso = 2000;
@@ -15,7 +15,6 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
         nacaoFactory = new NacaoFactory();
         float timerGerarProducao = Time.time;
         float timerRealizarComercio = Time.time;
-        nacoes = nacaoFactory.criarNacoes(NacaoPrefab);
 
 	}
 	
@@ -66,7 +65,8 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
 
     public void criarNascoesLoad()
     {
-        this.nacoes = nacaoFactory.loadNacoes();
+        this.nacoes = nacaoFactory.loadNacoes(NacaoPrefab);
+        definirPrecoPadraoRecurso();
     }
 
     public void save()
@@ -122,9 +122,16 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
         {
             valorTotalRecurso += nascao.getArmazem().getPlantas();
         }
-        int mediaDoRecurso = valorTotalRecurso / nacoes.Capacity;
+        int mediaDoRecurso = valorTotalRecurso / nacoes.Count;
         int valorPorcentagem = (mediaDoRecurso * 100) / quantidadeMaximoRecurso;
-        valorPadraoPago = (mediaDoRecurso * (valorPorcentagem-100)) / valorPorcentagem;
+        if (valorPorcentagem == 0)
+        {
+            valorPadraoPago = 0;
+        }
+        else
+        {
+            valorPadraoPago = (mediaDoRecurso * (valorPorcentagem - 100)) / valorPorcentagem;
+        }
         foreach (Nacao nascao in nacoes)
         {
             nascao.setPlantaPreco(valorPadraoPago);
@@ -133,15 +140,22 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
 
     public void definirPrecoCouro()
     {
+        
         int valorPadraoPago = 0;
         int valorTotalRecurso = 0;
-        foreach (Nacao nascao in nacoes)
+        foreach (Nacao nacao in nacoes)
         {
-            valorTotalRecurso += nascao.getArmazem().getCouro();
+            valorTotalRecurso += nacao.getArmazem().getCouro();         
         }
-        int mediaDoRecurso = valorTotalRecurso / nacoes.Capacity;
+        int mediaDoRecurso = valorTotalRecurso / nacoes.Count;
         int valorPorcentagem = (mediaDoRecurso * 100) / quantidadeMaximoRecurso;
-        valorPadraoPago = (mediaDoRecurso * (valorPorcentagem - 100)) / valorPorcentagem;
+        if(valorPorcentagem == 0)
+        {
+            valorPadraoPago = 0;
+        } else
+        {
+            valorPadraoPago = (mediaDoRecurso * (valorPorcentagem - 100)) / valorPorcentagem;
+        }
         foreach (Nacao nascao in nacoes)
         {
             nascao.setCouroPreco(valorPadraoPago);
@@ -156,9 +170,15 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
         {
             valorTotalRecurso += nascao.getArmazem().getMeleca();
         }
-        int mediaDoRecurso = valorTotalRecurso / nacoes.Capacity;
+        int mediaDoRecurso = valorTotalRecurso / nacoes.Count;
         int valorPorcentagem = (mediaDoRecurso * 100) / quantidadeMaximoRecurso;
-        valorPadraoPago = (mediaDoRecurso * (valorPorcentagem - 100)) / valorPorcentagem;
+        if (valorPorcentagem == 0)
+        {
+            valorPadraoPago = 0;
+        } else
+        {
+            valorPadraoPago = (mediaDoRecurso * (valorPorcentagem - 100)) / valorPorcentagem;
+        }
         foreach (Nacao nascao in nacoes)
         {
             nascao.setMelecaPreco(valorPadraoPago);

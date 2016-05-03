@@ -20,6 +20,7 @@ public class NacaoArmazem : SaveInterface {
 
     public void setQuantidadeRecurso(String recurso, int valor)
     {
+        recursoEnum = new RecursoEnum();
         if (recurso.Equals(recursoEnum.getPlantaRecursoString()))
         {
             recursoPlanta = valor;
@@ -36,6 +37,8 @@ public class NacaoArmazem : SaveInterface {
 
     public int getQuantidadeRecurso(String recurso)
     {
+        recursoEnum = new RecursoEnum();
+        Debug.Log(recurso);
         if (recurso.Equals(recursoEnum.getPlantaRecursoString()))
         {
             return recursoPlanta;

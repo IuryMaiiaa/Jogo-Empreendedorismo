@@ -4,7 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System;
 using System.IO;
 
-public class Producao : MonoBehaviour, SaveInterface
+public class Producao : SaveInterface
 {
     public string nascaoNome;
     public string recurso;

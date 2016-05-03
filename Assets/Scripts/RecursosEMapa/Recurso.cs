@@ -19,21 +19,29 @@ public class Recurso : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (recurso != recursoEnum.getNenhumRecursoString() )
+        if (recursoEnum != null)
         {
-            if(Time.time > tempoAtual+1f)
+            if (recurso != recursoEnum.getNenhumRecursoString())
             {
-                tempoDecorrido++;
-                tempoAtual = Time.time;
-                if (tempoDecorrido == 60)
+                if (Time.time > tempoAtual + 1f)
                 {
-                    upgrade();
-                } else if(tempoDecorrido == 120)
-                {
-                    upgrade();
+                    tempoDecorrido++;
+                    tempoAtual = Time.time;
+                    if (tempoDecorrido == 60)
+                    {
+                        upgrade();
+                    }
+                    else if (tempoDecorrido == 120)
+                    {
+                        upgrade();
+                    }
                 }
             }
+        } else
+        {
+            recursoEnum = new RecursoEnum();
         }
+        
 	}
 
     public void colherRecurso()

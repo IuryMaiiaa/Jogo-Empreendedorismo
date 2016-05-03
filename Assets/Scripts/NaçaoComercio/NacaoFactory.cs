@@ -31,31 +31,47 @@ public class NacaoFactory {
             nacao = adicionarConsumo(nacao);
             nacao = adicionarObjetivo(nacao);
             nacao = adicionarProducao(nacao);
+            nacao = adicionarSaveAtual(nacao);
+            nacao = adicionarNacaoComercioGerente(nacao);
             nacao.setNascaoName(nascaoPadraoNome + cont);
             nacoes.Add(nacao);
         }
         return nacoes;
     }
 
-    public ArrayList loadNacoes()
+    public ArrayList loadNacoes(GameObject nacaoPrefab)
     {
         ArrayList nacoes = new ArrayList();
         for(int cont = 0; cont < 5; cont++)
         {
-            Nacao nacao = new Nacao();
+            GameObject nacaoGameObject = GameObject.Instantiate(nacaoPrefab) as GameObject;
+            Nacao nacao = nacaoGameObject.GetComponent<Nacao>().getNacao();
             nacao.setNascaoName(nascaoPadraoNome + cont);
             nacao.load();
+            nacoes.Add(nacao);
         }
         return nacoes;
     }
 
-    public Nacao adicionarObjetivo(Nacao nascao)
+    public Nacao adicionarSaveAtual(Nacao nacao)
+    {
+        nacao.saveAtual = GameObject.FindObjectOfType<SaveAtual>();
+        return nacao;
+    }
+
+    public Nacao criarNacaoComercioGerente(Nacao nacao)
+    {
+        nacao.nacaoComercioGerente = new NacaoComercioGerente();
+        return nacao;
+    }
+
+    public Nacao adicionarObjetivo(Nacao nacao)
     {
         Objetivo objetivo = new Objetivo();
         objetivo.setRecurso(sortearRecurso());
         objetivo.setMeta(2000);
-        nascao.setObjetivo(objetivo);
-        return nascao;
+        nacao.setObjetivo(objetivo);
+        return nacao;
     }
 
     public Nacao adicionarConsumo(Nacao nascao)
