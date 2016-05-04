@@ -61,11 +61,19 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
     public void criarNascoes()
     {
         this.nacoes = nacaoFactory.criarNacoes(NacaoPrefab);
+        foreach (Nacao nacao in this.nacoes)
+        {
+            Debug.Log(nacao.getConsumo().getRecurso() + " " + nacao.getProducao().getRecurso() + " " + nacao.getObjetivo().getRecurso());
+        }
     }
 
     public void criarNascoesLoad()
     {
         this.nacoes = nacaoFactory.loadNacoes(NacaoPrefab);
+        foreach(Nacao nacao in this.nacoes)
+        {
+            Debug.Log(nacao.getConsumo().getRecurso() + " " + nacao.getProducao().getRecurso() + " " + nacao.getObjetivo().getRecurso());
+        }
         definirPrecoPadraoRecurso();
     }
 

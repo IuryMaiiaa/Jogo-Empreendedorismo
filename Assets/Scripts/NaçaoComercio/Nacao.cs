@@ -17,10 +17,6 @@ public class Nacao : MonoBehaviour,SaveInterface {
 	// Use this for initialization
 	void Start () {
         recursoEnum = new RecursoEnum();
-        objetivo = new Objetivo();
-        consumo = new Consumo();
-        producao = new Producao();
-        armazem = new NacaoArmazem();
 	}
 	
 	// Update is called once per frame
@@ -114,12 +110,13 @@ public class Nacao : MonoBehaviour,SaveInterface {
     {
         if(armazem.getQuantidadeRecurso(consumo.recurso) < consumo.getConsumoPeriodico())
         {
-            Nacao nascaoMenorPreco = new Nacao();
-            nascaoMenorPreco.setPrecoRecurso(consumo.recurso, Int32.MaxValue);
+            int valorMenorPreco = Int32.MaxValue;
+            Nacao nascaoMenorPreco = null;
             foreach (Nacao nacao in nacoes)
             {
-                if (nacao != null && nacao.getPrecoRecurso(consumo.recurso) < nascaoMenorPreco.getPrecoRecurso(consumo.recurso))
+                if (nacao != null && nacao.getPrecoRecurso(consumo.recurso) < valorMenorPreco)
                 {
+                    valorMenorPreco = nacao.getPrecoRecurso(objetivo.recurso);
                     nascaoMenorPreco = nacao;
                 }
             }
@@ -129,13 +126,14 @@ public class Nacao : MonoBehaviour,SaveInterface {
 
     public void comprarRecursoObjetivo(ArrayList nacoes)
     {
-        Nacao nascaoMenorPreco = new Nacao();
-        nascaoMenorPreco.setPrecoRecurso(objetivo.recurso, Int32.MaxValue);
+        int valorMenorPreco = Int32.MaxValue;
+        Nacao nascaoMenorPreco = null;
         foreach(Nacao nacao in nacoes)
         {
-            if(nacao!=null && nacao.getPrecoRecurso(objetivo.recurso)<nascaoMenorPreco.getPrecoRecurso(objetivo.recurso))
+            if(nacao!=null && nacao.getPrecoRecurso(objetivo.recurso)<valorMenorPreco)
             {
                 nascaoMenorPreco = nacao;
+                valorMenorPreco = nacao.getPrecoRecurso(objetivo.recurso);
             }
         }
         nascaoMenorPreco.compraRecurso(objetivo.recurso,armazem);

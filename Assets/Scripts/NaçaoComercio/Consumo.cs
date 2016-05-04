@@ -23,6 +23,7 @@ public class Consumo : SaveInterface {
 
     public void realizarConsumo(NacaoArmazem armazem)
     {
+        Debug.Log(armazem);
         int quantidadeRecurso = armazem.getQuantidadeRecurso(recurso);
         if(quantidadeRecurso >= consumoPeriodico)
         {

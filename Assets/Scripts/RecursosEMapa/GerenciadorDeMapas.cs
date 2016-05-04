@@ -106,7 +106,6 @@ public class GerenciadorDeMapas : MonoBehaviour,SaveInterface {
             for (int cont2 = 0; cont2 < 3; cont2++)
             {
                 Mapas[cont, cont2].GetComponent<Mapa>().Save(cont, cont2);
-                Debug.Log("saveMapa");
             }
         }
     }
@@ -147,7 +146,6 @@ public class GerenciadorDeMapas : MonoBehaviour,SaveInterface {
 
     public void save()
     {
-        Debug.Log("aqui");
         Mapa mapa = Mapas[posX, posY].GetComponent<Mapa>();
         mapa.Save(posX, posY);
     }

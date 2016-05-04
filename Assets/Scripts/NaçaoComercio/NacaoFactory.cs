@@ -33,6 +33,7 @@ public class NacaoFactory {
             nacao = adicionarProducao(nacao);
             nacao = adicionarSaveAtual(nacao);
             nacao = adicionarNacaoComercioGerente(nacao);
+            nacao = adicionarNacaoArmazem(nacao);
             nacao.setNascaoName(nascaoPadraoNome + cont);
             nacoes.Add(nacao);
         }
@@ -51,6 +52,13 @@ public class NacaoFactory {
             nacoes.Add(nacao);
         }
         return nacoes;
+    }
+
+    public Nacao adicionarNacaoArmazem(Nacao nacao)
+    {
+        NacaoArmazem armazem = new NacaoArmazem();
+        nacao.setArmazem(armazem);
+        return nacao;
     }
 
     public Nacao adicionarSaveAtual(Nacao nacao)

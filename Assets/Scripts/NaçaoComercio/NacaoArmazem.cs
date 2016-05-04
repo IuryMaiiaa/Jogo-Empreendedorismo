@@ -38,7 +38,6 @@ public class NacaoArmazem : SaveInterface {
     public int getQuantidadeRecurso(String recurso)
     {
         recursoEnum = new RecursoEnum();
-        Debug.Log(recurso);
         if (recurso.Equals(recursoEnum.getPlantaRecursoString()))
         {
             return recursoPlanta;
