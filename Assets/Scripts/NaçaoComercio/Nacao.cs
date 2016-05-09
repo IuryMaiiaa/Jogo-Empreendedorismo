@@ -161,7 +161,7 @@ public class Nacao : MonoBehaviour,SaveInterface {
         int valorProduto = nacaoComercioGerente.getPlantaPreco();
         int quantidadeProduto = this.getArmazem().getPlantas();
         int quantidadeComprador = armazem.getPlantas();
-        int quantidadeMaximaComprada = valorProduto / quantidadeDinheiro;
+        int quantidadeMaximaComprada = valorProduto / (quantidadeDinheiro + 1);
         int quantidadeComprada;
         if(quantidadeMaximaComprada >= quantidadeProduto)
         {
@@ -185,7 +185,7 @@ public class Nacao : MonoBehaviour,SaveInterface {
         int valorProduto = nacaoComercioGerente.getMelecaPreco();
         int quantidadeProduto = this.getArmazem().getMeleca();
         int quantidadeComprador = armazem.getMeleca();
-        int quantidadeMaximaComprada = valorProduto / quantidadeDinheiro;
+        int quantidadeMaximaComprada = valorProduto / (quantidadeDinheiro+1);
         int quantidadeComprada;
         if (quantidadeMaximaComprada >= quantidadeProduto)
         {
@@ -210,7 +210,7 @@ public class Nacao : MonoBehaviour,SaveInterface {
         int valorProduto = nacaoComercioGerente.getCouroPreco();
         int quantidadeProduto = this.getArmazem().getCouro();
         int quantidadeComprador = armazem.getCouro();
-        int quantidadeMaximaComprada = valorProduto / quantidadeDinheiro;
+        int quantidadeMaximaComprada = valorProduto / (quantidadeDinheiro + 1);
         int quantidadeComprada;
         if (quantidadeMaximaComprada >= quantidadeProduto)
         {
