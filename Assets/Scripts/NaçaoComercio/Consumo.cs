@@ -23,7 +23,6 @@ public class Consumo : SaveInterface {
 
     public void realizarConsumo(NacaoArmazem armazem)
     {
-        Debug.Log(armazem);
         int quantidadeRecurso = armazem.getQuantidadeRecurso(recurso);
         if(quantidadeRecurso >= consumoPeriodico)
         {
@@ -44,6 +43,8 @@ public class Consumo : SaveInterface {
         data.nascaoNome = this.nascaoNome;
         data.consumoPeriodico = this.consumoPeriodico;
         data.recurso = this.recurso;
+
+        Debug.Log(data.nascaoNome + "" + data.consumoPeriodico +  "" + data.recurso);
 
         bf.Serialize(file, data);
         file.Close();

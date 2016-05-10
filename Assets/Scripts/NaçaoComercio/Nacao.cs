@@ -51,7 +51,7 @@ public class Nacao : MonoBehaviour,SaveInterface {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + nascaoNome + "NascaoData.dat");
         NascaoData data = new NascaoData();
-
+        setNacaoNoObjetivos();
         data.nascaoNome = this.nascaoNome;
         data.plantaPreco = nacaoComercioGerente.getPlantaPreco();
         data.couroPreco = nacaoComercioGerente.getCouroPreco();

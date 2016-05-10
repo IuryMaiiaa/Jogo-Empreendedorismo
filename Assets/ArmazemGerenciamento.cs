@@ -53,7 +53,6 @@ public class ArmazemGerenciamento : MonoBehaviour,SaveInterface {
 
     public void save()
     {
-        Debug.Log("aqui");
         saveAtual = GameObject.FindObjectOfType<SaveAtual>();
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + "ArmazenamentoData.dat");
