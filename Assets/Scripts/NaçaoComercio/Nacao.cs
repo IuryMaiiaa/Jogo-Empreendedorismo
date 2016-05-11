@@ -111,32 +111,34 @@ public class Nacao : MonoBehaviour,SaveInterface {
         if(armazem.getQuantidadeRecurso(consumo.recurso) < consumo.getConsumoPeriodico())
         {
             int valorMenorPreco = Int32.MaxValue;
-            Nacao nascaoMenorPreco = null;
+            Nacao nacaoMenorPreco = null;
             foreach (Nacao nacao in nacoes)
             {
                 if (nacao != null && nacao.getPrecoRecurso(consumo.recurso) < valorMenorPreco)
                 {
                     valorMenorPreco = nacao.getPrecoRecurso(objetivo.recurso);
-                    nascaoMenorPreco = nacao;
+                    nacaoMenorPreco = nacao;
                 }
             }
-            nascaoMenorPreco.compraRecurso(consumo.recurso, armazem);
+            Debug.Log("A nascao:" + this.nascaoNome + "Compro da nacao :" + nacaoMenorPreco.getNascaoName() + "esse recurso : " +consumo.recurso);
+            nacaoMenorPreco.compraRecurso(consumo.recurso, armazem);
         }
     }
 
     public void comprarRecursoObjetivo(ArrayList nacoes)
     {
         int valorMenorPreco = Int32.MaxValue;
-        Nacao nascaoMenorPreco = null;
+        Nacao nacaoMenorPreco = null;
         foreach(Nacao nacao in nacoes)
         {
             if(nacao!=null && nacao.getPrecoRecurso(objetivo.recurso)<valorMenorPreco)
             {
-                nascaoMenorPreco = nacao;
+                nacaoMenorPreco = nacao;
                 valorMenorPreco = nacao.getPrecoRecurso(objetivo.recurso);
             }
         }
-        nascaoMenorPreco.compraRecurso(objetivo.recurso,armazem);
+        Debug.Log("A nascao:" + this.nascaoNome + "Compro da nacao :" + nacaoMenorPreco.getNascaoName() + "esse recurso : " + consumo.recurso);
+        nacaoMenorPreco.compraRecurso(objetivo.recurso,armazem);
     }
 
     public void compraRecurso(String recurso,NacaoArmazem armazem)
@@ -174,6 +176,9 @@ public class Nacao : MonoBehaviour,SaveInterface {
         quantidadeComprador += quantidadeComprada;
         quantidadeDinheiro -= quantidadeComprada * valorProduto;
         armazem.setDinheiro(quantidadeDinheiro);
+        Debug.Log("status da compra, valor do produto:"+ valorProduto + " quantidade do comprador: " + quantidadeComprador +
+                  " quantidade comprada: " + quantidadeComprada + " quantidade de dinheiro comprador: " + this.armazem.getDinheiro() +
+                  " quantidadeMaximaComprada " + quantidadeMaximaComprada);
         this.armazem.setDinheiro((quantidadeComprada * valorProduto)+this.getArmazem().getDinheiro());
         armazem.setRecursoPlanta(armazem.getPlantas() + quantidadeComprada);
         this.getArmazem().setRecursoPlanta(this.getArmazem().getPlantas() - quantidadeComprada);
@@ -199,6 +204,9 @@ public class Nacao : MonoBehaviour,SaveInterface {
         quantidadeComprador += quantidadeComprada;
         quantidadeDinheiro -= quantidadeComprada * valorProduto;
         armazem.setDinheiro(quantidadeDinheiro);
+        Debug.Log("status da compra, valor do produto:" + valorProduto + " quantidade do comprador: " + quantidadeComprador +
+                  " quantidade comprada: " + quantidadeComprada + " quantidade de dinheiro comprador: " + this.armazem.getDinheiro() +
+                  " quantidadeMaximaComprada " + quantidadeMaximaComprada);
         this.armazem.setDinheiro((quantidadeComprada * valorProduto) + this.getArmazem().getDinheiro());
         armazem.setRecursoMeleca(armazem.getMeleca() + quantidadeComprada);
         this.getArmazem().setRecursoMeleca(this.getArmazem().getMeleca() - quantidadeComprada);
@@ -224,6 +232,9 @@ public class Nacao : MonoBehaviour,SaveInterface {
         quantidadeComprador += quantidadeComprada;
         quantidadeDinheiro -= quantidadeComprada * valorProduto;
         armazem.setDinheiro(quantidadeDinheiro);
+        Debug.Log("status da compra, valor do produto:" + valorProduto + " quantidade do comprador: " + quantidadeComprador +
+                  " quantidade comprada: " + quantidadeComprada + " quantidade de dinheiro comprador: " + this.armazem.getDinheiro() +
+                  " quantidadeMaximaComprada " + quantidadeMaximaComprada);
         this.armazem.setDinheiro((quantidadeComprada * valorProduto) + this.getArmazem().getDinheiro());
         armazem.setRecursoCouro(armazem.getCouro() + quantidadeComprada);
         this.getArmazem().setRecursoCouro(this.getArmazem().getCouro() - quantidadeComprada);
@@ -357,6 +368,10 @@ public class Nacao : MonoBehaviour,SaveInterface {
         if(recurso.Equals(producao.getRecurso()))
         {
             valor -= 100;
+        }
+        if(valor<0)
+        {
+            valor = 0;
         }
         return valor;
     }

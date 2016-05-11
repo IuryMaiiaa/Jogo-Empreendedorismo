@@ -28,6 +28,13 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
     {
         if(timerRealizarComercio+30 < Time.time)
         {
+            foreach(Nacao nacao in nacoes)
+            {
+                Debug.Log("nome: " + nacao.nascaoNome + " couro: " + nacao.getArmazem().getCouro() +
+                                                       " Meleca: " + nacao.getArmazem().getMeleca() +
+                                                       " planta: " + nacao.getArmazem().getPlantas() +
+                                                       " Dinheiro: " + nacao.getArmazem().getDinheiro());
+            }
             turnoCormercioNacoes();
             timerRealizarComercio = Time.time;
         }
@@ -61,14 +68,20 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
     public void criarNascoes()
     {
         this.nacoes = nacaoFactory.criarNacoes(NacaoPrefab);
+        foreach (Nacao nacao in nacoes) {
+            Debug.Log("nome:"+nacao.nascaoNome +" producao:" + nacao.getProducao().getRecurso() + 
+                                "consumo:"  + nacao.getConsumo().getRecurso() + " Objetivo:" +nacao.getObjetivo().getRecurso() );
+        }
+
     }
 
     public void criarNascoesLoad()
     {
         this.nacoes = nacaoFactory.loadNacoes(NacaoPrefab);
-        foreach(Nacao nacao in this.nacoes)
+        foreach (Nacao nacao in nacoes)
         {
-            Debug.Log(nacao.getConsumo().getNascaoNome() + " "  + nacao.getConsumo().getRecurso() + " " + nacao.getProducao().getRecurso() + " " + nacao.getObjetivo().getRecurso());
+            Debug.Log("nome:" + nacao.nascaoNome + " producao:" + nacao.getProducao().getRecurso() +
+                                "consumo:" + nacao.getConsumo().getRecurso() + " Objetivo:" + nacao.getObjetivo().getRecurso());
         }
         definirPrecoPadraoRecurso();
     }
@@ -134,7 +147,9 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
         }
         else
         {
-            valorPadraoPago = (mediaDoRecurso * (valorPorcentagem - 100)) / valorPorcentagem;
+            float valorAuxDivisao = valorPorcentagem / 80;
+            valorAuxDivisao = mediaDoRecurso / valorAuxDivisao;
+            valorPadraoPago = (int)(valorAuxDivisao / valorPorcentagem);
         }
         foreach (Nacao nascao in nacoes)
         {
@@ -158,7 +173,9 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
             valorPadraoPago = 0;
         } else
         {
-            valorPadraoPago = (mediaDoRecurso * (valorPorcentagem - 100)) / valorPorcentagem;
+            float valorAuxDivisao = valorPorcentagem / 80;
+            valorAuxDivisao = mediaDoRecurso / valorAuxDivisao;
+            valorPadraoPago = (int)(valorAuxDivisao / valorPorcentagem);
         }
         foreach (Nacao nascao in nacoes)
         {
@@ -181,7 +198,9 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
             valorPadraoPago = 0;
         } else
         {
-            valorPadraoPago = (mediaDoRecurso * (valorPorcentagem - 100)) / valorPorcentagem;
+            float valorAuxDivisao = valorPorcentagem / 80;
+            valorAuxDivisao = mediaDoRecurso / valorAuxDivisao;
+            valorPadraoPago = (int)(valorAuxDivisao / valorPorcentagem);
         }
         foreach (Nacao nascao in nacoes)
         {

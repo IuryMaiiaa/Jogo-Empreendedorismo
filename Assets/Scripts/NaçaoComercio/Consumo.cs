@@ -44,8 +44,6 @@ public class Consumo : SaveInterface {
         data.consumoPeriodico = this.consumoPeriodico;
         data.recurso = this.recurso;
 
-        Debug.Log(data.nascaoNome + "" + data.consumoPeriodico +  "" + data.recurso);
-
         bf.Serialize(file, data);
         file.Close();
     }

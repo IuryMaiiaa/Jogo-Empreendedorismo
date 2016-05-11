@@ -26,6 +26,7 @@ public class Producao : SaveInterface
         int quantidadeRecurso = armazem.getQuantidadeRecurso(recurso);
         quantidadeRecurso += producao;
         armazem.setQuantidadeRecurso(recurso, quantidadeRecurso);
+        armazem.setDinheiro(armazem.getDinheiro() + 2000);
     }
 
     public void save()
