@@ -160,21 +160,22 @@ public class Nacao : MonoBehaviour,SaveInterface {
     public void comprarPlantas(NacaoArmazem armazem)
     {
         int quantidadeDinheiro = armazem.getDinheiro();
-        int valorProduto = nacaoComercioGerente.getPlantaPreco();
+        int valorProduto = nacaoComercioGerente.getPlantaPreco()+1;
         int quantidadeProduto = this.getArmazem().getPlantas();
         int quantidadeComprador = armazem.getPlantas();
-        int quantidadeMaximaComprada = valorProduto / (quantidadeDinheiro + 1);
+        int quantidadeMaximaComprada = quantidadeDinheiro / (valorProduto);
         int quantidadeComprada;
-        if(quantidadeMaximaComprada >= quantidadeProduto)
+        if (quantidadeMaximaComprada < quantidadeProduto)
         {
             quantidadeComprada = quantidadeMaximaComprada;
-        } else
-        {
-            quantidadeComprada = quantidadeProduto - quantidadeMaximaComprada;
         }
-        quantidadeProduto -= quantidadeComprada;
-        quantidadeComprador += quantidadeComprada;
-        quantidadeDinheiro -= quantidadeComprada * valorProduto;
+        else
+        {
+            quantidadeComprada = quantidadeProduto;
+        }
+        quantidadeProduto = quantidadeProduto - quantidadeComprada;
+        quantidadeComprador = quantidadeComprador + quantidadeComprada;
+        quantidadeDinheiro = quantidadeDinheiro-(quantidadeComprada * valorProduto);
         armazem.setDinheiro(quantidadeDinheiro);
         Debug.Log("status da compra, valor do produto:"+ valorProduto + " quantidade do comprador: " + quantidadeComprador +
                   " quantidade comprada: " + quantidadeComprada + " quantidade de dinheiro comprador: " + this.armazem.getDinheiro() +
@@ -187,22 +188,22 @@ public class Nacao : MonoBehaviour,SaveInterface {
     public void comprarMelecas(NacaoArmazem armazem)
     {
         int quantidadeDinheiro = armazem.getDinheiro();
-        int valorProduto = nacaoComercioGerente.getMelecaPreco();
+        int valorProduto = nacaoComercioGerente.getMelecaPreco() + 1;
         int quantidadeProduto = this.getArmazem().getMeleca();
         int quantidadeComprador = armazem.getMeleca();
-        int quantidadeMaximaComprada = valorProduto / (quantidadeDinheiro+1);
+        int quantidadeMaximaComprada = quantidadeDinheiro / (valorProduto);
         int quantidadeComprada;
-        if (quantidadeMaximaComprada >= quantidadeProduto)
+        if (quantidadeMaximaComprada < quantidadeProduto)
         {
             quantidadeComprada = quantidadeMaximaComprada;
         }
         else
         {
-            quantidadeComprada = quantidadeProduto - quantidadeMaximaComprada;
+            quantidadeComprada = quantidadeProduto;
         }
-        quantidadeProduto -= quantidadeComprada;
-        quantidadeComprador += quantidadeComprada;
-        quantidadeDinheiro -= quantidadeComprada * valorProduto;
+        quantidadeProduto = quantidadeProduto - quantidadeComprada;
+        quantidadeComprador = quantidadeComprador + quantidadeComprada;
+        quantidadeDinheiro = quantidadeDinheiro - (quantidadeComprada * valorProduto);
         armazem.setDinheiro(quantidadeDinheiro);
         Debug.Log("status da compra, valor do produto:" + valorProduto + " quantidade do comprador: " + quantidadeComprador +
                   " quantidade comprada: " + quantidadeComprada + " quantidade de dinheiro comprador: " + this.armazem.getDinheiro() +
@@ -215,22 +216,22 @@ public class Nacao : MonoBehaviour,SaveInterface {
     public void comprarCouro(NacaoArmazem armazem)
     {
         int quantidadeDinheiro = armazem.getDinheiro();
-        int valorProduto = nacaoComercioGerente.getCouroPreco();
+        int valorProduto = nacaoComercioGerente.getCouroPreco()+1;
         int quantidadeProduto = this.getArmazem().getCouro();
         int quantidadeComprador = armazem.getCouro();
-        int quantidadeMaximaComprada = valorProduto / (quantidadeDinheiro + 1);
+        int quantidadeMaximaComprada = quantidadeDinheiro / (valorProduto);
         int quantidadeComprada;
-        if (quantidadeMaximaComprada >= quantidadeProduto)
+        if (quantidadeMaximaComprada < quantidadeProduto)
         {
             quantidadeComprada = quantidadeMaximaComprada;
         }
         else
         {
-            quantidadeComprada = quantidadeProduto - quantidadeMaximaComprada;
+            quantidadeComprada = quantidadeProduto;
         }
-        quantidadeProduto -= quantidadeComprada;
-        quantidadeComprador += quantidadeComprada;
-        quantidadeDinheiro -= quantidadeComprada * valorProduto;
+        quantidadeProduto = quantidadeProduto - quantidadeComprada;
+        quantidadeComprador = quantidadeComprador + quantidadeComprada;
+        quantidadeDinheiro = quantidadeDinheiro - (quantidadeComprada * valorProduto);
         armazem.setDinheiro(quantidadeDinheiro);
         Debug.Log("status da compra, valor do produto:" + valorProduto + " quantidade do comprador: " + quantidadeComprador +
                   " quantidade comprada: " + quantidadeComprada + " quantidade de dinheiro comprador: " + this.armazem.getDinheiro() +
