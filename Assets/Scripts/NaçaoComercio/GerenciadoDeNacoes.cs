@@ -9,9 +9,11 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
     private int quantidadeMaximoRecurso = 2000;
     public float timerGerarProducao=0;
     public float timerRealizarComercio=0;
+    public bool prontoParaJogar;
 
 	// Use this for initialization
 	void Start () {
+        prontoParaJogar = false;
         nacaoFactory = new NacaoFactory();
         float timerGerarProducao = Time.time;
         float timerRealizarComercio = Time.time;
@@ -20,13 +22,35 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
 	
 	// Update is called once per frame
 	void Update () {
-        rotacaoTimerProducao();
-        rotacaoTimerIANacao();
+        if(prontoParaJogar == true)
+        {
+            rotacaoTimerProducao();
+            rotacaoTimerIANacao();
+            chegarObjetivoNacoes();
+        }
+        
+        
 	}
+
+    public void chegarObjetivoNacoes()
+    {
+        foreach(Nacao nacao in nacoes)
+        {
+            if(nacao.getObjetivo().objetivoCompleto(nacao.getArmazem()))
+            {
+                reformularEconomiaNacao(nacao);
+            }
+        }
+    }
+
+    public void reformularEconomiaNacao(Nacao nacao)
+    {
+        nacaoFactory.reformularEconomia(nacao);
+    }
 
     public void rotacaoTimerIANacao()
     {
-        if(timerRealizarComercio+30 < Time.time)
+        if(timerRealizarComercio+2 < Time.time)
         {
             foreach(Nacao nacao in nacoes)
             {
@@ -42,7 +66,7 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
 
     public void rotacaoTimerProducao()
     {
-        if(timerGerarProducao+15< Time.time)
+        if(timerGerarProducao+1< Time.time)
         {
             turnoGerarProducaoConsumo();
             timerGerarProducao = Time.time;
@@ -72,7 +96,8 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
             Debug.Log("nome:"+nacao.nascaoNome +" producao:" + nacao.getProducao().getRecurso() + 
                                 "consumo:"  + nacao.getConsumo().getRecurso() + " Objetivo:" +nacao.getObjetivo().getRecurso() );
         }
-
+        save();
+        prontoParaJogar = true;
     }
 
     public void criarNascoesLoad()
@@ -84,6 +109,8 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
                                 "consumo:" + nacao.getConsumo().getRecurso() + " Objetivo:" + nacao.getObjetivo().getRecurso());
         }
         definirPrecoPadraoRecurso();
+        save();
+        prontoParaJogar = true;
     }
 
     public void save()
@@ -189,7 +216,7 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
         int valorTotalRecurso = 0;
         foreach (Nacao nascao in nacoes)
         {
-            valorTotalRecurso += nascao.getArmazem().getMeleca();
+            valorTotalRecurso = valorTotalRecurso + nascao.getArmazem().getMeleca();
         }
         int mediaDoRecurso = valorTotalRecurso / nacoes.Count;
         int valorPorcentagem = (mediaDoRecurso * 100) / quantidadeMaximoRecurso;
@@ -198,9 +225,10 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
             valorPadraoPago = 0;
         } else
         {
-            float valorAuxDivisao = valorPorcentagem / 80;
-            valorAuxDivisao = mediaDoRecurso / valorAuxDivisao;
-            valorPadraoPago = (int)(valorAuxDivisao / valorPorcentagem);
+            float valorAuxDivisao = valorPorcentagem / 40;
+            valorPadraoPago = (int)(mediaDoRecurso / valorAuxDivisao);
+            //valorAuxDivisao = mediaDoRecurso / valorAuxDivisao;
+            //valorPadraoPago = (int)(valorAuxDivisao / valorPorcentagem);
         }
         foreach (Nacao nascao in nacoes)
         {

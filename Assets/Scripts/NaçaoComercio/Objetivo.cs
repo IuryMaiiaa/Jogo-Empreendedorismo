@@ -41,6 +41,16 @@ public class Objetivo : SaveInterface {
         }
     }
 
+    public bool objetivoCompleto(NacaoArmazem armazem)
+    {
+        if (armazem.getQuantidadeRecurso(recurso)>=meta)
+        {
+            armazem.setQuantidadeRecurso(recurso, armazem.getQuantidadeRecurso(recurso) - meta);
+            return true;
+        }
+        return false;
+    }
+
     public void setNascaoNome(string nome)
     {
         nascaoNome = nome;

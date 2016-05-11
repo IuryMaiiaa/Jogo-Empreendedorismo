@@ -114,7 +114,12 @@ public class NacaoFactory {
         return nascao;
     }
 
-
+    public void reformularEconomia(Nacao nacao)
+    {
+        nacao = adicionarConsumo(nacao);
+        nacao = adicionarObjetivo(nacao);
+        nacao = adicionarProducao(nacao);
+    }
 
     public string sortearRecurso()
     {

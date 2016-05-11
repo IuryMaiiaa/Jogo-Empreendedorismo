@@ -114,14 +114,21 @@ public class Nacao : MonoBehaviour,SaveInterface {
             Nacao nacaoMenorPreco = null;
             foreach (Nacao nacao in nacoes)
             {
-                if (nacao != null && nacao.getPrecoRecurso(consumo.recurso) < valorMenorPreco)
+                if (nacao != null && nacao.getArmazem().getQuantidadeRecurso(objetivo.getRecurso()) > 0)
                 {
-                    valorMenorPreco = nacao.getPrecoRecurso(objetivo.recurso);
-                    nacaoMenorPreco = nacao;
+                    if (nacao.getPrecoRecurso(objetivo.recurso) < valorMenorPreco)
+                    {
+                        nacaoMenorPreco = nacao;
+                        valorMenorPreco = nacao.getPrecoRecurso(objetivo.recurso);
+                    }
                 }
+
             }
-            Debug.Log("A nascao:" + this.nascaoNome + "Compro da nacao :" + nacaoMenorPreco.getNascaoName() + "esse recurso : " +consumo.recurso);
-            nacaoMenorPreco.compraRecurso(consumo.recurso, armazem);
+            if (nacaoMenorPreco != null)
+            {
+                Debug.Log("A nascao:" + this.nascaoNome + "Compro da nacao :" + nacaoMenorPreco.getNascaoName() + "esse recurso : " + consumo.recurso);
+                nacaoMenorPreco.compraRecurso(objetivo.recurso, armazem);
+            }
         }
     }
 
@@ -131,14 +138,21 @@ public class Nacao : MonoBehaviour,SaveInterface {
         Nacao nacaoMenorPreco = null;
         foreach(Nacao nacao in nacoes)
         {
-            if(nacao!=null && nacao.getPrecoRecurso(objetivo.recurso)<valorMenorPreco)
+            if(nacao != null && nacao.getArmazem().getQuantidadeRecurso(objetivo.getRecurso())>0)
             {
-                nacaoMenorPreco = nacao;
-                valorMenorPreco = nacao.getPrecoRecurso(objetivo.recurso);
+                if (nacao.getPrecoRecurso(objetivo.recurso) < valorMenorPreco)
+                {
+                    nacaoMenorPreco = nacao;
+                    valorMenorPreco = nacao.getPrecoRecurso(objetivo.recurso);
+                }
             }
+            
         }
-        Debug.Log("A nascao:" + this.nascaoNome + "Compro da nacao :" + nacaoMenorPreco.getNascaoName() + "esse recurso : " + consumo.recurso);
-        nacaoMenorPreco.compraRecurso(objetivo.recurso,armazem);
+        if(nacaoMenorPreco!=null)
+        {
+            Debug.Log("A nascao:" + this.nascaoNome + "Compro da nacao :" + nacaoMenorPreco.getNascaoName() + "esse recurso : " + consumo.recurso);
+            nacaoMenorPreco.compraRecurso(objetivo.recurso, armazem);
+        }
     }
 
     public void compraRecurso(String recurso,NacaoArmazem armazem)
@@ -283,6 +297,7 @@ public class Nacao : MonoBehaviour,SaveInterface {
         {
             return getCouroPreco();
         }
+        Debug.Log(recurso);
         return Int32.MaxValue;
     }
 
