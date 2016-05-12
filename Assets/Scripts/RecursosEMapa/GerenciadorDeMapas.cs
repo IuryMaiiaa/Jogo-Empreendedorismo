@@ -89,6 +89,12 @@ public class GerenciadorDeMapas : MonoBehaviour,SaveInterface {
         }
         
     }
+
+    public void criarObjetosCenario(string posicao)
+    {
+    }
+
+
     public void criarMapasLoad()
     {
         Mapas = new GameObject[3, 3];
