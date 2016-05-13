@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NaveScriptChamarBotao : MonoBehaviour {
+public class AlienNacaoCentroBotao : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,8 +13,7 @@ public class NaveScriptChamarBotao : MonoBehaviour {
 	
 	}
 
-
-    public void chamarMenuOpcoesNave()
+    public void chamarMenuCentroAlien()
     {
 
     }

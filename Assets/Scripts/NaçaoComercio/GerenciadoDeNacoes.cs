@@ -17,7 +17,6 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
         nacaoFactory = new NacaoFactory();
         float timerGerarProducao = Time.time;
         float timerRealizarComercio = Time.time;
-
 	}
 	
 	// Update is called once per frame
@@ -41,6 +40,18 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
                 reformularEconomiaNacao(nacao);
             }
         }
+    }
+
+    public Nacao getNacaoAlienByPosicao(string posicao)
+    {
+        foreach (Nacao nacao in nacoes)
+        {
+            if(nacao.posicao.Equals(posicao))
+            {
+                return nacao;
+            }
+        }
+        return null;
     }
 
     public void reformularEconomiaNacao(Nacao nacao)

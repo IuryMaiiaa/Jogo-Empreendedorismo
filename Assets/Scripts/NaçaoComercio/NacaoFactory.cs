@@ -3,11 +3,17 @@ using System.Collections;
 
 public class NacaoFactory {
     public RecursoEnum recursoEnum;
+    private string []posicoes;
     public static string nascaoPadraoNome = "nascao";
 
 	// Use this for initialization
 	void Start () {
-	
+        posicoes = new string[5];
+        posicoes[0] = "00";
+        posicoes[1] = "01";
+        posicoes[2] = "12";
+        posicoes[3] = "20";
+        posicoes[4] = "22";
 	}
 	
 	// Update is called once per frame
@@ -24,7 +30,13 @@ public class NacaoFactory {
     public ArrayList criarNacoes(GameObject nacaoPrefab)
     {
         ArrayList nacoes = new ArrayList();
-        for(int cont=0;cont<5;cont++)
+        posicoes = new string[5];
+        posicoes[0] = "00";
+        posicoes[1] = "01";
+        posicoes[2] = "12";
+        posicoes[3] = "20";
+        posicoes[4] = "22";
+        for (int cont=0;cont<5;cont++)
         {
             GameObject nacaoGameObject = GameObject.Instantiate(nacaoPrefab) as GameObject;
             Nacao nacao = nacaoGameObject.GetComponent<Nacao>().getNacao();
@@ -34,6 +46,7 @@ public class NacaoFactory {
             nacao = adicionarSaveAtual(nacao);
             nacao = adicionarNacaoComercioGerente(nacao);
             nacao = adicionarNacaoArmazem(nacao);
+            nacao.posicao = posicoes[cont];
             nacao.setNascaoName(nascaoPadraoNome + cont);
             nacoes.Add(nacao);
         }
