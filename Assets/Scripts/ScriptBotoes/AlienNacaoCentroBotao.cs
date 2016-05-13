@@ -15,6 +15,6 @@ public class AlienNacaoCentroBotao : MonoBehaviour {
 
     public void chamarMenuCentroAlien()
     {
-
+        GameObject.FindObjectOfType<GerenciadorBotoesPopUp>().abrirMenuAlienPopUp();
     }
 }

@@ -10,6 +10,7 @@ public class Producao : SaveInterface
     public string recurso;
     public int producao;
     public SaveAtual saveAtual;
+    public int quantidadeDinheiroGeradaTurno = 500;
 
     // Use this for initialization
     void Start () {
@@ -26,7 +27,7 @@ public class Producao : SaveInterface
         int quantidadeRecurso = armazem.getQuantidadeRecurso(recurso);
         quantidadeRecurso += producao;
         armazem.setQuantidadeRecurso(recurso, quantidadeRecurso);
-        armazem.setDinheiro(armazem.getDinheiro() + 2000);
+        armazem.setDinheiro(armazem.getDinheiro() + quantidadeDinheiroGeradaTurno);
     }
 
     public void save()

@@ -61,7 +61,7 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
 
     public void rotacaoTimerIANacao()
     {
-        if(timerRealizarComercio+2 < Time.time)
+        if(timerRealizarComercio+300 < Time.time)
         {
             foreach(Nacao nacao in nacoes)
             {
@@ -77,7 +77,7 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
 
     public void rotacaoTimerProducao()
     {
-        if(timerGerarProducao+1< Time.time)
+        if(timerGerarProducao+150< Time.time)
         {
             turnoGerarProducaoConsumo();
             timerGerarProducao = Time.time;
@@ -178,16 +178,21 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
             valorTotalRecurso += nascao.getArmazem().getPlantas();
         }
         int mediaDoRecurso = valorTotalRecurso / nacoes.Count;
-        int valorPorcentagem = (mediaDoRecurso * 100) / quantidadeMaximoRecurso;
-        if (valorPorcentagem == 0)
+        if (mediaDoRecurso <= 25)
         {
-            valorPadraoPago = 0;
+            valorPadraoPago = 100;
+        }
+        else if (mediaDoRecurso <= 50)
+        {
+            valorPadraoPago = 75;
+        }
+        else if (mediaDoRecurso <= 75)
+        {
+            valorPadraoPago = 50;
         }
         else
         {
-            float valorAuxDivisao = valorPorcentagem / 80;
-            valorAuxDivisao = mediaDoRecurso / valorAuxDivisao;
-            valorPadraoPago = (int)(valorAuxDivisao / valorPorcentagem);
+            valorPadraoPago = 25;
         }
         foreach (Nacao nascao in nacoes)
         {
@@ -205,15 +210,21 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
             valorTotalRecurso += nacao.getArmazem().getCouro();         
         }
         int mediaDoRecurso = valorTotalRecurso / nacoes.Count;
-        int valorPorcentagem = (mediaDoRecurso * 100) / quantidadeMaximoRecurso;
-        if(valorPorcentagem == 0)
+        if (mediaDoRecurso <= 25)
         {
-            valorPadraoPago = 0;
-        } else
+            valorPadraoPago = 100;
+        }
+        else if (mediaDoRecurso <= 50)
         {
-            float valorAuxDivisao = valorPorcentagem / 80;
-            valorAuxDivisao = mediaDoRecurso / valorAuxDivisao;
-            valorPadraoPago = (int)(valorAuxDivisao / valorPorcentagem);
+            valorPadraoPago = 75;
+        }
+        else if (mediaDoRecurso <= 75)
+        {
+            valorPadraoPago = 50;
+        }
+        else
+        {
+            valorPadraoPago = 25;
         }
         foreach (Nacao nascao in nacoes)
         {
@@ -230,16 +241,18 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
             valorTotalRecurso = valorTotalRecurso + nascao.getArmazem().getMeleca();
         }
         int mediaDoRecurso = valorTotalRecurso / nacoes.Count;
-        int valorPorcentagem = (mediaDoRecurso * 100) / quantidadeMaximoRecurso;
-        if (valorPorcentagem == 0)
+        if(mediaDoRecurso<=25)
         {
-            valorPadraoPago = 0;
+            valorPadraoPago = 100;
+        } else if (mediaDoRecurso<=50)
+        {
+            valorPadraoPago = 75;
+        } else if (mediaDoRecurso<=75)
+        {
+            valorPadraoPago = 50;
         } else
         {
-            float valorAuxDivisao = valorPorcentagem / 40;
-            valorPadraoPago = (int)(mediaDoRecurso / valorAuxDivisao);
-            //valorAuxDivisao = mediaDoRecurso / valorAuxDivisao;
-            //valorPadraoPago = (int)(valorAuxDivisao / valorPorcentagem);
+            valorPadraoPago = 25;
         }
         foreach (Nacao nascao in nacoes)
         {

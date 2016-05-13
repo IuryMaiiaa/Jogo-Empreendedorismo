@@ -16,6 +16,6 @@ public class NaveScriptChamarBotao : MonoBehaviour {
 
     public void chamarMenuOpcoesNave()
     {
-
+        GameObject.FindObjectOfType<GerenciadorBotoesPopUp>().abrirMenuNavePopUp();
     }
 }

@@ -16,8 +16,8 @@ public class AtualizacaoRecursoMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        PlantaText.text = ""+armazem.recursoPlantaArmazenado;
-        MelecaText.text = "" + armazem.recursoMelecaArmazenado;
-        CouroText.text = "" + armazem.recursoCouroArmazenado;
+        PlantaText.text = ""+armazem.recursoPlantaArmazenado+"/"+armazem.MaximaCapacidade;
+        MelecaText.text = "" + armazem.recursoMelecaArmazenado+"/"+armazem.MaximaCapacidade;
+        CouroText.text = "" + armazem.recursoCouroArmazenado+"/"+armazem.MaximaCapacidade;
 	}
 }

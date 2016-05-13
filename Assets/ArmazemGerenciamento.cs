@@ -8,13 +8,14 @@ public class ArmazemGerenciamento : MonoBehaviour,SaveInterface {
     public int recursoPlantaArmazenado;
     public int recursoMelecaArmazenado;
     public int recursoCouroArmazenado;
+    public int MaximaCapacidade = 2000;
 
     public SaveAtual saveAtual;
 
     // Use this for initialization
     void Start () {
-	
-	}
+        
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -24,11 +25,19 @@ public class ArmazemGerenciamento : MonoBehaviour,SaveInterface {
     public void plantAdicionar(int valor)
     {
         recursoPlantaArmazenado += valor;
+        if(recursoPlantaArmazenado>=MaximaCapacidade)
+        {
+            recursoPlantaArmazenado = MaximaCapacidade;
+        }
     }
 
     public void melecaAdicionar(int valor)
     {
         recursoMelecaArmazenado += valor;
+        if(recursoMelecaArmazenado>=MaximaCapacidade)
+        {
+            recursoMelecaArmazenado = MaximaCapacidade;
+        }
     }
 
     public void couroAdicionar(int valor)
@@ -61,6 +70,7 @@ public class ArmazemGerenciamento : MonoBehaviour,SaveInterface {
         armazenamentoData.recursoPlantaArmazenado = recursoPlantaArmazenado;
         armazenamentoData.recursoMelecaArmazenado = recursoMelecaArmazenado;
         armazenamentoData.recursoCouroArmazenado = recursoCouroArmazenado;
+        armazenamentoData.maximaCapacidade = MaximaCapacidade;
 
         bf.Serialize(file, armazenamentoData);
         file.Close();
@@ -91,6 +101,7 @@ public class ArmazemGerenciamento : MonoBehaviour,SaveInterface {
             recursoPlantaArmazenado = armazenamentoData.recursoPlantaArmazenado;
             recursoMelecaArmazenado = armazenamentoData.recursoMelecaArmazenado;
             recursoCouroArmazenado = armazenamentoData.recursoCouroArmazenado;
+            MaximaCapacidade = armazenamentoData.maximaCapacidade;
         }
 
     }
@@ -100,7 +111,7 @@ public class ArmazemGerenciamento : MonoBehaviour,SaveInterface {
 [System.Serializable]
 class ArmazenamentoData
 {
-
+    public int maximaCapacidade;
     public int recursoPlantaArmazenado;
     public int recursoMelecaArmazenado;
     public int recursoCouroArmazenado;
