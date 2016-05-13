@@ -60,6 +60,10 @@ public class GameManager : MonoBehaviour {
             if (Input.GetMouseButtonUp(0))
                 Cursor.SetCursor(cursorTexture[0], hotSpot, cursorMode);
         }
+        if(Input.GetMouseButton(1))
+        {
+            mudarAcao(4);
+        }
     }
 
     public void saveGame()

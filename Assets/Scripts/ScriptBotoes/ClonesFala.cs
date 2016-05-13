@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class ClonesFala : MonoBehaviour {
+    public DialoboBoxScript DialogoBox;
 
 	// Use this for initialization
 	void Start () {
@@ -15,6 +16,6 @@ public class ClonesFala : MonoBehaviour {
 
     public void chamarFalaNpc()
     {
-
+        DialogoBox.falaPerssonagem();
     }
 }
