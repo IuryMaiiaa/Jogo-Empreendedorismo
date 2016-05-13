@@ -4,6 +4,7 @@ using System.Collections;
 public class GerenciadorDeMapas : MonoBehaviour,SaveInterface {
     public GameObject[,] Mapas;
     public GameObject MapaPadrao;
+    public GerenciadorObjetosCenario gerenciadorObjetosCenario;
     public int posX;
     public int posY;
     public float tempo;
@@ -30,6 +31,7 @@ public class GerenciadorDeMapas : MonoBehaviour,SaveInterface {
         saveMapas();
         destroiMapas();
         load(1, 1);
+        gerenciadorObjetosCenario.clonesEstruturaEmPosicao();
     }
 
     public void loadNewMap(string posicao)
@@ -39,66 +41,71 @@ public class GerenciadorDeMapas : MonoBehaviour,SaveInterface {
             salvarMapaAtual();
             destroiMapaAtual();
             load(0, 0);
+            gerenciadorObjetosCenario.roxoColocarEstruturasEmPosicao();
         } else if(posicao == "01")
         {
             salvarMapaAtual();
             destroiMapaAtual();
             load(0, 1);
+            gerenciadorObjetosCenario.verdeColocarEstruturasEmPosicao();
         }
         else if (posicao == "02")
         {
             salvarMapaAtual();
             destroiMapaAtual();
             load(0, 2);
+            gerenciadorObjetosCenario.retirarEstruturasAtuais();
         }
         else if (posicao == "10")
         {
             salvarMapaAtual();
             destroiMapaAtual();
             load(1, 0);
+            gerenciadorObjetosCenario.retirarEstruturasAtuais();
         }
         else if (posicao == "11")
         {
             salvarMapaAtual();
             destroiMapaAtual();
             load(1, 1);
+            gerenciadorObjetosCenario.clonesEstruturaEmPosicao();
         }
         else if (posicao == "12")
         {
             salvarMapaAtual();
             destroiMapaAtual();
             load(1, 2);
+            gerenciadorObjetosCenario.azulColocarEstruturasEmPosicao();
         }
         else if (posicao == "20")
         {
             salvarMapaAtual();
             destroiMapaAtual();
             load(2, 0);
+            gerenciadorObjetosCenario.laranjaColocarEstruturasEmPosicao();
         }
         else if (posicao == "21")
         {
             salvarMapaAtual();
             destroiMapaAtual();
             load(2, 1);
+            gerenciadorObjetosCenario.retirarEstruturasAtuais();
         }
         else if (posicao == "22")
         {
             salvarMapaAtual();
             destroiMapaAtual();
             load(2, 2);
+            gerenciadorObjetosCenario.vermelhoColocarEstruturasEmPosicao();
         }
         
     }
-
-    public void criarObjetosCenario(string posicao)
-    {
-    }
-
 
     public void criarMapasLoad()
     {
         Mapas = new GameObject[3, 3];
         load(1, 1);
+        gerenciadorObjetosCenario.clonesEstruturaEmPosicao();
     }
 
     // Update is called once per frame

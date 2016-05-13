@@ -13,4 +13,16 @@ public class MenuSliderPessasControler : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public void abrirSlider()
+    {
+        if(sliderAnimacao.GetBool("BotaoPrecionado")==false)
+        {
+            sliderAnimacao.SetBool("BotaoPrecionado", true);
+        } else if (sliderAnimacao.GetBool("BotaoPrecionado") == true)
+        {
+            sliderAnimacao.SetBool("BotaoPrecionado", false);
+        }
+        
+    }
 }

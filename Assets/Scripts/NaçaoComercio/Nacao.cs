@@ -5,7 +5,6 @@ using System;
 using System.IO;
 
 public class Nacao : MonoBehaviour,SaveInterface {
-    public String posicao;
     public Objetivo objetivo;
     public Consumo consumo;
     public Producao producao;
@@ -24,16 +23,6 @@ public class Nacao : MonoBehaviour,SaveInterface {
 	void Update () {
 	    
 	}
-
-    public void setPosicao(String posicao)
-    {
-        this.posicao = posicao;
-    }
-
-    public string getPosicao()
-    {
-        return posicao;
-    }
 
     public Nacao getNacao()
     {
@@ -67,7 +56,6 @@ public class Nacao : MonoBehaviour,SaveInterface {
         data.plantaPreco = nacaoComercioGerente.getPlantaPreco();
         data.couroPreco = nacaoComercioGerente.getCouroPreco();
         data.melecaPreco = nacaoComercioGerente.getMelecaPreco();
-        data.posicao = this.posicao;
         bf.Serialize(file, data);
         file.Close();
         producao.save();
@@ -96,7 +84,6 @@ public class Nacao : MonoBehaviour,SaveInterface {
             this.setCouroPreco(nascaoData.couroPreco);
             this.setPlantaPreco(nascaoData.plantaPreco);
             this.setMelecaPreco(nascaoData.melecaPreco);
-            this.setPosicao(nascaoData.posicao);
             setNacaoNoObjetivos();
             producao.load();
             consumo.load();
@@ -409,7 +396,6 @@ public class Nacao : MonoBehaviour,SaveInterface {
 [System.Serializable]
 class NascaoData
 {
-    public string posicao;
     public string nascaoNome;
     public int melecaPreco;
     public int couroPreco;

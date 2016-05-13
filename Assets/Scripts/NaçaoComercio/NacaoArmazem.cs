@@ -12,6 +12,7 @@ public class NacaoArmazem : SaveInterface {
     private int dinheiro;
     private RecursoEnum recursoEnum;
     private SaveAtual saveAtual;
+    private int maximoSuportado = 2000;
     
     public NacaoArmazem()
     {
@@ -20,6 +21,10 @@ public class NacaoArmazem : SaveInterface {
 
     public void setQuantidadeRecurso(String recurso, int valor)
     {
+        if(valor> maximoSuportado)
+        {
+            valor = maximoSuportado;
+        }
         recursoEnum = new RecursoEnum();
         if (recurso.Equals(recursoEnum.getPlantaRecursoString()))
         {
@@ -63,16 +68,28 @@ public class NacaoArmazem : SaveInterface {
 
     public void setRecursoPlanta(int quanidade)
     {
+        if (quanidade > maximoSuportado)
+        {
+            quanidade = maximoSuportado;
+        }
         this.recursoPlanta = quanidade;
     }
 
     public void setRecursoMeleca(int quanidade)
     {
+        if (quanidade > maximoSuportado)
+        {
+            quanidade = maximoSuportado;
+        }
         this.recursoMeleca = quanidade;
     }
 
     public void setRecursoCouro(int quanidade)
     {
+        if (quanidade > maximoSuportado)
+        {
+            quanidade = maximoSuportado;
+        }
         this.recursoCouro = quanidade;
     }
 
