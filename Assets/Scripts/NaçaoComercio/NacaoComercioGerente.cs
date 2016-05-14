@@ -6,6 +6,7 @@ public class NacaoComercioGerente : SaveInterface {
     public int melecaPreco;
     public int couroPreco;
     public int plantaPreco;
+    public RecursoEnum recursoEnum;
 
     // Use this for initialization
     void Start () {
@@ -16,6 +17,24 @@ public class NacaoComercioGerente : SaveInterface {
 	void Update () {
 	
 	}
+
+    public int getPrecoRecurso(String recurso)
+    {
+        recursoEnum = new RecursoEnum();
+        if (recurso.Equals(recursoEnum.getPlantaRecursoString()))
+        {
+            return plantaPreco;
+        }
+        else if (recurso.Equals(recursoEnum.getMelecarRecursoString()))
+        {
+            return melecaPreco;
+        }
+        else if (recurso.Equals(recursoEnum.getCouroRecursoString()))
+        {
+            return couroPreco;
+        }
+        return 0;
+    }
 
     public void setPlantaPreco(int valor)
     {

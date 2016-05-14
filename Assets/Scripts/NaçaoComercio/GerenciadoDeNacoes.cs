@@ -61,7 +61,7 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
 
     public void rotacaoTimerIANacao()
     {
-        if(timerRealizarComercio+300 < Time.time)
+        if(timerRealizarComercio+60 < Time.time)
         {
             foreach(Nacao nacao in nacoes)
             {
@@ -77,7 +77,7 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
 
     public void rotacaoTimerProducao()
     {
-        if(timerGerarProducao+150< Time.time)
+        if(timerGerarProducao+30< Time.time)
         {
             turnoGerarProducaoConsumo();
             timerGerarProducao = Time.time;

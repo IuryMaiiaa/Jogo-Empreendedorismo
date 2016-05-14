@@ -36,6 +36,10 @@ public class CelulaColider : MonoBehaviour {
             else if (gameManager.acaoAtual == "REMOVER")
             {
                 hit.collider.gameObject.GetComponent<Recurso>().remover();
+            } else if (this.gameObject.GetComponent<Recurso>().recurso.Equals("") ||
+                       this.gameObject.GetComponent<Recurso>().recurso.Equals("NENHUM")) 
+            {
+               
             } else
             {
                 ChamarBotao(hit);

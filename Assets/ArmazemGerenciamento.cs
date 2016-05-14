@@ -8,19 +8,43 @@ public class ArmazemGerenciamento : MonoBehaviour,SaveInterface {
     public int recursoPlantaArmazenado;
     public int recursoMelecaArmazenado;
     public int recursoCouroArmazenado;
+    public int dinheiro;
     public int MaximaCapacidade = 2000;
 
+    public RecursoEnum recursoEnum;
     public SaveAtual saveAtual;
 
     // Use this for initialization
     void Start () {
-        
+        recursoEnum = new RecursoEnum();
     }
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
+
+    public void dinheiroAdicioanr(int valor)
+    {
+        dinheiro += valor;
+    }
+
+    public void adicionarRecurso(string recurso,int valor)
+    {
+        recursoEnum = new RecursoEnum();
+        if (recurso.Equals(recursoEnum.getPlantaRecursoString()))
+        {
+            plantAdicionar(valor);
+        }
+        else if (recurso.Equals(recursoEnum.getMelecarRecursoString()))
+        {
+            melecaAdicionar(valor);
+        }
+        else if (recurso.Equals(recursoEnum.getCouroRecursoString()))
+        {
+            couroAdicionar(valor);
+        }
+    }
 
     public void plantAdicionar(int valor)
     {
@@ -43,6 +67,10 @@ public class ArmazemGerenciamento : MonoBehaviour,SaveInterface {
     public void couroAdicionar(int valor)
     {
         recursoCouroArmazenado += valor;
+        if(recursoCouroArmazenado >= MaximaCapacidade)
+        {
+            recursoCouroArmazenado = MaximaCapacidade;
+        }
     }
 
     public void plantaRemover(int valor)
@@ -71,6 +99,7 @@ public class ArmazemGerenciamento : MonoBehaviour,SaveInterface {
         armazenamentoData.recursoMelecaArmazenado = recursoMelecaArmazenado;
         armazenamentoData.recursoCouroArmazenado = recursoCouroArmazenado;
         armazenamentoData.maximaCapacidade = MaximaCapacidade;
+        armazenamentoData.dinheiro = dinheiro;
 
         bf.Serialize(file, armazenamentoData);
         file.Close();
@@ -102,6 +131,7 @@ public class ArmazemGerenciamento : MonoBehaviour,SaveInterface {
             recursoMelecaArmazenado = armazenamentoData.recursoMelecaArmazenado;
             recursoCouroArmazenado = armazenamentoData.recursoCouroArmazenado;
             MaximaCapacidade = armazenamentoData.maximaCapacidade;
+            dinheiro = armazenamentoData.dinheiro;
         }
 
     }
@@ -111,6 +141,7 @@ public class ArmazemGerenciamento : MonoBehaviour,SaveInterface {
 [System.Serializable]
 class ArmazenamentoData
 {
+    public int dinheiro;
     public int maximaCapacidade;
     public int recursoPlantaArmazenado;
     public int recursoMelecaArmazenado;

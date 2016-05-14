@@ -31,7 +31,7 @@ public class GerenciadorBotoesPopUp : MonoBehaviour {
     {
         menuPopUpAlien.SetActive(true);
         Transform posicaoCentroAlien = GameObject.FindObjectOfType<GerenciadorObjetosCenario>().atualCentro.transform;
-        menuPopUpAlien.transform.position = new Vector3(posicaoCentroAlien.position.x, posicaoCentroAlien.position.y, menuPopUpAlien.transform.position.z);
+        menuPopUpAlien.transform.position = new Vector3(posicaoCentroAlien.position.x-5, posicaoCentroAlien.position.y, menuPopUpAlien.transform.position.z);
     }
 
     public void fecharMenuAlienPopUp()

@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour {
         time = Time.time;
         possuiSave = false;
         recursoAtual = NENHUM;
+        acaoAtual = CANCELAR;
         id_butao = 4;
         Cursor.SetCursor(cursorTexture[0], hotSpot, cursorMode);
     }

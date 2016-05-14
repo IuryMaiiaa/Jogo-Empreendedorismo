@@ -236,5 +236,4 @@ class CelulaData
     public String Recurso;
     public int recursoLv;
     public Vector3Seri posicaoCelula;
-
 }

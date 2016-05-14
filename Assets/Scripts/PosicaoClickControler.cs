@@ -54,7 +54,7 @@ public class PosicaoClickControler : MonoBehaviour {
             {
                 if (hit.collider.gameObject.GetComponent<CelulaColider>() != null)
                 {
-                    hit.collider.gameObject.GetComponent<CelulaColider>().intencao(hit);
+                   hit.collider.gameObject.GetComponent<CelulaColider>().intencao(hit);
                 } else if (hit.collider.gameObject.GetComponent<NaveScriptChamarBotao>() != null)
                 {
                     hit.collider.gameObject.GetComponent<NaveScriptChamarBotao>().chamarMenuOpcoesNave();
