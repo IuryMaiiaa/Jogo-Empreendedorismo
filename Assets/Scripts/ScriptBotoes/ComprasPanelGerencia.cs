@@ -75,7 +75,6 @@ public class ComprasPanelGerencia : MonoBehaviour {
         String valorInput = getInputValor();
         int valorInteiro = Int32.Parse(valorInput);
         Nacao nacao = gerenciadorNacoes.getNacaoAlienByPosicao(gerenciadorMapas.posX+""+gerenciadorMapas.posY);
-        Debug.Log("compra: " + valorInteiro + " nacaoNome:" + nacao.nascaoNome + " posicao:" + nacao.posicao);
         if (nacao.getArmazem().getQuantidadeRecurso(recurso) <= valorInteiro){
             if((nacao.nacaoComercioGerente.getPrecoRecurso(recurso)*valorInteiro) <= armazemPlayer.dinheiro)
             {
@@ -85,11 +84,9 @@ public class ComprasPanelGerencia : MonoBehaviour {
                 armazemPlayer.adicionarRecurso(recurso, valorInteiro);
                 armazemPlayer.dinheiro = armazemPlayer.dinheiro - nacao.getArmazem().getDinheiro() +
                                                                   nacao.nacaoComercioGerente.getPrecoRecurso(recurso) * valorInteiro;
-                Debug.Log("chego Aqui");
                 fecharTodosPanelCompra();
             }
         }
-        
     }
 
     public string getInputValor()
