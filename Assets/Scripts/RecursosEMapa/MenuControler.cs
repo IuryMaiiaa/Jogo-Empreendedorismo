@@ -58,6 +58,11 @@ public class MenuControler : MonoBehaviour {
         animationPanel.menuOpcoesFechamento(panel);
     }
 
+    public void FecharMenus()
+    {
+        
+    }
+
 
 
 }

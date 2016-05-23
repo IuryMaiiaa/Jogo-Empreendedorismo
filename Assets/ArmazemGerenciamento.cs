@@ -46,6 +46,24 @@ public class ArmazemGerenciamento : MonoBehaviour,SaveInterface {
         }
     }
 
+    public int getRecurso(String recurso)
+    {
+        recursoEnum = new RecursoEnum();
+        if (recurso.Equals(recursoEnum.getPlantaRecursoString()))
+        {
+            return recursoPlantaArmazenado;
+        }
+        else if (recurso.Equals(recursoEnum.getMelecarRecursoString()))
+        {
+            return recursoMelecaArmazenado;
+        }
+        else if (recurso.Equals(recursoEnum.getCouroRecursoString()))
+        {
+            return recursoCouroArmazenado;
+        }
+        return 0;
+    }
+
     public void plantAdicionar(int valor)
     {
         recursoPlantaArmazenado += valor;
