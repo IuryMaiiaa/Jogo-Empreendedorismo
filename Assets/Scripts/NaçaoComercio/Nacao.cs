@@ -389,9 +389,9 @@ public class Nacao : MonoBehaviour,SaveInterface {
         {
             valor -= 100;
         }
-        if(valor<0)
+        if(valor<=0)
         {
-            valor = 0;
+            valor = 10;
         }
         return valor;
     }
