@@ -64,12 +64,13 @@ public class VendasPanelGerencia : MonoBehaviour {
 
     public void VenderRecurso(string recurso)
     {
+        Debug.LogWarning("chego");
         string valorInput = getInputValor();
         int valorInteiro = Int32.Parse(valorInput);
         Nacao nacao = gerenciadorNacoes.getNacaoAlienByPosicao(gerenciadorMapas.posX + "" + gerenciadorMapas.posY);
         if(armazemPlayer.getRecurso(recurso) <= valorInteiro)
         {
-            armazemPlayer.adicionarRecurso(recurso, armazemPlayer.getRecurso(recurso) - valorInteiro);
+            armazemPlayer.setRecurso(recurso, armazemPlayer.getRecurso(recurso) - valorInteiro);
             armazemPlayer.dinheiroAdicioanr(armazemPlayer.dinheiro +
                                             (nacao.nacaoComercioGerente.getPrecoRecurso(recurso) * valorInteiro));
             nacao.getArmazem().setQuantidadeRecurso(recurso, nacao.getArmazem().getQuantidadeRecurso(recurso)+valorInteiro);

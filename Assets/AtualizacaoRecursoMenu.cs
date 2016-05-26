@@ -19,5 +19,6 @@ public class AtualizacaoRecursoMenu : MonoBehaviour {
         PlantaText.text = ""+armazem.recursoPlantaArmazenado+"/"+armazem.MaximaCapacidade;
         MelecaText.text = "" + armazem.recursoMelecaArmazenado+"/"+armazem.MaximaCapacidade;
         CouroText.text = "" + armazem.recursoCouroArmazenado+"/"+armazem.MaximaCapacidade;
+        DinheiroText.text = "" + armazem.dinheiro;
 	}
 }
