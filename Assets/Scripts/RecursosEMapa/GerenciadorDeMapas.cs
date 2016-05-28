@@ -99,6 +99,7 @@ public class GerenciadorDeMapas : MonoBehaviour,SaveInterface {
             gerenciadorObjetosCenario.vermelhoColocarEstruturasEmPosicao();
         }
         GameObject.FindObjectOfType<ControladorMenu>().fecharMenus();
+        GameObject.FindObjectOfType<ControladorMenu>().abrirMenusFixos();
     }
 
     public void criarMapasLoad()

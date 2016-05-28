@@ -3,7 +3,8 @@ using System.Collections;
 
 public class ControladorMenu : MonoBehaviour {
 
-    public GameObject[] menus;
+    public GameObject[] menuSazonais;
+    public GameObject[] menuFixos;
 
 	// Use this for initialization
 	void Start () {
@@ -17,11 +18,22 @@ public class ControladorMenu : MonoBehaviour {
 
     public void fecharMenus()
     {
-        foreach (GameObject menu in menus)
+        foreach (GameObject menu in menuSazonais)
         {
             if(menu.active == true)
             {
                 menu.SetActive(false);
+            }
+        }
+    }
+
+    public void abrirMenusFixos()
+    {
+        foreach (GameObject menu in menuFixos)
+        {
+            if(menu.active == false)
+            {
+                menu.SetActive(true);
             }
         }
     }
