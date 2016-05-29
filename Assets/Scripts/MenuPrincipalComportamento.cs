@@ -24,7 +24,7 @@ public class MenuPrincipalComportamento : MonoBehaviour {
             indexValueUp();
         }
 
-        if(Input.GetKeyDown("enter") || Input.GetKeyDown("space"))
+        if(Input.GetKeyDown(KeyCode.Break) || Input.GetKeyDown("space"))
         {
             BotoesReferencia[curentIndex].GetComponent<InterfaceBotao>().botaoAcao();
         }
