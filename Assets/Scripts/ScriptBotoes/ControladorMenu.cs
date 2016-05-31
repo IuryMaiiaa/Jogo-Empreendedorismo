@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ControladorMenu : MonoBehaviour {
 
+    public GameObject menuPrincipal;
+
     public GameObject[] menuSazonais;
     public GameObject[] menuFixos;
 
@@ -15,6 +17,11 @@ public class ControladorMenu : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public void abrirMenuPrincipal()
+    {
+        menuPrincipal.SetActive(true);
+    }
 
     public void fecharMenus()
     {

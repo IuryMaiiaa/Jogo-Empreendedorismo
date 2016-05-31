@@ -10,7 +10,8 @@ public class MenuPrincipalComportamento : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         curentIndex = 0;
-        //naveSprite.transform.position = BotoesReferencia[curentIndex].transform.position;
+        indexValueDown();
+        indexValueUp();
     }
 	
 	// Update is called once per frame
