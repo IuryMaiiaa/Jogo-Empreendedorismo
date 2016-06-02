@@ -19,21 +19,21 @@ public class GerenciadoDeEventos : MonoBehaviour {
 
     public void iniciarEventos()
     {
-
+        saveAtual = GameObject.FindObjectOfType<SaveAtual>();
     }
 
     public void loadEventos()
     {
-
+        saveAtual = GameObject.FindObjectOfType<SaveAtual>();
     }
 
     public void save()
     {
-
+        saveAtual = GameObject.FindObjectOfType<SaveAtual>();
     }
 
     public void load()
     {
-
+        saveAtual = GameObject.FindObjectOfType<SaveAtual>();
     }
 }
