@@ -87,4 +87,15 @@ public class SaveAtual : MonoBehaviour {
             GameObject.FindObjectOfType<GerenciadoDeNacoes>().criarNascoesLoad();
         }
     }
+
+    public void iniciarGerenciadorEventos()
+    {
+        if(gameStartType == "new")
+        {
+            GameObject.FindObjectOfType<GerenciadoDeEventos>().iniciarEventos();
+        } else if(gameStartType == "load")
+        {
+            GameObject.FindObjectOfType<GerenciadoDeEventos>().loadEventos();
+        }
+    }
 }

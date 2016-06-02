@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour {
                     save.iniciarCriacaoMapas();
                     save.iniciarEstoque();
                     save.iniciarCriacaoNacoes();
+                    save.iniciarGerenciadorEventos();
                     possuiSave = true;
                 }
             }
@@ -72,6 +73,7 @@ public class GameManager : MonoBehaviour {
         GameObject.FindObjectOfType<ArmazemGerenciamento>().save();
         GameObject.FindObjectOfType<GerenciadorDeMapas>().save();
         GameObject.FindObjectOfType<GerenciadoDeNacoes>().save();
+        GameObject.FindObjectOfType<GerenciadoDeEventos>().save();
     }
 
 
