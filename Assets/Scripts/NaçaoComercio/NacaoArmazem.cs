@@ -144,6 +144,7 @@ public class NacaoArmazem : SaveInterface {
             FileStream file = File.Open(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + nascaoNome + "ArmazemNascaoData.dat", FileMode.Open);
             ArmazemNascaoData armazemNascaoData = (ArmazemNascaoData)bf.Deserialize(file);
 
+            file.Close();
             this.setDinheiro(armazemNascaoData.dinheiro);
             this.setNascaoNome(armazemNascaoData.nascaoNome);
             this.setRecursoCouro(armazemNascaoData.recursoCouro);
