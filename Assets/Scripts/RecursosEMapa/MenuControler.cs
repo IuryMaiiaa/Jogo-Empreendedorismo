@@ -34,6 +34,12 @@ public class MenuControler : MonoBehaviour {
 
     }
 
+    public void fecharMenuOpcoes()
+    {
+        MenuOpcoesRecurso.SetActive(false);
+        menuAberto = true;
+    }
+
     public void AcinonarMenuOpcoesRecurso(GameObject botaoChamado)
     {
         menuAberto = false;
@@ -60,7 +66,7 @@ public class MenuControler : MonoBehaviour {
 
     public void FecharMenus()
     {
-        
+        fecharMenuOpcoes();
     }
 
 
