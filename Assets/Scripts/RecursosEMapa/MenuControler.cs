@@ -37,10 +37,10 @@ public class MenuControler : MonoBehaviour {
     public void AcinonarMenuOpcoesRecurso(GameObject botaoChamado)
     {
         menuAberto = false;
-        MenuJogo.SetActive(true);
+        //MenuJogo.SetActive(true);
         MenuOpcoesRecurso.SetActive(true);
         MenuOpcoesRecurso.transform.position = new Vector3(botaoChamado.gameObject.transform.position.x, botaoChamado.gameObject.transform.position.y, botaoChamado.gameObject.transform.position.z - 1);
-        MenuJogo.transform.position = new Vector3(MenuJogo.transform.position.x,MenuJogo.transform.position.y,botaoChamado.gameObject.transform.position.z-5);
+        //MenuJogo.transform.position = new Vector3(MenuJogo.transform.position.x,MenuJogo.transform.position.y,botaoChamado.gameObject.transform.position.z-5);
     }
 
     public void TextBotao()
