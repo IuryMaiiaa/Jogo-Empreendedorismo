@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class GameManager : MonoBehaviour {
     public static string PLANTA = "PLANTA";
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour {
                     save.iniciarEstoque();
                     save.iniciarCriacaoNacoes();
                     save.iniciarGerenciadorEventos();
+                    save.iniciarNaveStatus();
                     possuiSave = true;
                 }
             }
@@ -74,6 +76,13 @@ public class GameManager : MonoBehaviour {
         GameObject.FindObjectOfType<GerenciadorDeMapas>().save();
         GameObject.FindObjectOfType<GerenciadoDeNacoes>().save();
         GameObject.FindObjectOfType<GerenciadoDeEventos>().save();
+        GameObject.FindObjectOfType<GerenciadorNaveStatus>().save();
+    }
+
+    public void endGame()
+    {
+        GameObject.FindObjectOfType<GameManager>().saveGame();
+        Application.LoadLevel(0);
     }
 
 

@@ -76,6 +76,18 @@ public class SaveAtual : MonoBehaviour {
         
     }
 
+    public void iniciarNaveStatus()
+    {
+        if (gameStartType == "new")
+        {
+            GameObject.FindObjectOfType<GerenciadorNaveStatus>().iniciarNaveStatus();
+        }
+        else if (gameStartType == "load")
+        {
+            GameObject.FindObjectOfType<GerenciadorNaveStatus>().loadNaveStatus();
+        }
+    }
+
     public void iniciarCriacaoNacoes()
     {
         if (gameStartType == "new")

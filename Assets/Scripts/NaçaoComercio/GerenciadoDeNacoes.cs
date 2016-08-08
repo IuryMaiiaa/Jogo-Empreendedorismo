@@ -28,7 +28,6 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
             chegarObjetivoNacoes();
         }
         
-        
 	}
 
     public void chegarObjetivoNacoes()
@@ -61,7 +60,7 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
 
     public void rotacaoTimerIANacao()
     {
-        if(timerRealizarComercio+60 < Time.time)
+        if(timerRealizarComercio+240 < Time.time)
         {
             foreach(Nacao nacao in nacoes)
             {
@@ -77,7 +76,7 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
 
     public void rotacaoTimerProducao()
     {
-        if(timerGerarProducao+30< Time.time)
+        if(timerGerarProducao+120< Time.time)
         {
             turnoGerarProducaoConsumo();
             timerGerarProducao = Time.time;
@@ -109,6 +108,7 @@ public class GerenciadoDeNacoes : MonoBehaviour,SaveInterface {
         }
         save();
         prontoParaJogar = true;
+        definirPrecoPadraoRecurso();
     }
 
     public void criarNascoesLoad()

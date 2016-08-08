@@ -24,6 +24,15 @@ public class GerenciadorDeMapas : MonoBehaviour,SaveInterface {
             {
                 GameObject mapa = GameObject.Instantiate(MapaPadrao) as GameObject;
                 mapa.GetComponent<Mapa>().CriarMapa();
+                if(cont == 1 && cont2 == 1)
+                {
+                    mapa.GetComponent<Mapa>().comprado = true;
+                    mapa.GetComponent<Mapa>().setComprador(true);
+                } else
+                {
+                    mapa.GetComponent<Mapa>().comprado = false;
+                    mapa.GetComponent<Mapa>().setComprador(false);
+                }
                 //mapa.GetComponent<Mapa>().Save(cont,cont2);
                 Mapas[cont, cont2] = mapa;
             }

@@ -11,6 +11,7 @@ public class Mapa : MonoBehaviour {
     public GameObject LosangoBase;
     public Celula losangoCelulaBase;
     public SaveAtual saveAtual;
+    public bool comprado;
 
 	// Use this for initialization  
 	void Start () {
@@ -94,29 +95,6 @@ public class Mapa : MonoBehaviour {
         }
     }
 
-    public void LoadLista(int codigo1, int codigo2, ArrayList list)
-    {
-        saveAtual = GameObject.FindObjectOfType<SaveAtual>();
-        if (File.Exists(Application.persistentDataPath + "/"+ saveAtual.getSaveAtualId() + "" + codigo1 + "" + codigo2 + "MapaData.dat"))
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/" + saveAtual.getSaveAtualId() + "" + codigo1 + "" + codigo2 + "MapaData.dat", FileMode.Open);
-
-            MapaData mapaData = (MapaData)bf.Deserialize(file);
-            file.Close();
-            foreach (CelulaData celulas in mapaData.celulasLosango)
-            {
-                GameObject celula = GameObject.Instantiate(LosangoBase) as GameObject;
-                celula.transform.position = celulas.posicaoCelula.V3;
-                celula.GetComponent<Celula>().recurso.setRecurso(celulas.Recurso, celulas.recursoLv);
-                celula.GetComponent<Celula>().recurso.setTempoDecorrido(celulas.tempoDecorrido);
-                list.Add(celula);
-                celula.transform.parent = this.gameObject.transform;
-
-            }
-        }
-    }
-
     public GameObject Load(int codigo1, int codigo2)
     {
         saveAtual = GameObject.FindObjectOfType<SaveAtual>();
@@ -129,6 +107,7 @@ public class Mapa : MonoBehaviour {
             file.Close();
             this.largura.position = mapaData.largura.V3;
             this.altura.position = mapaData.altura.V3;
+            this.comprado = mapaData.comprado;
             celulasLosango = new ArrayList();
             foreach (CelulaData celulas in mapaData.celulasLosango)
             {
@@ -136,13 +115,13 @@ public class Mapa : MonoBehaviour {
                 celula.transform.position = celulas.posicaoCelula.V3;
                 celula.GetComponent<Celula>().recurso.setRecurso(celulas.Recurso, celulas.recursoLv);
                 celula.GetComponent<Celula>().recurso.setTempoDecorrido(celulas.tempoDecorrido);
+                celula.GetComponent<Celula>().recurso.compradoPeloJogador = celulas.compradoPeloJogador;
                 celulasLosango.Add(celula);
                 celula.transform.parent = this.gameObject.transform;
             }
             return this.gameObject;
         }
         return null;
-        
     }
 
     public void destroiCelulas()
@@ -161,7 +140,15 @@ public class Mapa : MonoBehaviour {
             Destroy(obj.gameObject);
         }
         celulasLosango.Clear();
+    }
 
+    public void setComprador(bool comprado)
+    {
+        Recurso[] recursos = this.GetComponentsInChildren<Recurso>();
+        foreach (Recurso obj in recursos)
+        {
+            obj.compradoPeloJogador = comprado;
+        }
     }
 
     public ArrayList findArray()
@@ -172,7 +159,6 @@ public class Mapa : MonoBehaviour {
         {
             list.Add(c.gameObject);
         }
-
         return list;
     }
 
@@ -185,6 +171,7 @@ public class Mapa : MonoBehaviour {
         
         data.altura = new Vector3Seri(this.altura.position);
         data.largura = new Vector3Seri(this.largura.position);
+        data.comprado = this.comprado;
         Celula[] celulasLosangoFilhas = this.gameObject.GetComponentsInChildren<Celula>();
         CelulaData[] celulas = new CelulaData[celulasLosangoFilhas.Length];
         int cont = 0;
@@ -194,6 +181,7 @@ public class Mapa : MonoBehaviour {
             celuladata.posicaoCelula = new Vector3Seri(obj.transform.position);
             celuladata.Recurso = obj.recurso.recurso;
             celuladata.recursoLv = obj.recurso.lv;
+            celuladata.compradoPeloJogador = obj.recurso.compradoPeloJogador;
             celuladata.tempoDecorrido = obj.recurso.tempoDecorrido;
             celulas[cont] = celuladata;
             cont++;
@@ -226,12 +214,13 @@ class MapaData
     public Vector3Seri largura;
     public Vector3Seri altura;
     public CelulaData[] celulasLosango;
-
+    public bool comprado;
 }
 
 [System.Serializable]
 class CelulaData
 {
+    public bool compradoPeloJogador;
     public int tempoDecorrido;
     public String Recurso;
     public int recursoLv;

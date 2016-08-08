@@ -52,7 +52,7 @@ public class PosicaoClickControler : MonoBehaviour {
             RaycastHit hit = new RaycastHit();
             if (Physics.Raycast(ray, out hit, 1000))
             {
-                if (hit.collider.gameObject.GetComponent<CelulaColider>() != null)
+                if (hit.collider.gameObject.GetComponent<CelulaColider>() != null && hit.collider.gameObject.GetComponent<Recurso>().compradoPeloJogador == true)
                 {
                    hit.collider.gameObject.GetComponent<CelulaColider>().intencao(hit);
                 } else if (hit.collider.gameObject.GetComponent<NaveScriptChamarBotao>() != null)

@@ -8,6 +8,7 @@ public class Recurso : MonoBehaviour {
     public double tempoAtual;
     public int lv;
     public string recurso;
+    public bool compradoPeloJogador;
  
 	// Use this for initialization
 	void Start () {
