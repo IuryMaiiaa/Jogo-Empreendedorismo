@@ -57,6 +57,17 @@ public class AnimationOpenPanel : MonoBehaviour {
         MenuPanelAbertura = true;
     }
 
+    public void menuMapaAbertura(GameObject panel)
+    {
+        if (MenuPanelAbertura)
+        {
+            panel.SetActive(false);
+        }
+        panel.SetActive(true);
+        this.panel = panel;
+        //MenuPanelAbertura = true;
+    }
+
     public void menuOpcoesFechamento(GameObject panel)
     {
         MenuPanelAbertura = false;
